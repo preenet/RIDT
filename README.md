@@ -1,2 +1,4 @@
-# RIDT
-A Real-Tme Interactive Dashboard for Tourism
+# RIDT (A Real-Tme Interactive Dashboard for Tourism)  
+
+
+
