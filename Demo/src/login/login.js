@@ -1,8 +1,7 @@
 import React from "react";
 import reactDom from "react-dom";
 import './login.css';
-//import Route from 'react-router-dom/Route'
-//import {BrowserRouter as Router} from 'react-router-dom'
+
 
 class Login extends React.Component {
     constructor(props) {
