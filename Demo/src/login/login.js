@@ -1,5 +1,6 @@
 import React from "react";
 import reactDom from "react-dom";
+import './login.css';
 
 class Login extends React.Component {
     constructor(props) {
@@ -7,34 +8,40 @@ class Login extends React.Component {
         this.state = { isLoginOpen: true, isCommentOpen: false };
     }
 
-    showLoginBox(){
-        this.setState({isLoginOpen: true, isCommentOpen: false});
+    showLoginBox() {
+        this.setState({ isLoginOpen: true, isCommentOpen: false });
     }
 
-    showCommentBox(){
-        this.setState({isLoginOpen: false, isCommentOpen: true});
+    showCommentBox() {
+        this.setState({ isLoginOpen: false, isCommentOpen: true });
     }
 
     render() {
         return (
             <div className="root-container">
                 <div className="box-controller">
-                    <button type="button" className="login-page" onClick={this.showLoginBox.bind(this)}>
-                        Login Page
+                    <button type="button" className={"controller " + (this.state.isLoginOpen
+                        ? "selected-controller"
+                        : "")}
+                        onClick={this.showLoginBox.bind(this)}>
+                        Login
                     </button>
 
-                    <button type="button" className="comment-page" onClick={this.showCommentBox.bind(this)}>
-                        Comment Page
+                    <button type="button" className={"controller " + (this.state.isCommentOpen
+                        ? "selected-controller"
+                        : "")} onClick={this.showCommentBox.bind(this)}>
+                        Comment
                     </button>
 
                 </div>
 
                 <div className="box-container">
 
-                    {this.state.isLoginOpen && <LoginBox    />}
-                    {this.state.isCommentOpen && <CommentBox    />}
-                </div>
+                    {this.state.isLoginOpen && <LoginBox />}
+                    {this.state.isCommentOpen && <CommentBox />}
 
+                </div>
+                
             </div>
         );
 
@@ -58,7 +65,7 @@ class LoginBox extends React.Component {
             <div className="inner-container">
 
                 <div className="header">
-                    Please Login
+                    Login
             </div>
 
                 <div className="box">
@@ -99,7 +106,7 @@ class CommentBox extends React.Component {
             <div className="inner-container">
 
                 <div className="header">
-                    Please Input Your Comment
+                    Comment
             </div>
 
                 <div className="box">
