@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Link, Redirect } from 'react-router-dom';
 import Route from 'react-router-dom/Route';
 import Dashboard from './Dashboard';
+import { timingSafeEqual } from 'crypto';
 
 
 class LoginBox extends React.Component {
@@ -34,12 +35,15 @@ class LoginBox extends React.Component {
         this.setState({ username: e.target.value })
         this.clearValiadtionErr("username");
         this.clearValiadtionErr("login");
+        this.clearValiadtionErr("uformat");
+        this.clearValiadtionErr("sformat");
     }
 
     onPasswordChanged(e) {
         this.setState({ password: e.target.value })
         this.clearValiadtionErr("password");
         this.clearValiadtionErr("login");
+        this.clearValiadtionErr("pformat");
     }
 
 
@@ -56,8 +60,18 @@ class LoginBox extends React.Component {
             this.setState({ username: e.target.value });
             this.setState({ password: e.target.value });
         }
+        if(this.state.username.length > 10){
+            this.showValidationErr("uformat","Username is too long!");
+        }
+        if(this.state.password.length < 6){
+            this.showValidationErr("pformat","Password must be more than 6 digits!");
+        }
+        if( /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(this.state.username)){
+            this.showValidationErr("sformat","Username cannot contain special character!");
 
-        if (this.state.username == "test" && this.state.password == "test") {
+        }
+
+        if (this.state.username == "test" && this.state.password == "test1234") {
             this.setState({ isLoggedIn: true });
             this.showValidationErr("login", "Click again to redirect to dashboard!");
         } else if (this.state.username != "" && this.state.password != "") {
@@ -72,6 +86,9 @@ class LoginBox extends React.Component {
         let usernameErr = null;
         let passwordErr = null;
         let loginErr = null;
+        let uFormatErr = null;
+        let pFormatErr = null;
+        let sFormatErr = null;
 
         for (let err of this.state.errors) {
             if (err.elm == "username") {
@@ -83,6 +100,16 @@ class LoginBox extends React.Component {
             if (err.elm == "login") {
                 loginErr = err.msg;
             }
+            if(err.elm == "uformat"){
+                uFormatErr = err.msg;
+            }
+            if(err.elm == "pformat"){
+                pFormatErr = err.msg;
+            }
+            if(err.elm == "sformat"){
+                sFormatErr = err.msg;
+            }
+
         }
 
 
@@ -109,6 +136,8 @@ class LoginBox extends React.Component {
                                 placeholder="Username" />
                         </div>
                         <small className="danger-error" > {usernameErr ? usernameErr : ""} </small>
+                        <small className="danger-error" > {uFormatErr ? uFormatErr : ""} </small>
+                        <small className="danger-error" > {sFormatErr ? sFormatErr : ""} </small>
                         <div className="input-group" >
                             <label htmlFor="password" > Password: </label><br />
                             <input type="password"
@@ -119,7 +148,7 @@ class LoginBox extends React.Component {
                                 placeholder="Password" />
                         </div>
                         <small className="danger-error" > {passwordErr ? passwordErr : ""} </small>
-
+                        <small className="danger-error" > {pFormatErr ? pFormatErr : ""} </small>
                         <Link to={this.state.isLoggedIn ? "/dashboard" : ""} >
 
                             <button type="button" className="login-btn" onClick={this.submitLogin.bind(this)} > Login </button>
