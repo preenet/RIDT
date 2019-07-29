@@ -3,6 +3,9 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@version/react-router-v3": "^1.0.0",
+        "clear-module": "^4.0.0",
+        "config": "^3.2.2",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
         "react-router": "4.3.1",
