@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-
 import LoginBox from './Login';
 import ViewBox from './View';
+
+
 
 class HomeBox extends React.Component {
     constructor(props) {
@@ -19,6 +20,8 @@ class HomeBox extends React.Component {
     }
 
     render() {
+        
+          
         return (
 
             <div className="root-container" >
@@ -43,20 +46,17 @@ class HomeBox extends React.Component {
                               </div> */
                 }
 
-
+                       
 
 
                 {this.state.isLoginOpen && < LoginBox />}
                 {this.state.isViewOpen && < ViewBox />}
-
-
-                <button type="button"
-                    className={
-                        "controller " + (this.state.isLoginOpen ?
-                            "selected-controller" :
-                            "")
-                    }>
-                    Cancel </button>
+               
+                {this.state.isLoginOpen && <button type="button"
+                    className="cancel-btn"
+                            onClick={this.showViewBox.bind(this)}>
+                    Cancel </button>}
+                
 
             </div>
         );

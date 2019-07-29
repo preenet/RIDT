@@ -6,7 +6,6 @@ import Home from './static/Home'
 import Dashboard from './static/Dashboard'
 
 
-
 class App extends React.Component {
 
   constructor(props) {
@@ -22,11 +21,12 @@ class App extends React.Component {
 
   render() {
 
+   
     return (
 
 
       <Router>
-        <div className="App">
+        <div className="App" >
 
           <Route path="/" exact strict component={Home} />
 
