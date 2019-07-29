@@ -59,9 +59,8 @@ class LoginBox extends React.Component {
             this.setState({ password: e.target.value });
         }
 
-        if (this.state.username == "test" && this.state.password == "test1234") {
+        if (this.state.username == "admin001" && this.state.password == "admin001") {
             this.setState({ isLoggedIn: true });
-
 
             // this.showValidationErr("login", "Click again to redirect to dashboard!");
         } else if (this.state.username != "" && this.state.password != "") {
@@ -92,7 +91,10 @@ class LoginBox extends React.Component {
             }
 
         }
-        
+        if(this.state.isLoggedIn){
+            return <Redirect to='/dashboard'  />
+        }
+
         return (
 
             <div className="box-container" >
@@ -129,15 +131,16 @@ class LoginBox extends React.Component {
                         </div>
 
                         <small className="danger-error" > {pFormatErr ? pFormatErr : ""} </small>
-                        <Link to={this.state.isLoggedIn ? "/dashboard" : ""} >
 
-                            <button type="button" className="login-btn" disabled={this.state.password.length < 6 || !this.state.username} onClick={this.submitLogin.bind(this)}> Login </button>
+                        
+                       
+                            <button type="button" className="login-btn"   disabled={this.state.password.length < 6 || !this.state.username } onClick={this.submitLogin.bind(this)}> Login </button>
 
-                        </Link>
+                        
 
                         <small className="danger-error"> {loginErr ? loginErr : ""} </small>
 
-                       
+
                     </div>
 
                 </div>
