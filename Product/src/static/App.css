@@ -335,3 +335,32 @@
     max-width: 50% 
 }
 
+.left-top{
+    float: left;
+    width: 50%;
+    
+}
+
+.right-top{
+    float: right;
+    width: 50%;
+   
+}
+
+.logout-btn {
+    padding: 2px 30px;
+    /* background-color: #417cef; */
+    border: 0;
+    font-size: 18px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    background-color: rgba(15, 15, 15, 0.03);
+    margin-top: 20px;
+    border: 1px solid blue;
+    transition: border 0.4s ease-out;
+    transition: background-color 0.4s ease-out;
+    cursor: pointer;
+    max-width: 24em;
+    min-width: 21em;
+    
+}
