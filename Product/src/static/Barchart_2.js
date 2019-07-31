@@ -18,7 +18,7 @@ class BarChart2 extends React.Component {
             },
           },
           dataLabels: {
-            enabled: false
+            enabled: false,
           },
           stroke: {
             show: true,
@@ -26,11 +26,20 @@ class BarChart2 extends React.Component {
             colors: ['transparent']
           },
           xaxis: {
-            categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+            categories: ['Hotel A', 'Hotel B', 'Hotel C', 'Hotel D', 'Hotel E', 'Hotel F', 'Hotel G', 'Hotel H', 'Hotel I'],
+            labels: {
+              style: {
+                colors: ['white','white','white','white','white','white','white','white','white']
+                
+              },
+            }
           },
           yaxis: {
-            title: {
-              text: 'Number'
+            labels: {
+              style: {
+                
+                
+              },
             }
           },
           fill: {
@@ -44,13 +53,22 @@ class BarChart2 extends React.Component {
               
             }
           },
+          legend: {
+            position: 'top',
+            offsetX: 0,
+            offsetY: 0,
+          },
+          title:{
+            text:'Number of Comments for Each Hotel',
+            align: 'center'
+          },
           
         },
         series: [{
-          name: 'Positive',
+          name: 'Neutral',
           data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
         }, {
-          name: 'Neutral',
+          name: 'Positive',
           data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
         }, {
           name: 'Negative',

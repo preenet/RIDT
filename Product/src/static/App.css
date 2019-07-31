@@ -347,6 +347,17 @@
    
 }
 
+.left-bottom{
+    float: right;
+    width: 50%;
+    
+}
+
+.right-bottom{
+    float: right;
+    width: 50%;
+}
+
 .logout-btn {
     padding: 2px 30px;
     /* background-color: #417cef; */
