@@ -34,7 +34,7 @@ class ViewBox extends React.Component {
                             <div className="container" key={hotel}>
 
                                 <div className="text-des">
-                                    <p> {description[0]}</p>
+                                    <strong> {description[0]}</strong>
                                 </div>
                                 <div>
                                     <a href="">

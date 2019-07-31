@@ -13,8 +13,8 @@ class WelcomeBox extends React.Component {
         <div >
           
             
-           <div className="welcome">Real-Tme Interactive Dashboard</div>
-           <p>Please select hotel to view comments.</p>
+           <div className="welcome"><h2>Real-Tme Interactive Dashboard</h2></div>
+           <p style={{color : "white"}} >Please select hotel to view comments.</p>
           
   
             </div>
