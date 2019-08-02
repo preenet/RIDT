@@ -37,8 +37,7 @@ class BarChart2 extends React.Component {
           yaxis: {
             labels: {
               style: {
-                
-                
+                color:'white'
               },
             }
           },
@@ -57,10 +56,17 @@ class BarChart2 extends React.Component {
             position: 'top',
             offsetX: 0,
             offsetY: 0,
+            labels:{
+              useSeriesColors: true
+            },
+            
           },
           title:{
             text:'Number of Comments for Each Hotel',
-            align: 'center'
+            align: 'center',
+            style:{
+              color: 'white'
+            }
           },
           
         },
@@ -82,7 +88,7 @@ class BarChart2 extends React.Component {
         
 
         <div id="chart">
-          <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" />
+          <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350"  width="380"/>
         </div>
 
 

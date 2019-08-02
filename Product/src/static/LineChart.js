@@ -15,7 +15,7 @@ class LineChart extends React.Component {
             toolbar: {
               autoSelected: 'pan',
               show: false
-            }
+            },
           },
           colors: ['#546E7A'],
           stroke: {
@@ -31,11 +31,26 @@ class LineChart extends React.Component {
             size: 0
           },
           xaxis: {
-            type: 'datetime'
+            type: 'datetime',
+            labels: {
+              style: {
+                colors:['white','white','white','white','white','white','white']
+              },
+            }
+          },
+          yaxis:{
+            labels: {
+              style: {
+                color:'white'
+              },
+            }
           },
           title:{
             text:'Positive Comments Rate',
             align: 'center',  
+            style:{
+              color: 'white'
+            }
           }
         },
         chartOptionsBrush: {
@@ -65,10 +80,21 @@ class LineChart extends React.Component {
             type: 'datetime',
             tooltip: {
               enabled: false
+            },
+            labels: {
+              style: {
+                colors:['white','white','white','white','white','white','white','white','white','white','white'],
+              },
             }
           },
           yaxis: {
-            tickAmount: 2
+            tickAmount: 2,
+            labels: {
+              style: {
+                color:'white'
+                
+              },
+            }
           },
           
       },

@@ -20,7 +20,6 @@ class StackedChart extends React.Component {
               position: 'bottom',
               offsetX: -10,
               offsetY: 0,
-              
             }
           }
         }],
@@ -34,17 +33,30 @@ class StackedChart extends React.Component {
             },
           }
         },
+        yaxis:{
+          labels: {
+            style: {
+              color:'white'
+            },
+          }
+        },
         fill: {
           opacity: 1
         },
         legend: {
           position: 'right',
-          offsetX: 0,
+          offsetX: -10,
           offsetY: 50,
+          labels:{
+            useSeriesColors: true
+          },
         },
         title:{
           text:'Type of Comments for Each Hotel',
-          align: 'center'
+          align: 'center',
+          style:{
+            color: 'white'
+          }
         }
       },
       series: [{
@@ -65,7 +77,7 @@ class StackedChart extends React.Component {
 
 
       <div id="chart">
-        <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" />
+        <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" width="600"/>
       </div>
 
 

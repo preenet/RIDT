@@ -58,17 +58,12 @@ class LoginBox extends React.Component {
             this.setState({ username: e.target.value });
             this.setState({ password: e.target.value });
         }
-
         if (this.state.username == "admin001" && this.state.password == "admin001") {
             this.setState({ isLoggedIn: true });
 
-            // this.showValidationErr("login", "Click again to redirect to dashboard!");
         } else if (this.state.username != "" && this.state.password != "") {
             this.showValidationErr("login", "Username or password is incorrect!")
         }
-
-
-
     }
 
 
@@ -134,7 +129,8 @@ class LoginBox extends React.Component {
 
                         
                        
-                            <button type="button" className="login-btn"   disabled={this.state.password.length < 6 || !this.state.username } onClick={this.submitLogin.bind(this)}> Login </button>
+                            <button type="button" className="login-btn"  style={{color: this.state.password.length < 6 || !this.state.username? '':'white'}} 
+                            disabled={this.state.password.length < 6 || !this.state.username } onClick={this.submitLogin.bind(this)}> Login </button>
 
                         
 

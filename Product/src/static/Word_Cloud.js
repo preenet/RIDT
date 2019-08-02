@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-
+import Sparkline from './Sparkline';
 
 class Word_Cloud extends React.Component {
     constructor(props) {
@@ -12,8 +12,8 @@ class Word_Cloud extends React.Component {
         return (
             <div>
 
-                <h1>Hello Word-Cloud</h1>
-
+                <h1 style={{ color: 'white' }}>Hello Word-Cloud</h1>
+               
             </div>
         );
     }

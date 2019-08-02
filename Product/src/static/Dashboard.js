@@ -5,6 +5,7 @@ import Summary from './Summary';
 import Word_Cloud from './Word_Cloud';
 import Heatmap from './Heatmap';
 
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +28,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <h1>RIDT</h1>
+        <h1 style={{color: 'white'}}>RIDT</h1>
 
         <div>
           <div>
@@ -54,7 +55,7 @@ class Dashboard extends React.Component {
                 "")
             } onClick={this.showHeatMap.bind(this)}>Heatmap</button>
 
-            <Link to="/"><button type="button" className="logout-btn"> Logout </button></Link>
+            <Link to="/"><button type="button" className="controller"> Logout </button></Link>
           </div>
 
 
@@ -64,7 +65,7 @@ class Dashboard extends React.Component {
         {this.state.isSummaryOpen && < Summary />}
         {this.state.isWord_CloudOpen && < Word_Cloud />}
         {this.state.isHeatmapOpen && < Heatmap />}
-
+      
       </div>
     );
   }

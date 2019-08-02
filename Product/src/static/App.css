@@ -58,10 +58,10 @@
     border-radius: 3px;
     font-family: Oxygen, sans-serif;
     background-color: rgba(15, 15, 15, 0.03);
-    border: 1px solid blue;
+    border: 1px solid white;
     transition: background-color 0.3s ease-out;
     cursor: pointer;
-    
+    color: white;
 }
 
 .root-container {
@@ -71,6 +71,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    color: white;
 }
 
 .box-container {
@@ -93,7 +94,7 @@
     /* margin-right: 35px; */
     font-family: Ozxgen, sans-serif;
     font-size: 22px;
-    border-bottom: 2px solid blue;
+    border-bottom: 2px solid white;
 }
 
 .box {
@@ -107,53 +108,55 @@
     flex-direction: column;
     margin-top: 5px;
     margin-bottom: 5px;
+
 }
+
 
 .login-input {
     height: 0.1em;
     border-radius: 3px;
-    border: 1px solid blue;
+    border: 1px solid white;
     transition: border 0.4s ease-out;
     padding: 13px;
     font-family: Oxygen, sans-serif;
     font-size: 20px;
-    color: #3e3e42;
+    color:white;
     background: rgba(15, 15, 15, 0.01);
 }
 
 .comment-input {
     height: 0.1em;
     border-radius: 3px;
-    border: 1px solid blue;
+    border: 1px solid white;
     transition: border 0.4s ease-out;
     padding: 13px;
     font-family: Oxygen, sans-serif;
     font-size: 20px;
-    color: #3e3e42;
+    color: white;
     background: rgba(15, 15, 15, 0.01);
 }
 
 .login-input:hover {
-    border: 2px solid blue;
+    border: 2px solid white;
 }
 
 .login-input:focus {
-    border: 2px solid #6565e7;
+    border: 2 solid white;
     box-shadow: 0px 0px 20px rgba(15, 15, 15, 0.2);
 }
 
 .comment-input:hover {
-    border: 2px solid blue;
+    border: 2px solid white;
 }
 
 .comment-input:focus {
-    border: 2px solid #6565e7;
+    border: 2px solid white;
     box-shadow: 0px 0px 20px rgba(15, 15, 15, 0.2);
 }
 
 .selected-controller {
-    transition: border;
-    border-bottom: 2px solid blue;
+    transition: border ;
+    border-bottom: 4px solid white;
 }
 
 .login-btn {
@@ -165,7 +168,7 @@
     font-family: Oxygen, sans-serif;
     background-color: rgba(15, 15, 15, 0.03);
     margin-top: 20px;
-    border: 1px solid blue;
+    border: 1px solid white;
     transition: border 0.4s ease-out;
     transition: background-color 0.4s ease-out;
     cursor: pointer;
@@ -183,34 +186,35 @@
     font-family: Oxygen, sans-serif;
     background-color: rgba(15, 15, 15, 0.03);
     margin-top: 20px;
-    border: 1px solid blue;
+    border: 1px solid white;
     transition: border 0.4s ease-out;
     transition: background-color 0.4s ease-out;
     cursor: pointer;
     max-width: 24em;
     min-width: 21em;
     background-size: cover;
+    color: white;
 }
 
 .login-btn:hover {
-    border: 2px solid blue;
+    border: 2px solid white;
 }
 
 .login-btn:focus {
-    border: 2px solid blue;
+    border: 2px solid white;
     box-shadow: 0px 0px 20px rgba(15, 15, 15, 0.2);
-    background-color: blue;
+    background-color: white;
     color: white;
 }
 
 .cancel-btn:hover {
-    border: 2px solid blue;
+    border: 2px solid white;
 }
 
 .cancel-btn:focus {
-    border: 2px solid blue;
+    border: 2px solid white;
     box-shadow: 0px 0px 20px rgba(15, 15, 15, 0.2);
-    background-color: blue;
+    background-color: white;
     color: white;
 }
 
@@ -223,20 +227,20 @@
     font-family: Oxygen, sans-serif;
     background-color: rgba(15, 15, 15, 0.03);
     margin-top: 20px;
-    border: 1px solid blue;
+    border: 1px solid white;
     transition: border 0.4s ease-out;
     transition: background-color 0.4s ease-out;
     cursor: pointer;
 }
 
 .comment-btn:hover {
-    border: 2px solid blue;
+    border: 2px solid white;
 }
 
 .comment-btn:focus {
-    border: 2px solid blue;
+    border: 2px solid white;
     box-shadow: 0px 0px 20px rgba(15, 15, 15, 0.2);
-    background-color: blue;
+    background-color: white;
     color: white;
 }
 
@@ -255,10 +259,7 @@
     font-size: 16px;
 }
 
-.login-suc{
-    color: blue;
-    font-size: 16px;
-}
+
 
 .hotel-img {
     opacity: 1;
@@ -296,9 +297,6 @@
 
 }
 
-
-
-
 .text-des{
     border:1px solid white;
     margin-right: auto;
@@ -330,48 +328,87 @@
     
 }
 
-
 .view{
     max-width: 50% 
 }
 
 .left-top{
+    position: relative;
     float: left;
-    width: 50%;
-    
 }
 
 .right-top{
-    float: right;
-    width: 50%;
-   
+    position: relative;
+    float: left;
 }
 
 .left-bottom{
-    float: right;
-    width: 50%;
-    
+    position: relative;
+    float: left;
+    top: 100%;
 }
 
 .right-bottom{
-    float: right;
-    width: 50%;
+    position: relative;
+    float: left;
+    top: 100%;
 }
 
 .logout-btn {
     padding: 2px 30px;
-    /* background-color: #417cef; */
     border: 0;
     font-size: 18px;
     border-radius: 3px;
     font-family: Oxygen, sans-serif;
     background-color: rgba(15, 15, 15, 0.03);
     margin-top: 20px;
-    border: 1px solid blue;
+    border: 1px solid white;
     transition: border 0.4s ease-out;
     transition: background-color 0.4s ease-out;
     cursor: pointer;
     max-width: 24em;
     min-width: 21em;
+    color: white;
+}
+
+.sparkline-left{
+    position: relative;
+    float: left;
+    border-right: 1px solid white; 
+}
+
+.sparkline-center{
+    position: relative;
+    float: left;
+    border-right: 1px solid white; 
+}
+
+.sparkline-right{
+    position: relative;
+    float: left;
+}
+
+.sparkline-bottom{
+    position: relative;
+    float: left;
+}
+
+.top{
+    position: relative;
+    margin-left: 5%;
+    margin-top: 5%;
+    float: left;  
+    width: 100%;
     
+}
+
+.bottom{
+    position: relative;
+    margin-top: 5%;
+    float: left;
+}
+
+.heatmap{
+    width: 40%;
+    left: 10%;
 }

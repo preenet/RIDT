@@ -23,10 +23,27 @@ class BarChart extends React.Component {
           categories: ['Good place', 'Great', 'Not bad', 'It\'s just not bad', 'Normal', 'Worth it', 'Bad',
             'Clean', 'Quiet', 'Beautiful'
           ],
+          labels: {
+            style: {
+              colors:['white']
+              
+            },
+          }
+        },
+        yaxis:{
+          labels: {
+            style: {
+              color:'white'
+              
+            },
+          }
         },
         title:{
           text:'Fequence of Word',
-          align: 'center'
+          align: 'center',
+          style:{
+            color: 'white'
+          }
         }
       },
       series: [{
@@ -41,7 +58,7 @@ class BarChart extends React.Component {
         
 
         <div id="chart">
-          <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" />
+          <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" width="400"/>
         </div>
 
 
