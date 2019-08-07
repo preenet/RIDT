@@ -14,6 +14,7 @@ class LoginBox extends React.Component {
 
     }
 
+    
 
     showValidationErr(elm, msg) {
         this.setState((prevState) => ({ errors: [...prevState.errors, { elm, msg }] }));
@@ -37,6 +38,7 @@ class LoginBox extends React.Component {
         this.clearValiadtionErr("login");
         if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(e.target.value) && e.target.value.length != 0) {
             this.showValidationErr("sformat", "Username cannot contain special character!");
+            console.log('Username cannot contain special character!');
         }
     }
 
@@ -46,8 +48,9 @@ class LoginBox extends React.Component {
         this.clearValiadtionErr("login");
         if (e.target.value.length < 6 && e.target.value.length != 0) {
             this.showValidationErr("pformat", "Password must be more than 6 digits!");
+            console.log('Password must be more than 6 digits!');
         }
-
+        
     }
 
 
@@ -57,12 +60,15 @@ class LoginBox extends React.Component {
         if (this.state.username != "" && this.state.password != "") {
             this.setState({ username: e.target.value });
             this.setState({ password: e.target.value });
+            console.log('Format incorrect');
         }
         if (this.state.username == "admin001" && this.state.password == "admin001") {
             this.setState({ isLoggedIn: true });
-
+            console.log('Format correct');
+            console.log('Login successfully');
         } else if (this.state.username != "" && this.state.password != "") {
             this.showValidationErr("login", "Username or password is incorrect!")
+            console.log('Username or password is incorrect!');
         }
     }
 
@@ -87,6 +93,7 @@ class LoginBox extends React.Component {
 
         }
         if(this.state.isLoggedIn){
+            console.log('Dashboard is showing!');
             return <Redirect to='/dashboard'  />
         }
 
@@ -130,7 +137,8 @@ class LoginBox extends React.Component {
                         
                        
                             <button type="button" className="login-btn"  style={{color: this.state.password.length < 6 || !this.state.username? '':'white'}} 
-                            disabled={this.state.password.length < 6 || !this.state.username } onClick={this.submitLogin.bind(this)}> Login </button>
+                            disabled={this.state.password.length < 6 || !this.state.username }
+                            onClick={this.submitLogin.bind(this)}> Login </button>
 
                         
 

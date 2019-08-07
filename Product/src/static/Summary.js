@@ -14,7 +14,7 @@ class Summary extends React.Component {
   }
   render() {
     return (
-      <div className="hidden">
+      <div>
         <div className="top">
           < Sparkline />
         </div>

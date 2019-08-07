@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@material-ui/core": "^4.3.0",
         "@version/react-router-v3": "^1.0.0",
         "apexcharts": "^3.8.3",
         "clear-module": "^4.0.0",
