@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
+// eslint-disable-next-line
 import { BrowserRouter as Router, Link, Redirect } from 'react-router-dom';
-import Route from 'react-router-dom/Route';
+import { Route } from 'react-router-dom';
 import Dashboard from './Dashboard';
 
 
@@ -24,7 +25,7 @@ class LoginBox extends React.Component {
         this.setState((prevState) => {
             let newArr = [];
             for (let err of prevState.errors) {
-                if (elm != err.elm) {
+                if (elm !== err.elm) {
                     newArr.push(err);
                 }
             }
@@ -36,7 +37,8 @@ class LoginBox extends React.Component {
         this.setState({ username: e.target.value })
         this.clearValiadtionErr("sformat");
         this.clearValiadtionErr("login");
-        if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(e.target.value) && e.target.value.length != 0) {
+        // eslint-disable-next-line
+        if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(e.target.value) && e.target.value.length !== 0) {
             this.showValidationErr("sformat", "Username cannot contain special character!");
             console.log('Username cannot contain special character!');
         }
@@ -46,27 +48,26 @@ class LoginBox extends React.Component {
         this.setState({ password: e.target.value })
         this.clearValiadtionErr("pformat");
         this.clearValiadtionErr("login");
-        if (e.target.value.length < 6 && e.target.value.length != 0) {
+        if (e.target.value.length < 6 && e.target.value.length !== 0) {
             this.showValidationErr("pformat", "Password must be more than 6 digits!");
             console.log('Password must be more than 6 digits!');
         }
-        
     }
 
 
 
     submitLogin(e) {
 
-        if (this.state.username != "" && this.state.password != "") {
+        if (this.state.username !== "" && this.state.password !== "") {
             this.setState({ username: e.target.value });
             this.setState({ password: e.target.value });
             console.log('Format incorrect');
         }
-        if (this.state.username == "admin001" && this.state.password == "admin001") {
+        if (this.state.username === "admin001" && this.state.password === "admin001") {
             this.setState({ isLoggedIn: true });
             console.log('Format correct');
             console.log('Login successfully');
-        } else if (this.state.username != "" && this.state.password != "") {
+        } else if (this.state.username !== "" && this.state.password !== "") {
             this.showValidationErr("login", "Username or password is incorrect!")
             console.log('Username or password is incorrect!');
         }
@@ -81,13 +82,13 @@ class LoginBox extends React.Component {
 
         for (let err of this.state.errors) {
 
-            if (err.elm == "pformat") {
+            if (err.elm === "pformat") {
                 pFormatErr = err.msg;
             }
-            if (err.elm == "sformat") {
+            if (err.elm === "sformat") {
                 sFormatErr = err.msg;
             }
-            if (err.elm == "login") {
+            if (err.elm === "login") {
                 loginErr = err.msg;
             }
 

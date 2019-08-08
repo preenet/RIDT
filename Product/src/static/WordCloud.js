@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
+// eslint-disable-next-line
 import SliderBox from './Slider';
 
-class Word_Cloud extends React.Component {
+class WordCloud extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -18,4 +19,4 @@ class Word_Cloud extends React.Component {
     }
 }
 
-export default Word_Cloud;
+export default WordCloud;

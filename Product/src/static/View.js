@@ -37,7 +37,7 @@ class ViewBox extends React.Component {
                                     <strong> {description[0]}</strong>
                                 </div>
                                 <div>
-                                    <a href="">
+                                    <a href="/">
                                         <img className="hotel-img" src={description[1]} alt={hotel} />
                                     </a>
 

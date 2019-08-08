@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
+// eslint-disable-next-line
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Summary from './Summary';
-import Word_Cloud from './Word_Cloud';
+import WordCloud from './WordCloud';
 import Heatmap from './Heatmap';
 
 
@@ -68,9 +69,11 @@ class Dashboard extends React.Component {
 
 
         </div>
-
+       
         {this.state.isSummaryOpen && < Summary />}
-        {this.state.isWord_CloudOpen && < Word_Cloud />}
+       
+        {this.state.isWord_CloudOpen && < WordCloud />}
+       
         {this.state.isHeatmapOpen && < Heatmap />}
       
       </div>

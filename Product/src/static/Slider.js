@@ -20,7 +20,7 @@ function valuetext(value) {
 export default function RangeSlider() {
     const classes = useStyles();
     const end = new Date().getSeconds;
-    const start = new Date().getFullYear - 3 .getSeconds;
+    const start = (new Date().getFullYear() - 3).getSeconds;
     const [value, setValue] = React.useState([start,end]);
 
     const handleChange = (event, newValue) => {

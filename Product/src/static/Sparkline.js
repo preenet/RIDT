@@ -16,41 +16,49 @@ window.Apex = {
     }
 };
 
-var randomizeArray = function (arg) {
-    var array = arg.slice();
-    var currentIndex = array.length,
-        temporaryValue, randomIndex;
-
-    while (0 !== currentIndex) {
-
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
-
-// data for the sparklines that appear below header area
-var sparklineData = [47, 45, 54, 38, 56, 24, 65, 31, 37, 39, 62, 51, 35, 41, 35, 27, 93, 53, 61, 27, 54, 43, 19, 46];
+const sparklineData = [47, 45, 54, 38, 56, 24, 65, 31, 37, 39, 62, 51, 35, 41, 35, 27, 93, 53, 61, 27, 54, 43, 19, 46];
 
 class Sparkline extends React.Component {
+    randomizeArray(arg) {
+        var array = arg.slice();
+        var currentIndex = array.length,
+            temporaryValue, randomIndex;
+
+        while (0 !== currentIndex) {
+
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
 
     constructor(props) {
+        
         super(props);
 
         this.state = {
+            total_comments: '135,965',
+            positive_comments: '99,821',
+            negative_comments:'10,212',
+            neutral_comments:'25,932',
+            percent_total:'100%',
+            percent_positive:'73.4%',
+            percent_negative:'7.5%',
+            percent_neutral:'19.1%',
+
             seriesTopSpark1: [{
-                data: randomizeArray(sparklineData)
+                data: this.randomizeArray(sparklineData)
             }],
             seriesTopSpark2: [{
-                data: randomizeArray(sparklineData)
+                data: this.randomizeArray(sparklineData)
             }],
             seriesTopSpark3: [{
-                data: randomizeArray(sparklineData)
+                data: this.randomizeArray(sparklineData)
             }],
             seriesSpark1: [{
                 data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54]
@@ -230,7 +238,9 @@ class Sparkline extends React.Component {
                         show: false
                     }
                 }
-            }
+            },
+            
+            
         }
     }
 
@@ -252,24 +262,24 @@ class Sparkline extends React.Component {
                     </div>
                     <div >
                         <div className="sparkline-right" id="spark3">
-                            <ReactApexChart options={this.state.chartOptionsTopSpark3} series={this.state.seriesTopSpark3} type="area" height="160"  />
+                            <ReactApexChart options={this.state.chartOptionsTopSpark3} series={this.state.seriesTopSpark3} type="area" height="160" />
                         </div>
                     </div>
                 </div>
 
                 <div className="sparkline-bottom" >
                     <table>
-                    <tbody>
-                        <tr>
-                            <td style={{ color: 'white' }}>Comments</td>
-                            <td style={{ color: 'white' }}>Percentage of Total Comments</td>
-                            <td style={{ color: 'white' }}>Last 10 days Increase</td>
-                            <td style={{ color: 'white' }}>Volume</td>
-                        </tr>
-                        
+                        <tbody>
                             <tr>
-                                <td style={{ color: 'white' }}>135,965</td>
-                                <td style={{ color: 'white' }}>100%</td>
+                                <td style={{ color: 'white' }}>Comments</td>
+                                <td style={{ color: 'white' }}>Percentage of Total Comments</td>
+                                <td style={{ color: 'white' }}>Last 10 days Increase</td>
+                                <td style={{ color: 'white' }}>Volume</td>
+                            </tr>
+
+                            <tr>
+                                <td style={{ color: 'white' }}>{this.state.total_comments}</td>
+                                <td style={{ color: 'white' }}>{this.state.percent_total}</td>
                                 <td>
                                     <div id="chart1">
                                         <ReactApexChart options={this.state.chartOptionsSparkLine} series={this.state.seriesSpark1} type="line" height="35" />
@@ -282,39 +292,39 @@ class Sparkline extends React.Component {
                                 </td>
                             </tr>
                             <tr>
-                                <td style={{ color: 'white' }}>99,821</td>
-                                <td style={{ color: 'white' }}>73.4%</td>
+                                <td style={{ color: 'white' }}>{this.state.positive_comments}</td>
+                                <td style={{ color: 'white' }}>{this.state.percent_positive}</td>
                                 <td>
                                     <div id="chart2">
-                                        <ReactApexChart options={this.state.chartOptionsSparkLine} series={this.state.seriesSpark2} type="line" height="35"  />
+                                        <ReactApexChart options={this.state.chartOptionsSparkLine} series={this.state.seriesSpark2} type="line" height="35" />
                                     </div>
                                 </td>
                                 <td>
                                     <div id="chart6">
-                                        <ReactApexChart options={this.state.chartOptionsSparkLine} series={this.state.seriesSpark2} type="bar" height="35"  />
+                                        <ReactApexChart options={this.state.chartOptionsSparkLine} series={this.state.seriesSpark2} type="bar" height="35" />
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td style={{ color: 'white' }}>10,212</td>
-                                <td style={{ color: 'white' }}>7.5%</td>
+                                <td style={{ color: 'white' }}>{this.state.negative_comments}</td>
+                                <td style={{ color: 'white' }}>{this.state.percent_negative}</td>
                                 <td>
                                     <div id="chart3">
-                                        <ReactApexChart options={this.state.chartOptionsSparkLine} series={this.state.seriesSpark3} type="line" height="35"  />
+                                        <ReactApexChart options={this.state.chartOptionsSparkLine} series={this.state.seriesSpark3} type="line" height="35" />
                                     </div>
                                 </td>
                                 <td>
                                     <div id="chart7">
-                                        <ReactApexChart options={this.state.chartOptionsSparkLine} series={this.state.seriesSpark3} type="bar" height="35"  />
+                                        <ReactApexChart options={this.state.chartOptionsSparkLine} series={this.state.seriesSpark3} type="bar" height="35" />
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td style={{ color: 'white' }}>25,932</td>
-                                <td style={{ color: 'white' }}>19.1%</td>
+                                <td style={{ color: 'white' }}>{this.state.neutral_comments}</td>
+                                <td style={{ color: 'white' }}>{this.state.percent_neutral}</td>
                                 <td>
                                     <div id="chart4">
-                                        <ReactApexChart options={this.state.chartOptionsSparkLine} series={this.state.seriesSpark4} type="line" height="35"/>
+                                        <ReactApexChart options={this.state.chartOptionsSparkLine} series={this.state.seriesSpark4} type="line" height="35" />
                                     </div>
                                 </td>
                                 <td>

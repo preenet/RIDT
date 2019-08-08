@@ -1,7 +1,7 @@
 import React from 'react';
 import './static/App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Route from 'react-router-dom/Route';
+import { Route } from 'react-router-dom';
 import Home from './static/Home'
 import Dashboard from './static/Dashboard'
 
