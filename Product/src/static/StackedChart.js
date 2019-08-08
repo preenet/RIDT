@@ -16,11 +16,7 @@ class StackedChart extends React.Component {
         responsive: [{
           breakpoint: 480,
           options: {
-            legend: {
-              position: 'bottom',
-              offsetX: -10,
-              offsetY: 0,
-            }
+            
           }
         }],
         xaxis: {
@@ -44,9 +40,9 @@ class StackedChart extends React.Component {
           opacity: 1
         },
         legend: {
-          position: 'right',
+          position: 'top',
           offsetX: -10,
-          offsetY: 50,
+          offsetY: 0,
           labels:{
             useSeriesColors: true
           },
@@ -77,7 +73,7 @@ class StackedChart extends React.Component {
 
 
       <div id="chart">
-        <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" width="600"/>
+        <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" width="540"/>
       </div>
 
 

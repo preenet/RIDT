@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Summary from './Summary';
 import Word_Cloud from './Word_Cloud';
 import Heatmap from './Heatmap';
@@ -10,19 +10,26 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = { isSummaryOpen: true, isWord_CloudOpen: false, isHeatmapOpen: false };
-
+    console.log('Summary is showing!');
   }
 
   showSummary() {
+    console.log('Summary is showing!');
     this.setState({ isSummaryOpen: true, isWord_CloudOpen: false, isHeatmapOpen: false });
   }
 
   showWordCloud() {
+    console.log('Word-Cloud is showing!');
     this.setState({ isSummaryOpen: false, isWord_CloudOpen: true, isHeatmapOpen: false });
   }
 
   showHeatMap() {
+    console.log('Heatmap is showing!');
     this.setState({ isSummaryOpen: false, isWord_CloudOpen: false, isHeatmapOpen: true });
+  }
+
+  logout(){
+    console.log('Log out successfully');
   }
 
   render() {
@@ -55,7 +62,7 @@ class Dashboard extends React.Component {
                 "")
             } onClick={this.showHeatMap.bind(this)}>Heatmap</button>
 
-            <Link to="/"><button type="button" className="controller"> Logout </button></Link>
+            <Link to="/"><button type="button" className="controller" onClick={this.logout.bind(this)}> Logout </button></Link>
           </div>
 
 

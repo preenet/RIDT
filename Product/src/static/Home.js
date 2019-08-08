@@ -12,10 +12,12 @@ class HomeBox extends React.Component {
     }
 
     showLoginBox() {
+        console.log('LoginBox is showing');
         this.setState({ isLoginOpen: true, isViewOpen: false });
     }
 
     showViewBox() {
+        console.log('ViewBox is showing');
         this.setState({ isLoginOpen: false, isViewOpen: true });
     }
 

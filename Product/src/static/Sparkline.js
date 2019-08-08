@@ -259,13 +259,14 @@ class Sparkline extends React.Component {
 
                 <div className="sparkline-bottom" >
                     <table>
-                        <thead>
-                            <th style={{ color: 'white' }}>Comments</th>
-                            <th style={{ color: 'white' }}>Percentage of Total Comments</th>
-                            <th style={{ color: 'white' }}>Last 10 days Increase</th>
-                            <th style={{ color: 'white' }}>Volume</th>
-                        </thead>
-                        <tbody>
+                    <tbody>
+                        <tr>
+                            <td style={{ color: 'white' }}>Comments</td>
+                            <td style={{ color: 'white' }}>Percentage of Total Comments</td>
+                            <td style={{ color: 'white' }}>Last 10 days Increase</td>
+                            <td style={{ color: 'white' }}>Volume</td>
+                        </tr>
+                        
                             <tr>
                                 <td style={{ color: 'white' }}>135,965</td>
                                 <td style={{ color: 'white' }}>100%</td>

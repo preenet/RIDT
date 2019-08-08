@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Sparkline from './Sparkline';
+import SliderBox from './Slider';
 
 class Word_Cloud extends React.Component {
     constructor(props) {
@@ -11,9 +11,8 @@ class Word_Cloud extends React.Component {
     render() {
         return (
             <div>
-
                 <h1 style={{ color: 'white' }}>Hello Word-Cloud</h1>
-               
+                {/* < SliderBox /> */}
             </div>
         );
     }
