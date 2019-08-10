@@ -61,12 +61,11 @@ class LoginBox extends React.Component {
         if (this.state.username !== "" && this.state.password !== "") {
             this.setState({ username: e.target.value });
             this.setState({ password: e.target.value });
-            console.log('Format incorrect');
+            console.log('Format correct!');
         }
         if (this.state.username === "admin001" && this.state.password === "admin001") {
             this.setState({ isLoggedIn: true });
-            console.log('Format correct');
-            console.log('Login successfully');
+            console.log('Login successfully!');
         } else if (this.state.username !== "" && this.state.password !== "") {
             this.showValidationErr("login", "Username or password is incorrect!")
             console.log('Username or password is incorrect!');
@@ -93,6 +92,7 @@ class LoginBox extends React.Component {
             }
 
         }
+        
         if(this.state.isLoggedIn){
             console.log('Dashboard is showing!');
             return <Redirect to='/dashboard'  />

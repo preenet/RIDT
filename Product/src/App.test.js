@@ -42,6 +42,7 @@ it('linechart is working with expected data', () => {
     min: 0,
     max: 100
   });
+  console.log(expected);
   const received = instance.state.series[0].data;
   for (let i = 0; i < expected.length; i++) {
     expect(received[i][0]).toEqual(expected[i][0]);
@@ -103,9 +104,10 @@ it('stackedchart is working with expected data', () => {
 });
 
 
-it('stackedchart is working with expected data', () => {
+it('sparklinechart is working with expected data', () => {
   const component = create(< Sparkline />);
   const instance = component.getInstance();
+  
   const sparklineData = [47, 45, 54, 38, 56, 24, 65, 31, 37, 39, 62, 51, 35, 41, 35, 27, 93, 53, 61, 27, 54, 43, 19, 46];
   const expectedData1 = instance.randomizeArray(sparklineData);
 
