@@ -81,4 +81,4 @@ class StackedChart extends React.Component {
   }
 }
 
-export default StackedChart
+export default StackedChart;
