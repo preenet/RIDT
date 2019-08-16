@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import '../../../static/App.css';
 import BarChart from './Barchart';
 import BarChart2 from './Barchart_2';
 import StackedChart from './StackedChart';

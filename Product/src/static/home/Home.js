@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import '../../static/App.css';
 import LoginBox from './Login';
 import ViewBox from './View';
 

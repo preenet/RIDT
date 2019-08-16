@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
+import '../../static/App.css';
 // eslint-disable-next-line
 import { BrowserRouter as Router, Link } from 'react-router-dom';
-import Summary from './Summary';
-import WordCloud from './WordCloud';
-import Heatmap from './Heatmap';
+import Summary from '../charts/summary/Summary';
+import WordCloud from '../charts/word_cloud/WordCloud';
+import Heatmap from '../charts/heatmap/Heatmap';
 
 
 class Dashboard extends React.Component {

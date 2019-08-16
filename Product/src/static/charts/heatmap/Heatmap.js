@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import '../../../static/App.css';
 import ReactApexChart from 'react-apexcharts';
 
 function generateData(count, yrange) {

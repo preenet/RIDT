@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { create } from "react-test-renderer";
-import LineChart from './static/LineChart';
-import BarChart from './static/Barchart';
-import BarChart2 from './static/Barchart_2';
-import StackedChart from './static/StackedChart';
-import Sparkline from './static/Sparkline';
-import Summary from './static/Summary';
-import WordCloud from './static/WordCloud';
-import Heatmap from './static/Heatmap';
+import LineChart from './static/charts/summary/LineChart';
+import BarChart from './static/charts/summary/Barchart';
+import BarChart2 from './static/charts/summary/Barchart_2';
+import StackedChart from './static/charts/summary/StackedChart';
+import Sparkline from './static/charts/summary/Sparkline';
+import Summary from './static/charts/summary/Summary';
+import WordCloud from './static/charts/word_cloud/WordCloud';
+import Heatmap from './static/charts/heatmap/Heatmap';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

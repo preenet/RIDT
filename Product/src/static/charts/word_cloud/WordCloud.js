@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
+import '../../../static/App.css';
 // eslint-disable-next-line
-import SliderBox from './Slider';
+import SliderBox from '../../Slider';
 
 class WordCloud extends React.Component {
     constructor(props) {
