@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../static/App.css';
-import WelcomeBox from './Welcome';
+import WelcomeBox from '../home/Welcome';
 
 
 class ViewBox extends React.Component {

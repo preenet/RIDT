@@ -1,17 +1,27 @@
 import React from 'react';
 import '../../static/App.css';
-// eslint-disable-next-line
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Summary from '../charts/summary/Summary';
 import WordCloud from '../charts/word_cloud/WordCloud';
 import Heatmap from '../charts/heatmap/Heatmap';
-
+import jwt_decode from 'jwt-decode'
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isSummaryOpen: true, isWord_CloudOpen: false, isHeatmapOpen: false };
+    this.state = { username: "", status: "", trial_time: "", isSummaryOpen: true, isWord_CloudOpen: false, isHeatmapOpen: false };
     console.log('Summary is showing!');
+  }
+
+  componentDidMount() {
+    const token = localStorage.usertoken;
+    const decoded = jwt_decode(token);
+    this.setState({
+      username: decoded.identity.username,
+      status: decoded.identity.status,
+      trial_time: decoded.identity.trial_time
+    });
+    console.log(decoded.identity);
   }
 
   showSummary() {
@@ -29,15 +39,18 @@ class Dashboard extends React.Component {
     this.setState({ isSummaryOpen: false, isWord_CloudOpen: false, isHeatmapOpen: true });
   }
 
-  logout(){
+  logout(e) {
+    e.preventDefault()
+    this.props.history.push('/')
+    localStorage.removeItem('usertoken')
     console.log('Log out successfully');
   }
 
   render() {
     return (
       <div>
-        <h1 style={{color: 'white'}}>RIDT</h1>
-
+        <h1 style={{ color: 'white' }}>RIDT</h1>
+      
         <div>
           <div>
 
@@ -63,22 +76,22 @@ class Dashboard extends React.Component {
                 "")
             } onClick={this.showHeatMap.bind(this)}>Heatmap</button>
 
-            <Link to="/"><button type="button" className="controller" onClick={this.logout.bind(this)}> Logout </button></Link>
+            <button type="button" className="controller" onClick={this.logout.bind(this)}> Logout </button>
           </div>
 
 
 
         </div>
-       
+
         {this.state.isSummaryOpen && < Summary />}
-       
+
         {this.state.isWord_CloudOpen && < WordCloud />}
-       
+
         {this.state.isHeatmapOpen && < Heatmap />}
-      
+
       </div>
     );
   }
 }
 
-export default Dashboard;
+export default withRouter(Dashboard);

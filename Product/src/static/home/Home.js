@@ -1,32 +1,38 @@
 import React from 'react';
 import '../../static/App.css';
 import LoginBox from './Login';
-import ViewBox from './View';
-
+import ViewBox from '../comment/View';
+import RegisterBox from './Register'
 
 
 class HomeBox extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isLoginOpen: false, isViewOpen: true };
+        this.state = { isLoginOpen: false, isViewOpen: true, isRegisterOpen: false };
     }
 
+   
     showLoginBox() {
         console.log('LoginBox is showing!');
-        this.setState({ isLoginOpen: true, isViewOpen: false });
+        this.setState({ isLoginOpen: true, isViewOpen: false, isRegisterOpen: false });
     }
 
     showViewBox() {
         console.log('ViewBox is showing!');
-        this.setState({ isLoginOpen: false, isViewOpen: true });
+        this.setState({ isLoginOpen: false, isViewOpen: true, isRegisterOpen: false });
+    }
+
+    showRegisterBox() {
+        console.log('RegisterBox is showing!');
+        this.setState({ isLoginOpen: false, isViewOpen: false, isRegisterOpen: true });
     }
 
     render() {
-        
-          
+
+
         return (
 
-            <div className="root-container" >
+            <div>
 
                 <button type="button"
                     className={
@@ -37,30 +43,28 @@ class HomeBox extends React.Component {
                     onClick={this.showLoginBox.bind(this)} >
                     Login </button>
 
+                    <button type="button"
+                    className={
+                        "controller " + (this.state.RegisterOpen ?
+                            "selected-controller" :
+                            "")
+                    }
+                    onClick={this.showRegisterBox.bind(this)} >
+                    Regitser </button>
+                <div className="root-container" >
 
+                    {this.state.isLoginOpen && < LoginBox />}
+                    {this.state.isViewOpen && < ViewBox />}
+                    {this.state.isRegisterOpen && < RegisterBox />}
 
-
-                {
-                    /* <div className="box-controller">
-                              
-                                
-                      
-                              </div> */
-                }
-
-                       
-
-
-                {this.state.isLoginOpen && < LoginBox />}
-                {this.state.isViewOpen && < ViewBox />}
-               
-                {this.state.isLoginOpen && <button type="button"
-                    className="cancel-btn"
-                            onClick={this.showViewBox.bind(this)}>
-                    Cancel </button>}
-                
-
+                    {(this.state.isLoginOpen || this.state.isRegisterOpen) && <button type="button"
+                        className="cancel-btn"
+                        onClick={this.showViewBox.bind(this)}>
+                        Cancel </button>}
+                </div>
             </div>
+
+
         );
     }
 }

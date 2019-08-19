@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../static/App.css';
 
-class WelcomeBox extends React.Component {
+class Edit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -11,11 +11,11 @@ class WelcomeBox extends React.Component {
   render() {
     return (
       <div >
-        <div className="welcome"><h2>Real-Tme Interactive Dashboard</h2></div>
+        <div className="welcome"><h2>Edit Profile Page</h2></div>
 
       </div>
     );
   }
 }
 
-export default WelcomeBox;
+export default Edit;
