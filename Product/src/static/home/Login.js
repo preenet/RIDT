@@ -60,9 +60,13 @@ class LoginBox extends React.Component {
                 username: this.state.username,
                 password: this.state.password
             }
-    
+            
             login(user).then(res => {
-                if(!res.error){
+                console.log(res)
+                if (res === undefined){
+                    console.log('Login failed')
+                }else if(!res.error){
+                    console.log('Login successful')
                     this.props.history.push('/profile')
                 }
             })
