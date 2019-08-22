@@ -4,4 +4,4 @@
 test.py
 __pycache__/
 .coverage
-.coverage.*
+.coverage.*.DS_Store
