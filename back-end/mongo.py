@@ -119,15 +119,12 @@ def get_account_by_username():
 @app.route('/users/get-all', methods=['GET'])
 def get_all_accounts():
     users = mongo.db.users
-    response = users.find({})
     result = []
-    if response:
-        for x in response:
-            result.append({'username': x['username'],
-                           'trial_time': x['trial_time'],
-                           'status': x['status']})
-    else:
-        result = {'message': 'No user found'}
+
+    for field in users.find():
+        result.append({'username': str(field['username']), 'status': field['status'],
+                       'trial_time': field['trial_time']})
+    return jsonify(result)
 
     return jsonify(results=result)
 

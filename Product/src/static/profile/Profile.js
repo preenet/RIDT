@@ -41,7 +41,7 @@ class Profile extends React.Component {
     render() {
         return (
             <div >
-                <div className="welcome"><h2>Profile Page</h2></div>
+               
                 <h1 style={{ color: 'white' }}>Hello {this.state.username}</h1>
                 <p style={{ color: 'white' }}>Your account status: {this.state.status}</p>
                 <p style={{ color: 'white' }}>Your account trial time: {this.state.trial_time}</p>
