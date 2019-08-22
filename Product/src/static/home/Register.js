@@ -67,7 +67,7 @@ class RegisterBox extends React.Component {
             register(newUser).then(res =>{
                 login(newUser).then(res => {
                     if(!res.error){
-                        this.props.history.push('/profile')
+                        this.props.history.push('/')
                     }
                 })
                      
