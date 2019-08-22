@@ -3,6 +3,7 @@ import '../../static/App.css';
 import jwt_decode from 'jwt-decode'
 import { getAccounts } from '../services/DataServices';
 import { addUser } from '../services/UserServices';
+import { deleteUser } from '../services/UserServices';
 import MaterialTable from 'material-table';
 
 class Accounts extends React.Component {
@@ -30,7 +31,6 @@ class Accounts extends React.Component {
         getAccounts().then(data => {
             this.setState(
                 {
-                    term: '',
                     accounts: [...data]
                 },
             )
@@ -51,11 +51,15 @@ class Accounts extends React.Component {
             this.getAll();
           }).catch(err => {
             console.log(err);
-        })
-
-        
-        
+        }); 
     }
+
+    onDelete(oldData){
+        console.log('on Delete ' + oldData.username);
+        deleteUser(oldData)
+        this.getAll();
+    }
+
 
     render() {
         return (
@@ -78,7 +82,8 @@ class Accounts extends React.Component {
                                         const data = [this.state.data];
                                         data.push(newData);
                                         this.setState({ ...this.state.data, data });
-                                    }, 100).then(this.onAdd(newData));
+                                        this.onAdd(newData);
+                                    }, 100)
                                 }),
                             onRowUpdate: (newData, oldData) =>
                                 new Promise(resolve => {
@@ -87,16 +92,17 @@ class Accounts extends React.Component {
                                         const data = [...this.state.data];
                                         data[data.indexOf(oldData)] = newData;
                                         this.setState({ ...this.state, data });
-                                    }, 600);
+                                    }, 100);
                                 }),
                             onRowDelete: oldData =>
                                 new Promise(resolve => {
                                     setTimeout(() => {
                                         resolve();
-                                        const data = [...this.state.data];
+                                        const data = [this.state.data];
                                         data.splice(data.indexOf(oldData), 1);
                                         this.setState({ ...this.state, data });
-                                    }, 600);
+                                        this.onDelete(oldData);
+                                    }, 100);
                                 }),
                         }}
                     />

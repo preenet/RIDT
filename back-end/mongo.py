@@ -86,16 +86,15 @@ def admin_login():
     return result
 
 
-@app.route('/admin/delete', methods=['DELETE'])
-def delete_account():
+@app.route('/admin/delete/<username>', methods=['DELETE'])
+def delete_account(username):
     users = mongo.db.users
-    username = request.get_json()['username']
+    print(username)
     response = users.delete_one({'username': username})
     if response.deleted_count == 1:
         result = {'message': 'User deleted'}
     else:
         result = {'message': 'No user found'}
-
     return jsonify({'result': result})
 
 

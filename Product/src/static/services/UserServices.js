@@ -7,7 +7,7 @@ export const register = newUser => {
         password: newUser.password
     })
     .then(response => {
-        console.log(newUser.username + 'Registered')
+        console.log(newUser.username + 'registered')
     })
 }
 
@@ -48,6 +48,20 @@ export const addUser = newUser => {
         trial_time: newUser.trial_time
     })
     .then(response => {
-        console.log(newUser.username + 'Added')
+        console.log(newUser.username + 'added')
     })
+}
+
+
+export const deleteUser = oldUser => {
+    return axios
+        .delete(`admin/delete/${oldUser.username}`, {
+            headers: { 'Content-type': 'application/json' }
+        })
+        .then((response) => {
+            console.log(oldUser.username + ' deleted')
+        })
+        .catch((response) => {
+            console.log(response)
+        })
 }
