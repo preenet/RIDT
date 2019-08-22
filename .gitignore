@@ -1,4 +1,7 @@
 /Product/node_modules
-Product/src/\.DS_Store
-
-Product/\.DS_Store
+.DS_Store
+.idea
+test.py
+__pycache__/
+.coverage
+.coverage.*
