@@ -86,48 +86,44 @@ def admin_login():
     return result
 
 
-@app.route('/admin/delete', methods=['DELETE'])
-def delete_account():
+@app.route('/admin/delete/<username>', methods=['DELETE'])
+def delete_account(username):
     users = mongo.db.users
-    username = request.get_json()['username']
+    print(username)
     response = users.delete_one({'username': username})
     if response.deleted_count == 1:
         result = {'message': 'User deleted'}
     else:
         result = {'message': 'No user found'}
-
     return jsonify({'result': result})
 
 
-@app.route('/users/get-by-username', methods=['GET'])
-def get_account_by_username():
-    users = mongo.db.users
-    username = request.get_json()['username']
-    response = users.find_one({'username': username})
-    if response:
-        result = {'message': 'User found',
-                  'username': response['username'],
-                  'trial_time ': response['trial_time'],
-                  'status': response['status']
-                  }
-    else:
-        result = {'message': 'No user found'}
-
-    return jsonify({'result': result})
+# @app.route('/users/get-by-username', methods=['GET'])
+# def get_account_by_username():
+#     users = mongo.db.users
+#     username = request.get_json()['username']
+#     response = users.find_one({'username': username})
+#     if response:
+#         result = {'message': 'User found',
+#                   'username': response['username'],
+#                   'trial_time ': response['trial_time'],
+#                   'status': response['status']
+#                   }
+#     else:
+#         result = {'message': 'No user found'}
+#
+#     return jsonify({'result': result})
 
 
 @app.route('/users/get-all', methods=['GET'])
 def get_all_accounts():
     users = mongo.db.users
-    response = users.find({})
     result = []
-    if response:
-        for x in response:
-            result.append({'username': x['username'],
-                           'trial_time': x['trial_time'],
-                           'status': x['status']})
-    else:
-        result = {'message': 'No user found'}
+
+    for field in users.find():
+        result.append({'username': str(field['username']), 'status': field['status'],
+                       'trial_time': field['trial_time']})
+    return jsonify(result)
 
     return jsonify(results=result)
 
@@ -220,13 +216,15 @@ def add_user():
     users = mongo.db.users
     username = request.get_json()['username']
     trial_time = datetime.utcnow() + timedelta(days=request.get_json()['trial_time'])
+    status = request.get_json()['status']
+    print(status)
     password = bcrypt.generate_password_hash('super-admin').decode('utf-8')
 
     users.insert_one({
         'username': username,
         'password': password,
         'trial_time': trial_time,
-        'status': 'super admin added'
+        'status': status
     })
 
     new_user = users.find_one({'username': username})

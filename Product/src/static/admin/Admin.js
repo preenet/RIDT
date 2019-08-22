@@ -57,17 +57,40 @@ class Admin extends React.Component {
     render() {
         return (
             <div >
-                <div className="welcome"><h2>Admin Page</h2></div>
                 <h1 style={{ color: 'white' }}>Hello {this.state.username}</h1>
-                <button type="button" className="controller" onClick={this.showLog.bind(this)}>System Log</button>
-                <button type="button" className="controller" onClick={this.showAccount.bind(this)}> Account</button>
-                <button type="button" className="controller" onClick={this.showWaitingList.bind(this)}> Waiting List</button>
-                <button type="button" className="controller" onClick={this.showDashboard.bind(this)}> Dashboard </button>
+                <button type="button"
+                    className={
+                        "controller " + (this.state.isLogShow ?
+                            "selected-controller" :
+                            "")
+                    }
+                    onClick={this.showLog.bind(this)} >
+                    System Logs</button>
+              
+                    <button type="button"
+                    className={
+                        "controller " + (this.state.isAccountShow ?
+                            "selected-controller" :
+                            "")
+                    }
+                    onClick={this.showAccount.bind(this)} >
+                    All Accounts</button>
+                    <button type="button"
+                    className={
+                        "controller " + (this.state.isWaitingListShow ?
+                            "selected-controller" :
+                            "")
+                    }
+                    onClick={this.showWaitingList.bind(this)} >
+                    Waiting List</button>
+                    <button type="button"
+                    className="controller"
+                    onClick={this.showDashboard.bind(this)} >
+                    Dashboard</button>
                 <button type="button" className="controller" onClick={this.logout.bind(this)}> Logout </button>
                 {this.state.isLogShow && <Log/>}
                 {this.state.isAccountShow && < Accounts />}
                 {this.state.isWaitingListShow && < WaitingList />}
-               
             </div>
         );
     }

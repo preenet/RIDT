@@ -2,7 +2,7 @@ import React from 'react';
 import '../../static/App.css';
 import { Route , withRouter} from 'react-router-dom';
 import Dashboard from '../home/Dashboard';
-import { adminlogin } from '../services/UserServices';
+import { adminLogin } from '../services/UserServices';
 
 class AdminLogin extends React.Component {
     constructor(props) {
@@ -63,7 +63,7 @@ class AdminLogin extends React.Component {
                 password: this.state.password
             }
 
-            adminlogin(user).then(res => {
+            adminLogin(user).then(res => {
                 console.log(res)
                 if (res === undefined){
                     console.log('Login failed')

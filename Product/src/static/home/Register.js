@@ -66,7 +66,7 @@ class RegisterBox extends React.Component {
             }
             register(newUser).then(res =>{
               this.props.history.push('/');
-            }) 
+            });
         }
     }
 
