@@ -8,7 +8,7 @@ class Profile extends React.Component {
         this.state = { username: "", status: "", trial_time: "" };
 
     }
-  
+
     componentDidMount() {
         const token = localStorage.usertoken;
         const decoded = jwt_decode(token);
@@ -20,12 +20,12 @@ class Profile extends React.Component {
         console.log(decoded.identity);
     }
 
-    edit(e){
+    edit(e) {
         e.preventDefault()
         this.props.history.push('/edit')
     }
 
-    dashboard(e){
+    dashboard(e) {
         e.preventDefault()
         this.props.history.push('/dashboard')
     }
@@ -41,13 +41,17 @@ class Profile extends React.Component {
     render() {
         return (
             <div >
-               
+
                 <h1 style={{ color: 'white' }}>Hello {this.state.username}</h1>
-                <p style={{ color: 'white' }}>Your account status: {this.state.status}</p>
-                <p style={{ color: 'white' }}>Your account trial time: {this.state.trial_time}</p>
-                <button type="button" className="controller" onClick={this.edit.bind(this)}> Edit </button>
-                <button type="button" className="controller" onClick={this.dashboard.bind(this)}> Dashboard </button>
-                <button type="button" className="controller" onClick={this.logout.bind(this)}> Logout </button>
+                <p style={{ color: 'white' }}>Your Account Status: {this.state.status}</p>
+                <p style={{ color: 'white' }}>Your Account Trial Time: {this.state.trial_time}</p>
+                <small className="danger-error" > {this.state.status === 'pending' ? "You cannot access dashboard until the admin approve your account." : ""} </small>
+                <div>
+                    <button type="button" className="controller" onClick={this.edit.bind(this)}> Edit </button>
+                    <button type="button" className="controller" disabled={this.state.status === 'pending'} onClick={this.dashboard.bind(this)}> Dashboard </button>
+                    <button type="button" className="controller" onClick={this.logout.bind(this)}> Logout </button>
+                </div>
+
             </div>
         );
     }

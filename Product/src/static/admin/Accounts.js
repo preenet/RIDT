@@ -12,9 +12,13 @@ class Accounts extends React.Component {
         this.state = {
             accounts: [], term: '',
             columns: [
-                { title: 'Username', field: 'username' },
-                { title: 'Trial Time', field: 'trial_time', },
-                { title: 'Status', field: 'status' },
+                { title: 'Username', field: 'username', editable: 'always'  },
+                { title: 'Trial Time', field: 'trial_time', editable: 'always', type:'numeric'  },
+                {
+                    title: 'Status', field: 'status',
+                    editable: 'onAdd', 
+                    lookup: { 'approved': 'approved', 'pending': 'pending','super admin added': 'super admin added', 'unlimited':'unlimited' }
+                },
             ],
         };
 
@@ -26,7 +30,7 @@ class Accounts extends React.Component {
         const decoded = jwt_decode(token);
         console.log(decoded.identity);
     }
-    
+
     getAll = () => {
         getAccounts().then(data => {
             this.setState(
@@ -38,23 +42,21 @@ class Accounts extends React.Component {
 
     }
 
-    onAdd(newData){
-        if(!newData.status){
-            newData.status = 'super admin added';
-        }
+    onAdd(newData) {
         const newUser = {
             username: newData.username,
-            trial_time: Number(newData.trial_time)
+            trial_time: Number(newData.trial_time),
+            status: newData.status
         }
-        addUser(newUser).then(res =>{
-            console.log('on Add '+newData.username,newData.trial_time,newData.status);
+        addUser(newUser).then(res => {
+            console.log('on Add ' + newData.username, newData.trial_time, newData.status);
             this.getAll();
-          }).catch(err => {
+        }).catch(err => {
             console.log(err);
-        }); 
+        });
     }
 
-    onDelete(oldData){
+    onDelete(oldData) {
         console.log('on Delete ' + oldData.username);
         deleteUser(oldData)
         this.getAll();
@@ -67,7 +69,7 @@ class Accounts extends React.Component {
                 <div className="table">
                     <MaterialTable
                         style={{
-                        
+
                         }}
                         title="All Accounts"
                         columns={this.state.columns}

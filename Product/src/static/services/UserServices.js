@@ -7,7 +7,7 @@ export const register = newUser => {
         password: newUser.password
     })
     .then(response => {
-        console.log(newUser.username + 'registered')
+        console.log(newUser.username + ' registered')
     })
 }
 
@@ -42,10 +42,12 @@ export const adminLogin = user => {
 }
 
 export const addUser = newUser => {
+    console.log(newUser.status)
     return axios
     .post("admin/add",{
         username: newUser.username,
-        trial_time: newUser.trial_time
+        trial_time: newUser.trial_time,
+        status : newUser.status
     })
     .then(response => {
         console.log(newUser.username + 'added')

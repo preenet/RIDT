@@ -98,21 +98,21 @@ def delete_account(username):
     return jsonify({'result': result})
 
 
-@app.route('/users/get-by-username', methods=['GET'])
-def get_account_by_username():
-    users = mongo.db.users
-    username = request.get_json()['username']
-    response = users.find_one({'username': username})
-    if response:
-        result = {'message': 'User found',
-                  'username': response['username'],
-                  'trial_time ': response['trial_time'],
-                  'status': response['status']
-                  }
-    else:
-        result = {'message': 'No user found'}
-
-    return jsonify({'result': result})
+# @app.route('/users/get-by-username', methods=['GET'])
+# def get_account_by_username():
+#     users = mongo.db.users
+#     username = request.get_json()['username']
+#     response = users.find_one({'username': username})
+#     if response:
+#         result = {'message': 'User found',
+#                   'username': response['username'],
+#                   'trial_time ': response['trial_time'],
+#                   'status': response['status']
+#                   }
+#     else:
+#         result = {'message': 'No user found'}
+#
+#     return jsonify({'result': result})
 
 
 @app.route('/users/get-all', methods=['GET'])
@@ -216,13 +216,15 @@ def add_user():
     users = mongo.db.users
     username = request.get_json()['username']
     trial_time = datetime.utcnow() + timedelta(days=request.get_json()['trial_time'])
+    status = request.get_json()['status']
+    print(status)
     password = bcrypt.generate_password_hash('super-admin').decode('utf-8')
 
     users.insert_one({
         'username': username,
         'password': password,
         'trial_time': trial_time,
-        'status': 'super admin added'
+        'status': status
     })
 
     new_user = users.find_one({'username': username})
