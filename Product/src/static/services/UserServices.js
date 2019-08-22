@@ -25,3 +25,18 @@ export const login = user => {
         console.log(err)
     })
 }
+
+export const adminlogin = user => {
+    return axios
+    .post("admin/login",{
+        username: user.username,
+        password: user.password
+    })
+    .then(response => {
+        localStorage.setItem('usertoken',response.data.token)
+        return response.data.token
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}

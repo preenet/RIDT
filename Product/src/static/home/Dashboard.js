@@ -24,6 +24,11 @@ class Dashboard extends React.Component {
     console.log(decoded.identity);
   }
 
+  onBack(e) {
+    e.preventDefault();
+    this.props.history.goBack();
+  }
+
   showSummary() {
     console.log('Summary is showing!');
     this.setState({ isSummaryOpen: true, isWord_CloudOpen: false, isHeatmapOpen: false });
@@ -40,7 +45,7 @@ class Dashboard extends React.Component {
   }
 
   logout(e) {
-    e.preventDefault()
+    e.preventDefault();
     this.props.history.push('/')
     localStorage.removeItem('usertoken')
     console.log('Log out successfully');
@@ -50,13 +55,17 @@ class Dashboard extends React.Component {
     return (
       <div>
         <h1 style={{ color: 'white' }}>RIDT</h1>
-      
+
         <div>
           <div>
+            <button type="button" className="left-controller" onClick={this.onBack.bind(this)}>Back</button>
 
+            <button type="button" className="right-controller" onClick={this.logout.bind(this)}>Logout</button>
           </div>
 
           <div>
+
+
 
             <button type="button" className={
               "controller " + (this.state.isSummaryOpen ?
@@ -76,7 +85,7 @@ class Dashboard extends React.Component {
                 "")
             } onClick={this.showHeatMap.bind(this)}>Heatmap</button>
 
-            <button type="button" className="controller" onClick={this.logout.bind(this)}> Logout </button>
+
           </div>
 
 

@@ -1,14 +1,13 @@
 import React from 'react';
 import '../../static/App.css';
 import { Route , withRouter} from 'react-router-dom';
-import Dashboard from './Dashboard';
-import {register} from '../services/UserServices.js';
+import Dashboard from '../home/Dashboard';
+import { adminlogin } from '../services/UserServices';
 
-
-class RegisterBox extends React.Component {
+class AdminLogin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { username: "", password: "", errors: [], isRegistered: false };
+        this.state = { username: "", password: "", errors: [], isLoggedIn: false };
     }
 
     showValidationErr(elm, msg) {
@@ -28,20 +27,22 @@ class RegisterBox extends React.Component {
     }
 
     onUsernameChanged(e) {
+        e.preventDefault()
         this.setState({ username: e.target.value })
         this.clearValiadtionErr("sformat");
-        this.clearValiadtionErr("register");
+        this.clearValiadtionErr("login");
         // eslint-disable-next-line
-        if (/[.~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(e.target.value) && e.target.value.length !== 0) {
+        if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(e.target.value) && e.target.value.length !== 0) {
             this.showValidationErr("sformat", "Username cannot contain special character!");
             console.log('Username cannot contain special character!');
         }
     }
 
     onPasswordChanged(e) {
+        e.preventDefault()
         this.setState({ password: e.target.value })
         this.clearValiadtionErr("pformat");
-        this.clearValiadtionErr("register");
+        this.clearValiadtionErr("login");
         if (e.target.value.length < 6 && e.target.value.length !== 0) {
             this.showValidationErr("pformat", "Password must be more than 6 digits!");
             console.log('Password must be more than 6 digits!');
@@ -50,30 +51,37 @@ class RegisterBox extends React.Component {
 
 
 
-    submitRegister(e) {
+    submitLogin(e) {
         e.preventDefault()
-
         if (this.state.username !== "" && this.state.password !== "") {
             this.setState({ username: e.target.value });
             this.setState({ password: e.target.value });
-            this.setState({ isRegistered: true});
             console.log('Format correct!');
-            console.log('Register successfully!');   
 
-            const newUser = {
+            const user = {
                 username: this.state.username,
                 password: this.state.password
             }
-            register(newUser).then(res =>{
-              this.props.history.push('/');
-            }) 
+
+            adminlogin(user).then(res => {
+                console.log(res)
+                if (res === undefined){
+                    console.log('Login failed')
+                }else if(!res.error){
+                    console.log('Login successful')
+                    this.props.history.push('/admin')
+                }
+            })
+            
+            
         }
+       
     }
 
 
     render() {
 
-        let registerErr = null;
+        let loginErr = null;
         let pFormatErr = null;
         let sFormatErr = null;
 
@@ -85,13 +93,15 @@ class RegisterBox extends React.Component {
             if (err.elm === "sformat") {
                 sFormatErr = err.msg;
             }
-            if (err.elm === "register") {
-                registerErr = err.msg;
+            if (err.elm === "login") {
+                loginErr = err.msg;
             }
 
         }
         
-        
+        if(this.state.isLoggedIn){
+            console.log('Dashboard is showing!');
+        }
 
         return (
 
@@ -101,7 +111,7 @@ class RegisterBox extends React.Component {
                         exact strict component={Dashboard}
                     />
                     <div className="header" >
-                        Register </div>
+                        Admin Login </div>
 
                     <div className="box" >
 
@@ -134,11 +144,11 @@ class RegisterBox extends React.Component {
                        
                             <button type="button" className="login-btn"  style={{color: this.state.password.length < 6 || !this.state.username? '':'white'}} 
                             disabled={this.state.password.length < 6 || !this.state.username }
-                            onClick={this.submitRegister.bind(this)}> Register </button>
+                            onClick={this.submitLogin.bind(this)}> Login </button>
 
                         
 
-                        <small className="danger-error"> {registerErr ? registerErr : ""} </small>
+                        <small className="danger-error"> {loginErr ? loginErr : ""} </small>
 
 
                     </div>
@@ -150,4 +160,4 @@ class RegisterBox extends React.Component {
 
 }
 
-export default withRouter(RegisterBox);
+export default withRouter(AdminLogin);

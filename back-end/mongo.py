@@ -183,19 +183,19 @@ def approve_user():
         result = {'message': 'No user found'}
     return jsonify({'result': result})
 
-
-@app.route('/admin/approve', methods=['POST'])
-def approve_user():
-    users = mongo.db.users
-    username = request.get_json()['username']
-    response = users.find_one({'username': username})
-    if response:
-        new_status = {"$set": {"status": 'rejected'}}
-        users.update_one({'username': username}, new_status)
-        result = {'message': username + '\'s request is rejected'}
-    else:
-        result = {'message': 'No user found'}
-    return jsonify({'result': result})
+#
+# @app.route('/admin/approve', methods=['POST'])
+# def approve_user():
+#     users = mongo.db.users
+#     username = request.get_json()['username']
+#     response = users.find_one({'username': username})
+#     if response:
+#         new_status = {"$set": {"status": 'rejected'}}
+#         users.update_one({'username': username}, new_status)
+#         result = {'message': username + '\'s request is rejected'}
+#     else:
+#         result = {'message': 'No user found'}
+#     return jsonify({'result': result})
 
 
 @app.route('/admin/get-pending', methods=['GET'])

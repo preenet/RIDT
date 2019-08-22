@@ -6,6 +6,7 @@ import Home from './static/home/Home';
 import Dashboard from './static/home/Dashboard';
 import Profile from './static/profile/Profile';
 import Edit from './static/profile/Edit';
+import Admin from './static/admin/Admin';
 class App extends React.Component {
 
   constructor(props) {
@@ -35,6 +36,8 @@ class App extends React.Component {
           <Route path="/profile" exact strict component={Profile} />
 
           <Route path="/edit" exact strict component={Edit} />
+
+          <Route path="/admin" exact strict component={Admin} />
 
 
         </div>

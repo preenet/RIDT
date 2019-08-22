@@ -2,7 +2,7 @@ import React from 'react';
 import '../../static/App.css';
 import { Route , withRouter} from 'react-router-dom';
 import Dashboard from './Dashboard';
-import { login } from './UserServices';
+import { login } from '../services/UserServices';
 
 class LoginBox extends React.Component {
     constructor(props) {
