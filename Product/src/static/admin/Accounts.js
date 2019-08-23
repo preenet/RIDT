@@ -32,6 +32,7 @@ class Accounts extends React.Component {
     }
 
     getAll = () => {
+        
         getAccounts().then(data => {
             this.setState(
                 {
