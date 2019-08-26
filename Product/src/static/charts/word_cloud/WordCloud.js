@@ -1,7 +1,5 @@
 import React from 'react';
 import '../../../static/App.css';
-// eslint-disable-next-line
-import SliderBox from '../../Slider';
 
 class WordCloud extends React.Component {
     constructor(props) {
@@ -13,7 +11,7 @@ class WordCloud extends React.Component {
         return (
             <div>
                 <h1 style={{ color: 'white' }}>Hello Word-Cloud</h1>
-                {/* < SliderBox /> */}
+             
             </div>
         );
     }

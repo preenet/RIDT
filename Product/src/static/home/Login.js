@@ -14,7 +14,7 @@ class LoginBox extends React.Component {
         this.setState((prevState) => ({ errors: [...prevState.errors, { elm, msg }] }));
     }
 
-    clearValiadtionErr(elm) {
+    clearValidationErr(elm) {
         this.setState((prevState) => {
             let newArr = [];
             for (let err of prevState.errors) {
@@ -28,8 +28,8 @@ class LoginBox extends React.Component {
 
     onUsernameChanged(e) {
         this.setState({ username: e.target.value })
-        this.clearValiadtionErr("sformat");
-        this.clearValiadtionErr("login");
+        this.clearValidationErr("sformat");
+        this.clearValidationErr("login");
         // eslint-disable-next-line
         if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(e.target.value) && e.target.value.length !== 0) {
             this.showValidationErr("sformat", "Username cannot contain special character!");
@@ -39,8 +39,8 @@ class LoginBox extends React.Component {
 
     onPasswordChanged(e) {
         this.setState({ password: e.target.value })
-        this.clearValiadtionErr("pformat");
-        this.clearValiadtionErr("login");
+        this.clearValidationErr("pformat");
+        this.clearValidationErr("login");
         if (e.target.value.length < 6 && e.target.value.length !== 0) {
             this.showValidationErr("pformat", "Password must be more than 6 digits!");
             console.log('Password must be more than 6 digits!');

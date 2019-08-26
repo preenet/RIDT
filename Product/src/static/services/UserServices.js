@@ -42,7 +42,6 @@ export const adminLogin = user => {
 }
 
 export const addUser = newUser => {
-    console.log(newUser.status)
     return axios
     .post("admin/add",{
         username: newUser.username,
@@ -61,7 +60,24 @@ export const deleteUser = oldUser => {
             headers: { 'Content-type': 'application/json' }
         })
         .then((response) => {
+            console.log(response)
             console.log(oldUser.username + ' deleted')
+        })
+        .catch((response) => {
+            console.log(response)
+        })
+}
+
+export const editUser = info => {
+    return axios
+        .post(`users/edit/`, {
+            username: info.username,
+            info: info.info,
+            status: info.status
+        })
+        .then((response) => {
+            console.log(response)
+            console.log(info.username + ' changed to ' + info.info)
         })
         .catch((response) => {
             console.log(response)

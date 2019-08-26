@@ -23,6 +23,7 @@ class Admin extends React.Component {
         });
         console.log(decoded.identity);
     }
+    
     showLog(e){
         e.preventDefault();
         console.log('Log is showing!');

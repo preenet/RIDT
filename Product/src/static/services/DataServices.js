@@ -17,3 +17,18 @@ export const getAccounts = () => {
             return data
         })
 }
+
+
+export const getUser = user => {
+    return axios
+        .get(`/users/get/${user.username}`,{
+             headers: { 'Content-type': 'application/json' }
+        })
+        .then((response) => {
+            return response.data
+        }).catch((response) => {
+            console.log(response)
+        })
+       
+}
+

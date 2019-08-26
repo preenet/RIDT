@@ -89,7 +89,6 @@ def admin_login():
 @app.route('/admin/delete/<username>', methods=['DELETE'])
 def delete_account(username):
     users = mongo.db.users
-    print(username)
     response = users.delete_one({'username': username})
     if response.deleted_count == 1:
         result = {'message': 'User deleted'}
@@ -98,21 +97,24 @@ def delete_account(username):
     return jsonify({'result': result})
 
 
-@app.route('/users/get-by-username', methods=['GET'])
-def get_account_by_username():
+@app.route('/users/get/<username>', methods=['GET'])
+def get_account_by_username(username):
     users = mongo.db.users
-    username = request.get_json()['username']
     response = users.find_one({'username': username})
     if response:
         result = {'message': 'User found',
                   'username': response['username'],
-                  'trial_time ': response['trial_time'],
+                  'trial_time': response['trial_time'],
                   'status': response['status']
                   }
+        access_token = create_access_token(identity={
+            'username': response['username'],
+            'status': response['status'],
+            'trial_time': response['trial_time'],
+        })
     else:
         result = {'message': 'No user found'}
-
-    return jsonify({'result': result})
+    return jsonify({'result': result, 'token': access_token})
 
 
 @app.route('/users/get-all', methods=['GET'])
@@ -126,16 +128,21 @@ def get_all_accounts():
     return jsonify(result)
 
 
-@app.route('/users/edit/username', methods=['POST'])
+@app.route('/users/edit/', methods=['POST'])
 def edit_username():
     users = mongo.db.users
     username = request.get_json()['username']
     info = request.get_json()['info']
+    status = request.get_json()['status']
     response = users.find_one({'username': username})
+
     if response:
         new_values = {"$set": {"username": info}}
         users.update_one({'username': username}, new_values)
+        new_status = {"$set": {"status": status}}
+        users.update_one({'username': username}, new_status)
         result = {'message': username + ' is changed to ' + info}
+
     else:
         result = {'message': 'No user found'}
     return jsonify({'result': result})
