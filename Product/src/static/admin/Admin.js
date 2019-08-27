@@ -9,7 +9,7 @@ import Log from './Log';
 class Admin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { username: "", isLogShow: true, isAccountShow: false, isWaitingListShow: false,};
+        this.state = { username: "", isLogShow: false, isAccountShow: true, isWaitingListShow: false,};
 
     }
   
@@ -23,7 +23,7 @@ class Admin extends React.Component {
         });
         console.log(decoded.identity);
     }
-    
+
     showLog(e){
         e.preventDefault();
         console.log('Log is showing!');
@@ -58,15 +58,8 @@ class Admin extends React.Component {
     render() {
         return (
             <div >
-                <h1 style={{ color: 'white' }}>Hello {this.state.username}</h1>
-                <button type="button"
-                    className={
-                        "controller " + (this.state.isLogShow ?
-                            "selected-controller" :
-                            "")
-                    }
-                    onClick={this.showLog.bind(this)} >
-                    System Logs</button>
+                <h1 style={{ color: 'white' }}>Hello, {this.state.username}</h1>
+                
               
                     <button type="button"
                     className={
@@ -84,6 +77,14 @@ class Admin extends React.Component {
                     }
                     onClick={this.showWaitingList.bind(this)} >
                     Waiting List</button>
+                    <button type="button"
+                    className={
+                        "controller " + (this.state.isLogShow ?
+                            "selected-controller" :
+                            "")
+                    }
+                    onClick={this.showLog.bind(this)} >
+                    System Logs</button>
                     <button type="button"
                     className="controller"
                     onClick={this.showDashboard.bind(this)} >

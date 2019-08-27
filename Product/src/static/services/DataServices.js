@@ -32,3 +32,18 @@ export const getUser = user => {
        
 }
 
+export const getPending = () => {
+    return axios
+        .get('/admin/get-pending',{
+             headers: { 'Content-type': 'application/json' }
+        })
+        .then((response) => {
+            return response.data
+        }).catch((response) => {
+            console.log(response)
+        })
+       
+}
+
+
+

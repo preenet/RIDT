@@ -128,13 +128,13 @@ def get_all_accounts():
     return jsonify(result)
 
 
-@app.route('/users/edit/', methods=['POST'])
-def edit_username():
+@app.route('/admin/edit/', methods=['POST'])
+def edit_user():
     users = mongo.db.users
     username = request.get_json()['username']
     info = request.get_json()['info']
-    status = request.get_json()['status']
     response = users.find_one({'username': username})
+    status = request.get_json()['status']
 
     if response:
         new_values = {"$set": {"username": info}}
@@ -164,6 +164,24 @@ def edit_password():
         else:
             result = jsonify({"error": "Invalid username and password"})
     else:
+        result = jsonify({"result": "No user found"})
+    return result
+
+
+@app.route('/users/edit/username', methods=['POST'])
+def edit_username():
+    users = mongo.db.users
+    username = request.get_json()['username']
+    info = request.get_json()['info']
+    response = users.find_one({'username': username})
+
+    if response:
+        new_values = {"$set": {"username": info}}
+        users.update_one({'username': username}, new_values)
+        result = {'message': 'Username changed'}
+    else:
+        result = jsonify({"error": "Invalid username and password"})
+
         result = jsonify({"result": "No user found"})
     return result
 
@@ -252,6 +270,42 @@ def trial_renew():
     else:
         result = {'message': 'No user found'}
     return jsonify({'result': result})
+
+
+@app.route('/admin/approve-all', methods=['POST'])
+def approve_all():
+    users = mongo.db.users
+    response = users.find({'status': 'pending'})
+
+    if response:
+        trial_time = datetime.utcnow() + timedelta(days=7)
+        new_status = {"$set": {"status": 'approved'}}
+        new_trial_time = {"$set": {"trial_time": trial_time}}
+        x = users.update_many({'status': 'pending'}, new_status)
+        users.update_many({'status': 'pending'}, new_trial_time)
+        result = {'message': str(x.modified_count) + ' users \' request are approved'}
+    else:
+        result = {'message': 'No user found'}
+
+    return jsonify(results=result)
+
+
+@app.route('/admin/reject-all', methods=['POST'])
+def reject_all():
+    users = mongo.db.users
+    response = users.find({'status': 'pending'})
+
+    if response:
+
+        new_status = {"$set": {"status": 'rejected'}}
+        new_trial_time = {"$set": {"trial_time": 'pending'}}
+        x = users.update_many({'status': 'pending'}, new_status)
+        users.update_many({'status': 'pending'}, new_trial_time)
+        result = {'message': str(x.modified_count) + ' users \' request are rejected'}
+    else:
+        result = {'message': 'No user found'}
+
+    return jsonify(results=result)
 
 
 if __name__ == '__main__':

@@ -11,14 +11,14 @@ class Accounts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            accounts: [], term: '',
+            accounts: [],
             columns: [
                 { title: 'Username', field: 'username', editable: 'always'  },
                 { title: 'Trial Time', field: 'trial_time', editable: 'onAdd', type:'numeric'  },
                 {
                     title: 'Status', field: 'status',
                     editable: 'always', 
-                    lookup: { 'approved': 'approved', 'pending': 'pending','super admin added': 'super admin added', 'rejected':'rejected' }
+                    lookup: { 'approved': 'approved', 'pending': 'pending',}
                 },
             ],
         };
@@ -68,8 +68,7 @@ class Accounts extends React.Component {
             this.getAll();
         }).catch(err => {
             console.log(err);
-        });
-       
+        });     
     }
 
     render() {
@@ -83,7 +82,6 @@ class Accounts extends React.Component {
                         }}
                         title="All Accounts"
                         columns={this.state.columns}
-
                         data={this.state.accounts}
 
                         editable={{

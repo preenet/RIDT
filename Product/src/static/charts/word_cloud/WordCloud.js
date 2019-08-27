@@ -10,7 +10,7 @@ class WordCloud extends React.Component {
     render() {
         return (
             <div>
-                <h1 style={{ color: 'white' }}>Hello Word-Cloud</h1>
+                <h1 style={{ color: 'white' }}>Word-Cloud</h1>
              
             </div>
         );
