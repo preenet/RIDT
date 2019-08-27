@@ -42,7 +42,7 @@ it('linechart is working with expected data', () => {
     min: 0,
     max: 100
   });
-  console.log(expected);
+  // console.log(expected);
   const received = instance.state.series[0].data;
   for (let i = 0; i < expected.length; i++) {
     expect(received[i][0]).toEqual(expected[i][0]);
