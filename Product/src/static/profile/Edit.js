@@ -30,7 +30,6 @@ class Edit extends React.Component {
   }
 
   usernameHandleCancel() {
-
     this.setState({ usernameChangeOpen: false });
   }
 
