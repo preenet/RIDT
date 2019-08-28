@@ -14,7 +14,9 @@ class Edit extends React.Component {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
     this.state = {
-      username: decoded.identity.username, status: decoded.identity.status, trial_time: decoded.identity.trial_time,
+      username: decoded.identity.username, 
+      status: decoded.identity.status, 
+      trial_time: decoded.identity.trial_time,
       passwordChangeOpen: false,
       usernameChangeOpen: false,
       password: '',
