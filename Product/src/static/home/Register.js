@@ -59,7 +59,7 @@ class RegisterBox extends React.Component {
             this.setState({ isRegistered: true});
             console.log('Format correct!');
             console.log('Register successfully!');   
-
+            alert('Register successfully!')
             const newUser = {
                 username: this.state.username,
                 password: this.state.password
