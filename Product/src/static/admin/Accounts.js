@@ -4,20 +4,21 @@ import jwt_decode from 'jwt-decode'
 import { getAccounts } from '../services/DataServices';
 import { addUser } from '../services/UserServices';
 import { deleteUser } from '../services/UserServices';
+import { editUser } from '../services/UserServices';
 import MaterialTable from 'material-table';
 
 class Accounts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            accounts: [], term: '',
+            accounts: [],
             columns: [
-                { title: 'Username', field: 'username', editable: 'always'  },
-                { title: 'Trial Time', field: 'trial_time', editable: 'always', type:'numeric'  },
+                { title: 'Username', field: 'username', editable: 'always' },
+                { title: 'Trial Time', field: 'trial_time', editable: 'onAdd', type: 'numeric' },
                 {
                     title: 'Status', field: 'status',
-                    editable: 'onAdd', 
-                    lookup: { 'approved': 'approved', 'pending': 'pending','super admin added': 'super admin added', 'unlimited':'unlimited' }
+                    editable: 'always',
+                    lookup: { 'approved': 'approved', 'pending': 'pending', }
                 },
             ],
         };
@@ -32,15 +33,15 @@ class Accounts extends React.Component {
     }
 
     getAll = () => {
-        
         getAccounts().then(data => {
             this.setState(
                 {
                     accounts: [...data]
                 },
             )
-        });
-
+        }).catch(err => {
+            alert('Cannot connect to database, please try again!');
+        })
     }
 
     onAdd(newData) {
@@ -63,6 +64,14 @@ class Accounts extends React.Component {
         this.getAll();
     }
 
+    onEdit(oldData, newData) {
+        editUser({ username: oldData.username, info: newData.username, status: newData.status }).then(res => {
+            console.log('on Edit ' + oldData.username);
+            this.getAll();
+        }).catch(err => {
+            console.log(err);
+        });
+    }
 
     render() {
         return (
@@ -70,11 +79,11 @@ class Accounts extends React.Component {
                 <div className="table">
                     <MaterialTable
                         style={{
-
+                            'width': '50%',
+                            'left': '25%'
                         }}
                         title="All Accounts"
                         columns={this.state.columns}
-
                         data={this.state.accounts}
 
                         editable={{
@@ -82,9 +91,9 @@ class Accounts extends React.Component {
                                 new Promise(resolve => {
                                     setTimeout(() => {
                                         resolve();
-                                        const data = [this.state.data];
+                                        const data = [this.state.accounts];
                                         data.push(newData);
-                                        this.setState({ ...this.state.data, data });
+                                        this.setState({ ...this.state.accounts, data });
                                         this.onAdd(newData);
                                     }, 100)
                                 }),
@@ -92,18 +101,21 @@ class Accounts extends React.Component {
                                 new Promise(resolve => {
                                     setTimeout(() => {
                                         resolve();
-                                        const data = [...this.state.data];
+                                        const data = [...this.state.accounts];
                                         data[data.indexOf(oldData)] = newData;
-                                        this.setState({ ...this.state, data });
+                                        this.setState({ ...this.state.accounts, data });
+                                        console.log(oldData)
+                                        console.log(newData)
+                                        this.onEdit(oldData, newData);
                                     }, 100);
                                 }),
                             onRowDelete: oldData =>
                                 new Promise(resolve => {
                                     setTimeout(() => {
                                         resolve();
-                                        const data = [this.state.data];
+                                        const data = [this.state.accounts];
                                         data.splice(data.indexOf(oldData), 1);
-                                        this.setState({ ...this.state, data });
+                                        this.setState({ ...this.state.accounts, data });
                                         this.onDelete(oldData);
                                     }, 100);
                                 }),

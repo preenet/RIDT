@@ -39,7 +39,6 @@ class App extends React.Component {
 
           <Route path="/admin" exact strict component={Admin} />
 
-
         </div>
 
       </Router>

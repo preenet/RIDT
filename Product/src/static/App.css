@@ -473,3 +473,31 @@
       margin-top:1%;
       
   }
+
+.mini-controller {
+    width: 12em;
+    padding: 4px 35px;
+    margin: 2px;
+    font-size: 9px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    background-color: white;
+    border: 1px solid white;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    color: black;
+}
+
+.mid-controller{
+    width: 13em;
+    padding: 4px 35px;
+    font-size: 18px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    background-color: rgba(15, 15, 15, 0.03);
+    border: 1px solid white;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    color: white;
+    margin: 1%;
+}

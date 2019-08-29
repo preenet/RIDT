@@ -42,7 +42,6 @@ export const adminLogin = user => {
 }
 
 export const addUser = newUser => {
-    console.log(newUser.status)
     return axios
     .post("admin/add",{
         username: newUser.username,
@@ -61,7 +60,114 @@ export const deleteUser = oldUser => {
             headers: { 'Content-type': 'application/json' }
         })
         .then((response) => {
+            console.log(response)
             console.log(oldUser.username + ' deleted')
+        })
+        .catch((response) => {
+            console.log(response)
+        })
+}
+
+export const editUser = info => {
+    return axios
+        .post('admin/edit/', {
+            username: info.username,
+            info: info.info,
+            status: info.status
+        })
+        .then((response) => {
+            console.log(response)
+            console.log(info.username + ' changed to ' + info.info)
+        })
+        .catch((response) => {
+            console.log(response)
+        })
+}
+
+export const approveAll = () => {
+    return axios
+        .post('admin/approve-all', {
+            headers: { 'Content-type': 'application/json' }
+        })
+        .then((response) => {
+            console.log(response)
+            
+        })
+        .catch((response) => {
+            console.log(response)
+        })
+}
+
+
+export const rejectAll = () => {
+    return axios
+        .post('admin/reject-all', {
+            headers: { 'Content-type': 'application/json' }
+        })
+        .then((response) => {
+            console.log(response)
+            
+        })
+        .catch((response) => {
+            console.log(response)
+        })
+}
+
+
+export const approve = info => {
+    return axios
+        .post('admin/approve', {
+            username: info.username,
+        })
+        .then((response) => {
+            console.log(response)
+            console.log(info.username + ' rejected')
+        })
+        .catch((response) => {
+            console.log(response)
+        })
+}
+
+export const reject = info => {
+    return axios
+        .post('admin/reject', {
+            username: info.username,
+        })
+        .then((response) => {
+            console.log(response)
+            console.log(info.username + ' rejected')
+        })
+        .catch((response) => {
+            console.log(response)
+        })
+}
+
+export const editPassword = info => {
+    return axios
+        .post('users/edit/password', {
+            username: info.username,
+            password: info.password,
+            new_password: info.new_password
+        })
+        .then((response) => {
+            console.log(response)
+            console.log(info.username + ' \'s password changed')
+        })
+        .catch((response) => {
+            console.log(response)
+        })
+}
+
+
+export const editUsername = info => {
+    return axios
+        .post('users/edit/username', {
+            username: info.username,
+            info: info.info
+        })
+        .then((response) => {
+            console.log(response)
+            console.log(info.username + ' \'s password changed')
         })
         .catch((response) => {
             console.log(response)
