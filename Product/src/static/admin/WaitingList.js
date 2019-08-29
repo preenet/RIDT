@@ -91,11 +91,16 @@ class WaitingList extends React.Component {
 
     getPending = () => {
         getPending().then(data => {
-            this.setState(
-                {
-                    accounts: data.results
-                },
-            )
+            if(data){
+                this.setState(
+                    {
+                        accounts: data.results
+                    },
+                )
+            }else{
+                alert('Cannot connect to database, please try again!');
+            }
+            
         });
     }
 

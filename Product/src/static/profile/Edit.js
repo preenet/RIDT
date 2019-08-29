@@ -14,8 +14,8 @@ class Edit extends React.Component {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
     this.state = {
-      username: decoded.identity.username, 
-      status: decoded.identity.status, 
+      username: decoded.identity.username,
+      status: decoded.identity.status,
       trial_time: decoded.identity.trial_time,
       passwordChangeOpen: false,
       usernameChangeOpen: false,
@@ -26,6 +26,10 @@ class Edit extends React.Component {
     };
   }
 
+  onBack(e) {
+    e.preventDefault();
+    this.props.history.goBack();
+  }
 
   usernameHandleClickOpen() {
     this.setState({ usernameChangeOpen: true });
@@ -51,7 +55,7 @@ class Edit extends React.Component {
   }
 
   passwordHandleCancel() {
-    this.setState({ usernameChangeOpen: false });
+    this.setState({ passwordChangeOpen: false });
   }
 
   passwordHandleConfirm() {
@@ -139,6 +143,8 @@ class Edit extends React.Component {
 
     return (
       <div >
+
+        <button type="button" className="left-controller" onClick={this.onBack.bind(this)}>Back</button>
 
         <div>
           <button className="mid-controller" onClick={this.usernameHandleClickOpen.bind(this)}>

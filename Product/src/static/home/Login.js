@@ -64,6 +64,7 @@ class LoginBox extends React.Component {
             login(user).then(res => {
                 console.log(res)
                 if (res === undefined){
+                    alert('Login failed');
                     console.log('Login failed')
                 }else if(!res.error){
                     console.log('Login successful')

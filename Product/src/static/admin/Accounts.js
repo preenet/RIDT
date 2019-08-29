@@ -13,12 +13,12 @@ class Accounts extends React.Component {
         this.state = {
             accounts: [],
             columns: [
-                { title: 'Username', field: 'username', editable: 'always'  },
-                { title: 'Trial Time', field: 'trial_time', editable: 'onAdd', type:'numeric'  },
+                { title: 'Username', field: 'username', editable: 'always' },
+                { title: 'Trial Time', field: 'trial_time', editable: 'onAdd', type: 'numeric' },
                 {
                     title: 'Status', field: 'status',
-                    editable: 'always', 
-                    lookup: { 'approved': 'approved', 'pending': 'pending',}
+                    editable: 'always',
+                    lookup: { 'approved': 'approved', 'pending': 'pending', }
                 },
             ],
         };
@@ -39,7 +39,9 @@ class Accounts extends React.Component {
                     accounts: [...data]
                 },
             )
-        });
+        }).catch(err => {
+            alert('Cannot connect to database, please try again!');
+        })
     }
 
     onAdd(newData) {
@@ -61,14 +63,14 @@ class Accounts extends React.Component {
         deleteUser(oldData)
         this.getAll();
     }
- 
-    onEdit(oldData, newData){
-        editUser({username: oldData.username, info: newData.username, status: newData.status}).then(res =>{
+
+    onEdit(oldData, newData) {
+        editUser({ username: oldData.username, info: newData.username, status: newData.status }).then(res => {
             console.log('on Edit ' + oldData.username);
             this.getAll();
         }).catch(err => {
             console.log(err);
-        });     
+        });
     }
 
     render() {
