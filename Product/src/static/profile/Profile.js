@@ -6,14 +6,20 @@ import { getUser } from '../services/DataServices';
 class Profile extends React.Component {
     constructor(props) {
         super(props);
-        const token = localStorage.usertoken;
-        const decoded = jwt_decode(token);
-        this.state = {
-            username: decoded.identity.username,
-            status: decoded.identity.status,
-            trial_time: decoded.identity.trial_time,
+        if (localStorage.usertoken) {
+            const token = localStorage.usertoken;
+            const decoded = jwt_decode(token);
+            this.state = {
+                username: decoded.identity.username,
+                status: decoded.identity.status,
+                trial_time: decoded.identity.trial_time,
+            };
+        } else {
            
-        };
+            this.props.history.push('/');
+            window.location.reload();
+        }
+
 
         if (performance.navigation.type === 1) {
             console.log(this.state);
@@ -70,7 +76,7 @@ class Profile extends React.Component {
                     <button type="button" className="controller" disabled={this.state.status !== 'approved'} onClick={this.dashboard.bind(this)}> Dashboard </button>
                     <button type="button" className="controller" onClick={this.logout.bind(this)}> Logout </button>
                 </div>
-               
+
             </div>
         );
     }

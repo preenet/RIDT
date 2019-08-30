@@ -9,43 +9,50 @@ import Log from './Log';
 class Admin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { username: "", isLogShow: false, isAccountShow: true, isWaitingListShow: false,};
+        this.state = { username: "", isLogShow: false, isAccountShow: true, isWaitingListShow: false, };
 
     }
-  
+
     componentDidMount() {
-        const token = localStorage.usertoken;
-        const decoded = jwt_decode(token);
-        this.setState({
-            username: decoded.identity.username,
-            status: decoded.identity.status,
-            trial_time: decoded.identity.trial_time
-        });
-        console.log(decoded.identity);
+        if (localStorage.usertoken) {
+            const token = localStorage.usertoken;
+            const decoded = jwt_decode(token);
+            this.setState({
+                username: decoded.identity.username,
+                status: decoded.identity.status,
+                trial_time: decoded.identity.trial_time
+            });
+            console.log(decoded.identity);
+        }else{
+            alert('Please login!');
+            this.props.history.push('/');
+            window.location.reload();
+        }
+
     }
 
-    showLog(e){
+    showLog(e) {
         e.preventDefault();
         console.log('Log is showing!');
         this.setState({ isLogShow: true, isAccountShow: false, isWaitingListShow: false, });
     }
 
-    showDashboard(e){
+    showDashboard(e) {
         e.preventDefault();
         this.props.history.push('/dashboard');
         console.log('Dashboard is showing!');
     }
 
-    showAccount(e){
+    showAccount(e) {
         e.preventDefault();
         console.log('Account is showing!');
         this.setState({ isLogShow: false, isAccountShow: true, isWaitingListShow: false, });
     }
 
-    showWaitingList(e){
+    showWaitingList(e) {
         e.preventDefault()
         console.log('Waiting List is showing!');
-        this.setState({ isLogShow: false, isAccountShow: false, isWaitingListShow: true,  });
+        this.setState({ isLogShow: false, isAccountShow: false, isWaitingListShow: true, });
     }
 
     logout(e) {
@@ -59,9 +66,9 @@ class Admin extends React.Component {
         return (
             <div >
                 <h1 style={{ color: 'white' }}>Hello, {this.state.username}</h1>
-                
-              
-                    <button type="button"
+
+
+                <button type="button"
                     className={
                         "controller " + (this.state.isAccountShow ?
                             "selected-controller" :
@@ -69,7 +76,7 @@ class Admin extends React.Component {
                     }
                     onClick={this.showAccount.bind(this)} >
                     All Accounts</button>
-                    <button type="button"
+                <button type="button"
                     className={
                         "controller " + (this.state.isWaitingListShow ?
                             "selected-controller" :
@@ -77,7 +84,7 @@ class Admin extends React.Component {
                     }
                     onClick={this.showWaitingList.bind(this)} >
                     Waiting List</button>
-                    <button type="button"
+                <button type="button"
                     className={
                         "controller " + (this.state.isLogShow ?
                             "selected-controller" :
@@ -85,12 +92,12 @@ class Admin extends React.Component {
                     }
                     onClick={this.showLog.bind(this)} >
                     System Logs</button>
-                    <button type="button"
+                <button type="button"
                     className="controller"
                     onClick={this.showDashboard.bind(this)} >
                     Dashboard</button>
                 <button type="button" className="controller" onClick={this.logout.bind(this)}> Logout </button>
-                {this.state.isLogShow && <Log/>}
+                {this.state.isLogShow && <Log />}
                 {this.state.isAccountShow && < Accounts />}
                 {this.state.isWaitingListShow && < WaitingList />}
             </div>

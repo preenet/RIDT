@@ -116,12 +116,12 @@ export const rejectAll = () => {
 
 export const approve = info => {
     return axios
-        .post('admin/approve', {
+        .post('/admin/approve', {
             username: info.username,
         })
         .then((response) => {
             console.log(response)
-            console.log(info.username + ' rejected')
+            console.log(info.username + ' approved')
         })
         .catch((response) => {
             console.log(response)
@@ -130,7 +130,7 @@ export const approve = info => {
 
 export const reject = info => {
     return axios
-        .post('admin/reject', {
+        .post('/admin/reject', {
             username: info.username,
         })
         .then((response) => {

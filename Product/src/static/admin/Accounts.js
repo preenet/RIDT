@@ -18,7 +18,7 @@ class Accounts extends React.Component {
                 {
                     title: 'Status', field: 'status',
                     editable: 'always',
-                    lookup: { 'approved': 'approved', 'pending': 'pending', }
+                    lookup: { 'approved': 'approved', 'pending': 'pending','rejected':'rejected' }
                 },
             ],
         };

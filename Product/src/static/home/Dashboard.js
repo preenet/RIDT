@@ -14,14 +14,21 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    const token = localStorage.usertoken;
-    const decoded = jwt_decode(token);
-    this.setState({
-      username: decoded.identity.username,
-      status: decoded.identity.status,
-      trial_time: decoded.identity.trial_time
-    });
-    console.log(decoded.identity);
+    if (localStorage.usertoken) {
+      const token = localStorage.usertoken;
+      const decoded = jwt_decode(token);
+      this.setState({
+        username: decoded.identity.username,
+        status: decoded.identity.status,
+        trial_time: decoded.identity.trial_time
+      });
+      console.log(decoded.identity);
+    } else {
+      alert('Please login!');
+      this.props.history.push('/');
+      window.location.reload();
+    }
+
   }
 
   onBack(e) {
@@ -64,8 +71,6 @@ class Dashboard extends React.Component {
           </div>
 
           <div>
-
-
 
             <button type="button" className={
               "controller " + (this.state.isSummaryOpen ?

@@ -56,7 +56,7 @@ class WaitingList extends React.Component {
 
     onEdit(oldData,newData) {
         console.log(newData.status);
-        if(newData.statu === 'approved'){
+        if(newData.status === 'approved'){
             approve({ username: oldData.username}).then(res => {
                 console.log('on Approve ' + oldData.username);
                 this.getPending();
