@@ -145,7 +145,7 @@ class Edit extends React.Component {
       <div >
 
         <button type="button" className="left-controller" onClick={this.onBack.bind(this)}>Back</button>
-
+      
         <div>
           <button className="mid-controller" onClick={this.usernameHandleClickOpen.bind(this)}>
             Change Username

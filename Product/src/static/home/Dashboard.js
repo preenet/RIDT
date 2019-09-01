@@ -9,7 +9,7 @@ import jwt_decode from 'jwt-decode'
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", status: "", trial_time: "", isSummaryOpen: true, isWord_CloudOpen: false, isHeatmapOpen: false };
+    this.state = { username: "", status: "", trial_time: "", isSummaryOpen: true, isWord_CloudOpen: false, isHeatmapOpen: false, niubi:'' };
     console.log('Summary is showing!');
   }
 
@@ -61,8 +61,12 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <h1 style={{ color: 'white' }}>RIDT</h1>
-
+        
+        <div className="profile">
+          <h2>Username: {this.state.username}</h2>
+          <h2>Status: {this.state.status ? this.state.username: 'Super Admin'}</h2>
+          <h2>Trial Time: {this.state.trial_time ? this.state.trial_time: 'Super Admin'}</h2>
+        </div>
         <div>
           <div>
             <button type="button" className="left-controller" onClick={this.onBack.bind(this)}>Back</button>

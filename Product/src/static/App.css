@@ -399,14 +399,16 @@
     float: left;
 }
 
+.profile{
+    color: white;
+    position: relative;
+}
+
 .heatmap{
     width: 40%;
     left: 10%;
 }
 
-.slider{
-    color: white;
-}
 
 
 .left-controller {
