@@ -251,7 +251,7 @@ class Sparkline extends React.Component {
             <div id="sparklines">
                 <div >
                     <div >
-                        <div className="sparkline-left" id="spark1">
+                        <div className="sparkline-top" id="spark1">
                             <ReactApexChart options={this.state.chartOptionsTopSpark1} series={this.state.seriesTopSpark1} type="area" height="160" />
                         </div>
                     </div>
@@ -261,13 +261,13 @@ class Sparkline extends React.Component {
                         </div>
                     </div>
                     <div >
-                        <div className="sparkline-right" id="spark3">
+                        <div className="sparkline-bottom" id="spark3">
                             <ReactApexChart options={this.state.chartOptionsTopSpark3} series={this.state.seriesTopSpark3} type="area" height="160" />
                         </div>
                     </div>
                 </div>
 
-                <div className="sparkline-bottom" >
+                <div className="sparkline-foot" >
                     <table>
                         <tbody>
                             <tr>

@@ -15,29 +15,31 @@ class Summary extends React.Component {
   render() {
     return (
       <div>
-        <div className="top">
+          <div className="sparkline">
           < Sparkline />
         </div>
-        <div className="bottom">
-          <div className="left-top">
-            < LineChart />
-          </div>
 
-          <div className="right-top" >
+
+        <div >
+
+          <div className="chart" >
             < BarChart />
           </div>
 
-          <div className="left-bottom">
+          <div className="chart">
             < BarChart2 />
           </div>
 
-          <div className="right-bottom">
+          <div className="chart">
             < StackedChart />
           </div>
 
+          <div className="chart">
+            < LineChart />
+          </div>
+
         </div>
-
-
+      
 
       </div>
     );

@@ -3,7 +3,7 @@ import ReactApexChart from 'react-apexcharts';
 
 
 class BarChart extends React.Component {
-      
+
   constructor(props) {
     super(props);
 
@@ -13,11 +13,11 @@ class BarChart extends React.Component {
           bar: {
             horizontal: true,
           },
-         
+
         },
         dataLabels: {
           enabled: false,
-          
+
         },
         xaxis: {
           categories: ['Good place', 'Great', 'Not bad', 'It\'s just not bad', 'Normal', 'Worth it', 'Bad',
@@ -25,23 +25,23 @@ class BarChart extends React.Component {
           ],
           labels: {
             style: {
-              colors:['white']
-              
+              colors: ['white']
+
             },
           }
         },
-        yaxis:{
+        yaxis: {
           labels: {
             style: {
-              color:'white'
-              
+              color: 'white'
+
             },
           }
         },
-        title:{
-          text:'Fequence of Word',
+        title: {
+          text: 'Fequence of Word',
           align: 'center',
-          style:{
+          style: {
             color: 'white'
           }
         }
@@ -51,19 +51,26 @@ class BarChart extends React.Component {
         data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
       }],
     }
-    }
-
-    render() {
-      return (
-        
-
-        <div id="chart">
-          <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" width="400"/>
-        </div>
-
-
-      );
-    }
   }
 
-  export default BarChart;
+  render() {
+    return (
+
+
+      <div>
+        <h2 className="chart-des">Fequence of Word</h2>
+       
+        <div id="chart">
+          <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" width="520" />
+        </div>
+
+      </div>
+
+
+
+
+    );
+  }
+}
+
+export default BarChart;
