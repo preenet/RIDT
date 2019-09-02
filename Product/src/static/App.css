@@ -323,26 +323,30 @@
     max-width: 50% 
 }
 
-.left-top{
+
+.chart{
     position: relative;
-    float: left;
+    border: white solid 1px;
+    margin: 10px;
+    width: 60%;
+    margin: auto
 }
 
-.right-top{
-    position: relative;
-    float: left;
+.chart-des{
+    color: white;
+    float: right;
+    width: 50%;
+    margin: auto;
+    
 }
 
-.left-bottom{
-    position: relative;
-    float: left;
-    top: 100%;
-}
 
-.right-bottom{
+
+.sparkline{
     position: relative;
-    float: left;
-    top: 100%;
+    border: white 1px solid;
+    margin: auto;
+    width: 60%;
 }
 
 .logout-btn {
@@ -362,42 +366,30 @@
     color: white;
 }
 
-.sparkline-left{
+.sparkline-top{
     position: relative;
-    float: left;
-    border-right: 1px solid white; 
+    width: 30%;
+    
 }
 
 .sparkline-center{
     position: relative;
-    float: left;
-    border-right: 1px solid white; 
-}
-
-.sparkline-right{
-    position: relative;
-    float: left;
+    width: 30%; 
 }
 
 .sparkline-bottom{
     position: relative;
-    float: left;
-}
-
-.top{
-    position: relative;
-    margin-left: 5%;
-    margin-top: 5%;
-    float: left;  
-    width: 100%;
+    width: 30%;
     
 }
 
-.bottom{
+.sparkline-foot{
     position: relative;
-    margin-top: 5%;
-    float: left;
+    width: 50%;
 }
+
+
+
 
 .profile{
     color: white;

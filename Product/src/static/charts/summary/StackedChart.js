@@ -73,7 +73,7 @@ class StackedChart extends React.Component {
 
 
       <div id="chart">
-        <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" width="540"/>
+        <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" width="520"/>
       </div>
 
 

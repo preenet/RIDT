@@ -88,7 +88,7 @@ class BarChart2 extends React.Component {
         
 
         <div id="chart">
-          <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350"  width="440"/>
+          <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350"  width="520"/>
         </div>
 
 
