@@ -27,7 +27,7 @@ class Accounts extends React.Component {
 
     componentDidMount() {
         this.getAll();
-        const token = localStorage.usertoken;
+        const token = localStorage.admintoken;
         const decoded = jwt_decode(token);
         console.log(decoded.identity);
     }

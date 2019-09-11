@@ -10,7 +10,7 @@ class Log extends React.Component {
     }
   
     componentDidMount() {
-        const token = localStorage.usertoken;
+        const token = localStorage.admintoken;
         const decoded = jwt_decode(token);
         console.log(decoded.identity);
     }

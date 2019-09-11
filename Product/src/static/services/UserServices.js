@@ -33,7 +33,7 @@ export const adminLogin = user => {
         password: user.password
     })
     .then(response => {
-        localStorage.setItem('usertoken',response.data.token)
+        localStorage.setItem('admintoken',response.data.token)
         return response.data.token
     })
     .catch(err => {

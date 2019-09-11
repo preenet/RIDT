@@ -14,8 +14,8 @@ class Admin extends React.Component {
     }
 
     componentDidMount() {
-        if (localStorage.usertoken) {
-            const token = localStorage.usertoken;
+        if (localStorage.admintoken) {
+            const token = localStorage.admintoken;
             const decoded = jwt_decode(token);
             this.setState({
                 username: decoded.identity.username,
