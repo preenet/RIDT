@@ -61,8 +61,14 @@ class Dashboard extends React.Component {
 
   logout(e) {
     e.preventDefault();
-    this.props.history.push('/')
-    localStorage.removeItem('usertoken')
+    this.props.history.push('/');
+    if(localStorage.usertoken){
+      localStorage.removeItem('usertoken');
+    }
+    if(localStorage.admintoken){
+      localStorage.removeItem('admintoken');
+    }
+    
     console.log('Log out successfully');
   }
 

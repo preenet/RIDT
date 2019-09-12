@@ -58,7 +58,7 @@ class Admin extends React.Component {
     logout(e) {
         e.preventDefault();
         this.props.history.push('/');
-        localStorage.removeItem('usertoken')
+        localStorage.removeItem('admintoken')
         console.log('Log out successfully');
     }
 
