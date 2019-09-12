@@ -9,7 +9,7 @@ import jwt_decode from 'jwt-decode'
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", status: "", trial_time: "", isSummaryOpen: true, isWord_CloudOpen: false, isHeatmapOpen: false, niubi:'' };
+    this.state = { username: "", status: "", trial_time: "", isSummaryOpen: true, isWord_CloudOpen: false, isHeatmapOpen: false, niubi: '' };
     console.log('Summary is showing!');
   }
 
@@ -23,6 +23,14 @@ class Dashboard extends React.Component {
         trial_time: decoded.identity.trial_time
       });
       console.log(decoded.identity);
+    } else if (localStorage.admintoken) {
+      const token = localStorage.admintoken;
+      const decoded = jwt_decode(token);
+      this.setState({
+        username: decoded.identity.username,
+        status: decoded.identity.status,
+        trial_time: decoded.identity.trial_time
+      });
     } else {
       alert('Please login!');
       this.props.history.push('/');
@@ -61,11 +69,11 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        
+
         <div className="profile">
           <h2>Username: {this.state.username}</h2>
-          <h2>Status: {this.state.status ? this.state.username: 'Super Admin'}</h2>
-          <h2>Trial Time: {this.state.trial_time ? this.state.trial_time: 'Super Admin'}</h2>
+          <h2>Status: {this.state.status ? this.state.status : 'Super Admin'}</h2>
+          <h2>Trial Time: {this.state.trial_time ? this.state.trial_time : 'Super Admin'}</h2>
         </div>
         <div>
           <div>

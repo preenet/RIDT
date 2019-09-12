@@ -58,7 +58,7 @@ class BarChart extends React.Component {
 
 
       <div>
-        <h2 className="chart-des">Fequence of Word</h2>
+       
        
         <div id="chart">
           <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" width="520" />

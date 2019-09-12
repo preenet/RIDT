@@ -326,9 +326,9 @@
 
 .chart{
     position: relative;
-    border: white solid 1px;
+    /* border: white solid 1px; */
     margin: 10px;
-    width: 60%;
+    width: 40%;
     margin: auto
 }
 
@@ -342,9 +342,9 @@
 
 .sparkline{
     position: relative;
-    border: white 1px solid;
+    /* border: white 1px solid; */
     margin: auto;
-    width: 60%;
+    width: 40%;
 }
 
 .logout-btn {

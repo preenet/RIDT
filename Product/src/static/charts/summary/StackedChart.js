@@ -16,23 +16,23 @@ class StackedChart extends React.Component {
         responsive: [{
           breakpoint: 480,
           options: {
-            
+
           }
         }],
         xaxis: {
           categories: ['Hotel A', 'Hotel B', 'Hotel C', 'Hotel D', 'Hotel E', 'Hotel F',
-            'Hotel G', 'Hotel H','Hotel I'
+            'Hotel G', 'Hotel H', 'Hotel I'
           ],
           labels: {
             style: {
-              colors: ['white','white','white','white','white','white','white','white','white']
+              colors: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white']
             },
           }
         },
-        yaxis:{
+        yaxis: {
           labels: {
             style: {
-              color:'white'
+              color: 'white'
             },
           }
         },
@@ -43,39 +43,39 @@ class StackedChart extends React.Component {
           position: 'top',
           offsetX: -10,
           offsetY: 0,
-          labels:{
+          labels: {
             useSeriesColors: true
           },
         },
-        title:{
-          text:'Type of Comments for Each Hotel',
+        title: {
+          text: 'Type of Comments for Each Hotel',
           align: 'center',
-          style:{
+          style: {
             color: 'white'
           }
         }
       },
       series: [{
         name: 'Neutral',
-        data: [44, 55, 41, 67, 22, 43, 21, 49,39]
+        data: [44, 55, 41, 67, 22, 43, 21, 49, 39]
       }, {
         name: 'Positive',
-        data: [13, 23, 20, 8, 13, 27, 33, 12,14]
+        data: [13, 23, 20, 8, 13, 27, 33, 12, 14]
       }, {
         name: 'Negative',
-        data: [11, 17, 15, 15, 21, 14, 15, 13,9]
+        data: [11, 17, 15, 15, 21, 14, 15, 13, 9]
       }],
     }
   }
 
   render() {
     return (
-
-
-      <div id="chart">
-        <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" width="520"/>
+      <div>
+      
+        <div id="chart">
+          <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" width="520" />
+        </div>
       </div>
-
 
     );
   }
