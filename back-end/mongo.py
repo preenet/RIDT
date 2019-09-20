@@ -6,7 +6,9 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token
 from flask_pymongo import PyMongo
+from data_provider import DataProvider
 
+dp = DataProvider
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'local'
@@ -54,7 +56,7 @@ def login():
                 'status': response['status'],
                 'trial_time': response['trial_time'],
             })
-            
+
             result = jsonify({'message': 'Login successfully', 'user': response['username'], 'token': access_token})
 
         else:
@@ -305,6 +307,22 @@ def reject_all():
     else:
         result = {'message': 'No user found'}
 
+    return jsonify(results=result)
+
+
+# Progress2
+@app.route('/data/get-number', methods=['GET'])
+def get_number():
+    total = dp.get_total()
+    positive = dp.get_positive()
+    negative = dp.get_negative()
+    neutral = dp.get_neutral()
+    p_positive = "{0:.1f}%".format(positive/total * 100)
+    p_negative = "{0:.1f}%".format(negative/total * 100)
+    p_neutral = "{0:.1f}%".format(neutral/total * 100)
+
+    result = {'total_number': total, 'positive_number': positive, 'negative_number': negative, 'neutral_number': neutral,
+              'p_positive': p_positive, 'p_negative': p_negative, 'p_neutral': p_negative}
     return jsonify(results=result)
 
 

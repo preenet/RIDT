@@ -46,4 +46,15 @@ export const getPending = () => {
 }
 
 
+export const getNumber = () => {
+    return axios.get('/data/get-number',{
+        headers: { 'Content-type': 'application/json' }
+   })
+   .then((response) => {
+       return response.data
+   }).catch((response) => {
+       console.log(response)
+   })
+}
+
 
