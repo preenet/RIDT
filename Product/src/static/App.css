@@ -328,7 +328,7 @@
     position: relative;
     /* border: white solid 1px; */
     margin: 10px;
-    width: 40%;
+    width: 30%;
     margin: auto
 }
 
@@ -344,7 +344,7 @@
     position: relative;
     /* border: white 1px solid; */
     margin: auto;
-    width: 40%;
+    width: 30%;
 }
 
 .logout-btn {

@@ -272,7 +272,7 @@ class Sparkline extends React.Component {
                         <tbody>
                             <tr>
                                 <td style={{ color: 'white' }}>Comments</td>
-                                <td style={{ color: 'white' }}>Percentage of Total Comments</td>
+                                <td style={{ color: 'white' }}>Percentage of Total</td>
                                 <td style={{ color: 'white' }}>Last 10 days Increase</td>
                                 <td style={{ color: 'white' }}>Volume</td>
                             </tr>
