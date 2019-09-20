@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import ReactApexChart from 'react-apexcharts';
-import { getNumber } from '../../services/DataServices';
+import { getNumber, getTotalCount } from '../../services/DataServices';
 
 window.Apex = {
     stroke: {
@@ -40,7 +40,6 @@ class Sparkline extends React.Component {
 
     getAll = () => {
         getNumber().then(data => {
-            
             this.setState(
                 {
                     total_comments: data.results.total_number,
@@ -51,17 +50,17 @@ class Sparkline extends React.Component {
                     percent_negative: data.results.p_negative,
                     percent_neutral: data.results.p_neutral,
                     chartOptionsTopSpark1: {
-                        title:{
+                        title: {
                             text: data.results.total_number
                         }
                     },
                     chartOptionsTopSpark2: {
-                        title:{
+                        title: {
                             text: data.results.positive_number
                         }
                     },
                     chartOptionsTopSpark3: {
-                        title:{
+                        title: {
                             text: data.results.negative_number
                         }
                     }
@@ -72,8 +71,40 @@ class Sparkline extends React.Component {
         })
     }
 
+    getTotalAccount = () => {
+        getTotalCount().then(data => {
+
+            const info = []
+            for (let i = 0; i < data.results.length; i++) {
+                info.push({ x: data.results[i].date, y: data.results[i].count });
+            }
+
+            const info1 = []
+            for (let i = data.results.length - 1; i > data.results.length - 10; i--) {
+                info1.push(data.results[i].count);
+            }
+
+            this.setState(
+                {
+                    seriesTopSpark1: [{
+                        data: [...info],
+                        name: 'Comment'
+                    }],
+                    seriesSpark1: [
+                        {
+                            data: [...info1],
+                        }
+                    ],
+                },
+            )
+        }).catch(err => {
+            alert('Cannot connect to database, please try again!');
+        })
+    }
+
     componentDidMount() {
-        this.getAll()
+        this.getAll();
+        this.getTotalAccount();
     }
 
     constructor(props) {
@@ -90,9 +121,7 @@ class Sparkline extends React.Component {
             percent_negative: "",
             percent_neutral: "",
 
-            seriesTopSpark1: [{
-                data: this.randomizeArray(sparklineData)
-            }],
+            seriesTopSpark1: [],
             seriesTopSpark2: [{
                 data: this.randomizeArray(sparklineData)
             }],
@@ -100,7 +129,7 @@ class Sparkline extends React.Component {
                 data: this.randomizeArray(sparklineData)
             }],
             seriesSpark1: [{
-                data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54]
+                
             }],
             seriesSpark2: [{
                 data: [47, 45, 74, 14, 56, 74, 14, 11, 7, 39, 82]
@@ -281,14 +310,18 @@ class Sparkline extends React.Component {
     }
 
     render() {
-    
+
         return (
 
 
             <div id="sparklines">
-                
+
                 <div >
+                    {/* <div> <button type="button" >View By Year</button></div>
+                    <div> <button type="button" >View By Month</button></div>
+                    <div> <button type="button" >View By Day</button></div> */}
                     <div >
+
                         <div className="sparkline-top" id="spark1">
                             <ReactApexChart options={this.state.chartOptionsTopSpark1} series={this.state.seriesTopSpark1} type="area" height="160" />
                         </div>
@@ -330,7 +363,7 @@ class Sparkline extends React.Component {
                                 </td>
                             </tr>
                             <tr>
-                                <td title="Positive Comments"  style={{ color: 'white' }}>{this.state.positive_comments}</td>
+                                <td title="Positive Comments" style={{ color: 'white' }}>{this.state.positive_comments}</td>
                                 <td style={{ color: 'white' }}>{this.state.percent_positive}</td>
                                 <td>
                                     <div id="chart2">
@@ -344,7 +377,7 @@ class Sparkline extends React.Component {
                                 </td>
                             </tr>
                             <tr>
-                                <td title="Negative Comments"  style={{ color: 'white' }}>{this.state.negative_comments}</td>
+                                <td title="Negative Comments" style={{ color: 'white' }}>{this.state.negative_comments}</td>
                                 <td style={{ color: 'white' }}>{this.state.percent_negative}</td>
                                 <td>
                                     <div id="chart3">
@@ -358,7 +391,7 @@ class Sparkline extends React.Component {
                                 </td>
                             </tr>
                             <tr>
-                                <td title="Neutral Comments"  style={{ color: 'white' }}>{this.state.neutral_comments}</td>
+                                <td title="Neutral Comments" style={{ color: 'white' }}>{this.state.neutral_comments}</td>
                                 <td style={{ color: 'white' }}>{this.state.percent_neutral}</td>
                                 <td>
                                     <div id="chart4">

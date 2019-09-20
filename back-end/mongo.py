@@ -320,9 +320,18 @@ def get_number():
     p_positive = "{0:.1f}%".format(positive/total * 100)
     p_negative = "{0:.1f}%".format(negative/total * 100)
     p_neutral = "{0:.1f}%".format(neutral/total * 100)
+    result = {'total_number': total, 'positive_number': positive,
+              'negative_number': negative, 'neutral_number': neutral,
+              'p_positive': p_positive, 'p_negative': p_negative, 'p_neutral': p_neutral}
+    return jsonify(results=result)
 
-    result = {'total_number': total, 'positive_number': positive, 'negative_number': negative, 'neutral_number': neutral,
-              'p_positive': p_positive, 'p_negative': p_negative, 'p_neutral': p_negative}
+
+@app.route('/data/get-total-count', methods=['GET'])
+def get_total_count():
+    result = []
+    for each in dp.get_count_by_date():
+        result.append({'date': each['_id'], 'count': each['count']})
+
     return jsonify(results=result)
 
 

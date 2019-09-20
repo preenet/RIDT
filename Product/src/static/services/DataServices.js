@@ -57,4 +57,15 @@ export const getNumber = () => {
    })
 }
 
+export const getTotalCount = () => {
+    return axios.get('/data/get-total-count',{
+        headers: { 'Content-type': 'application/json' }
+   })
+   .then((response) => {
+       return response.data
+   }).catch((response) => {
+       console.log(response)
+   })
+}
+
 
