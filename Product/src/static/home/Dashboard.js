@@ -67,8 +67,7 @@ class Dashboard extends React.Component {
     }
     if(localStorage.admintoken){
       localStorage.removeItem('admintoken');
-    }
-    
+    }  
     console.log('Log out successfully');
   }
 
@@ -84,7 +83,6 @@ class Dashboard extends React.Component {
         <div>
           <div>
             <button type="button" className="left-controller" onClick={this.onBack.bind(this)}>Back</button>
-
             <button type="button" className="right-controller" onClick={this.logout.bind(this)}>Logout</button>
           </div>
 

@@ -8,10 +8,21 @@ import AdminLogin from '../admin/AdminLogin';
 class HomeBox extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = { isLoginOpen: false, isViewOpen: true, isRegisterOpen: false, isAdminOpen: false };
+
+
     }
 
-   
+    componentWillMount() {
+        if (this.props.location.value) {
+            this.setState({
+                isLoginOpen: this.props.location.value.isLoginOpen,
+                isViewOpen: false
+            });
+        }
+    }
+
     showLoginBox() {
         console.log('LoginBox is showing!');
         this.setState({ isLoginOpen: true, isViewOpen: false, isRegisterOpen: false, isAdminOpen: false });
@@ -35,6 +46,7 @@ class HomeBox extends React.Component {
     render() {
 
 
+
         return (
 
             <div>
@@ -48,7 +60,7 @@ class HomeBox extends React.Component {
                     onClick={this.showLoginBox.bind(this)} >
                     Login </button>
 
-                    <button type="button"
+                <button type="button"
                     className={
                         "controller " + (this.state.RegisterOpen ?
                             "selected-controller" :
@@ -57,7 +69,7 @@ class HomeBox extends React.Component {
                     onClick={this.showRegisterBox.bind(this)} >
                     Regitser </button>
 
-                    <button type="button"
+                <button type="button"
                     className={
                         "controller " + (this.state.isAdminOpen ?
                             "selected-controller" :

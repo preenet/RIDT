@@ -62,6 +62,7 @@
     transition: background-color 0.3s ease-out;
     cursor: pointer;
     color: white;
+    margin: 1%;
 }
 
 .root-container {
@@ -115,17 +116,6 @@
     background: rgba(15, 15, 15, 0.01);
 }
 
-.comment-input {
-    height: 0.1em;
-    border-radius: 3px;
-    border: 1px solid white;
-    transition: border 0.4s ease-out;
-    padding: 13px;
-    font-family: Oxygen, sans-serif;
-    font-size: 20px;
-    color: white;
-    background: rgba(15, 15, 15, 0.01);
-}
 
 .login-input:hover {
     border: 2px solid white;
@@ -136,14 +126,6 @@
     box-shadow: 0px 0px 20px rgba(15, 15, 15, 0.2);
 }
 
-.comment-input:hover {
-    border: 2px solid white;
-}
-
-.comment-input:focus {
-    border: 2px solid white;
-    box-shadow: 0px 0px 20px rgba(15, 15, 15, 0.2);
-}
 
 .selected-controller {
     transition: border ;
@@ -165,7 +147,7 @@
     cursor: pointer;
     max-width: 24em;
     min-width: 21em;
-    
+   
 }
 
 .cancel-btn {
@@ -209,31 +191,6 @@
     color: white;
 }
 
-.comment-btn {
-    padding: 2px 30px;
-    /* background-color: #417cef; */
-    border: 0;
-    font-size: 18px;
-    border-radius: 3px;
-    font-family: Oxygen, sans-serif;
-    background-color: rgba(15, 15, 15, 0.03);
-    margin-top: 20px;
-    border: 1px solid white;
-    transition: border 0.4s ease-out;
-    transition: background-color 0.4s ease-out;
-    cursor: pointer;
-}
-
-.comment-btn:hover {
-    border: 2px solid white;
-}
-
-.comment-btn:focus {
-    border: 2px solid white;
-    box-shadow: 0px 0px 20px rgba(15, 15, 15, 0.2);
-    background-color: white;
-    color: white;
-}
 
 .welcome {
     width: 100%;
@@ -242,6 +199,17 @@
     justify-content: center;
     font-size: 30px;
     margin-top: 2%;
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+.input-text{
+    width: 50%;
+    margin: auto;
+    background-color: white;
+}
+
+.small-login{
     color: white;
 }
 
@@ -255,16 +223,15 @@
 .hotel-img {
     opacity: 1;
     display: block;
-    width: 40%;
+    width: 50%;
     height: auto;
     transition: .5s ease;
     backface-visibility: hidden;
-    border:1px solid white;
-    
+    margin: auto;
 }
 
 .hotel-img:hover {
-    opacity: 0.3;
+    opacity: 0.2;
   }
 
 .middle:hover{
@@ -276,6 +243,7 @@
     color: white;
     font-size: 16px;
     padding: 16px 32px;
+    margin: auto
 }
 
 .container {
@@ -284,19 +252,24 @@
     margin:5%;
     border:1px solid white;
     padding:5px;
-    border-radius: 6px;
+    border-radius: 1px;
+}
 
+.hotel-card{
+    position: relative;
+    margin-bottom:1%;
+    border-bottom:1px solid white;
 }
 
 .text-des{
     border:1px solid white;
-    margin-right: auto;
-    height: 60%;
-    width: 55%;
+    width: 50%;
     max-height: 50%;
-    float: right;
-    border-radius: 6px;
+    position: relative;
+    border-radius: 1px;
     color: white;
+    margin: auto;
+    
 }
 
 .middle {
@@ -304,19 +277,15 @@
     opacity: 0;
     position: absolute;
     top: 45%;
-    left: 20%;
+    left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     text-align: center;
 }
 
-.container:hover .image {
-    opacity: 0.3;
-}
 
-.container:hover .middle {
+.hotel-card:hover .middle {
     opacity: 1;
-    
 }
 
 .view{
@@ -344,7 +313,7 @@
     position: relative;
     /* border: white 1px solid; */
     margin: auto;
-    width: 40%;
+    
 }
 
 .logout-btn {

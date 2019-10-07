@@ -344,5 +344,20 @@ def get_count_positive():
     return jsonify(results=result)
 
 
+@app.route('/data/get-hotel', methods=['GET'])
+def get_hotel():
+    result = []
+    for each in dp.get_hotel():
+        result.append({'hotel': each['_id'], 'count': each['count']})
+
+    return jsonify(results=result)
+
+
+@app.route('/data/get-hotel/<hotel>', methods=['GET'])
+def get_hotel_by_name(hotel):
+    result = dp.get_hotel_by_name(hotel)
+    return jsonify(result)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -79,4 +79,27 @@ export const getPositiveCount = () => {
    })
 }
 
+export const getHotelList = () =>{
+    return axios.get('/data/get-hotel',{
+        headers: { 'Content-type': 'application/json' }
+   })
+   .then((response) => {
+       return response.data
+   }).catch((response) => {
+       console.log(response)
+   })
+}
 
+
+export const getHotelByName = hotel => {
+    return axios
+        .get(`/data/get-hotel/${hotel.name}`, {
+            headers: { 'Content-type': 'application/json' }
+        })
+        .then((response) => {
+            return response
+        })
+        .catch((response) => {
+            console.log(response)
+        })
+}

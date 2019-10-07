@@ -22,7 +22,7 @@ class Admin extends React.Component {
                 status: decoded.identity.status,
                 trial_time: decoded.identity.trial_time
             });
-            console.log(decoded.identity);
+            
         }else{
             alert('Please login!');
             this.props.history.push('/');

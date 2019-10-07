@@ -1,5 +1,5 @@
 import pymongo
-from datetime import datetime
+
 
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["local"]
@@ -58,5 +58,30 @@ class DataProvider:
         result.sort(key=lambda item: item['_id'], reverse=False)
         return result
 
+    @staticmethod
+    def get_hotel():
+        col = db["reviews"]
+        pipeline = [
+            {"$unwind": "$hotel"},
+            {"$group": {"_id": "$hotel", "count": {"$sum": 1}}}]
+        result = list(col.aggregate(pipeline))
+        result.sort(key=lambda item: item['count'], reverse=False)
+        return result
 
+    @staticmethod
+    def get_hotel_by_name(name):
+        col = db["reviews"]
+        response = col.find({'hotel': name})
+        result = []
+        if response:
+            for each in response:
+                if each['content'] == 'nan':
+                    print('haha')
+                else:
+                    result.append({'c_id': each['c_id'], 'date': each['date'], 'rating': each['rating'],
+                               'content': each['content']})
+
+        else:
+            result = {'message': 'No hotel found'}
+        return result
 

@@ -43,6 +43,10 @@ class Edit extends React.Component {
     this.setState({ passwordChangeOpen: true });
   }
 
+  passwordHandleCancel() {
+    this.setState({ passwordChangeOpen: false });
+  }
+  
   usernameHandleConfirm() {
     editUsername({ username: this.state.username, info: this.state.newUsername }).then(data => {
       console.log('on Edit ' + this.state.username);
@@ -54,9 +58,7 @@ class Edit extends React.Component {
     this.setState({ usernameChangeOpen: false });
   }
 
-  passwordHandleCancel() {
-    this.setState({ passwordChangeOpen: false });
-  }
+  
 
   passwordHandleConfirm() {
     editPassword({ username: this.state.username, password: this.state.password, new_password: this.state.newPassword }).then(res => {

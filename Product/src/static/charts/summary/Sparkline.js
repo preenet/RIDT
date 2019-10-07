@@ -161,7 +161,7 @@ class Sparkline extends React.Component {
                 data: this.randomizeArray(sparklineData)
             }],
             seriesSpark1: [{
-                
+                data:[]
             }],
             seriesSpark2: [{
                 data: [47, 45, 74, 14, 56, 74, 14, 11, 7, 39, 82]
