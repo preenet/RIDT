@@ -68,4 +68,15 @@ export const getTotalCount = () => {
    })
 }
 
+export const getPositiveCount = () => {
+    return axios.get('/data/get-positive-count',{
+        headers: { 'Content-type': 'application/json' }
+   })
+   .then((response) => {
+       return response.data
+   }).catch((response) => {
+       console.log(response)
+   })
+}
+
 

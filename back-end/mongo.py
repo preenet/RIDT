@@ -335,5 +335,14 @@ def get_total_count():
     return jsonify(results=result)
 
 
+@app.route('/data/get-positive-count', methods=['GET'])
+def get_count_positive():
+    result = []
+    for each in dp.get_count_by_date_positive():
+        result.append({'date': each['_id'], 'count': each['count']})
+
+    return jsonify(results=result)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

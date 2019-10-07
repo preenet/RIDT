@@ -14,20 +14,20 @@ class DataProvider:
 
     @staticmethod
     def get_positive():
-        col = db["reviews"]
-        positive_number = col.find({'rating': {"$gt": 30}}).count()
+        col = db["positive"]
+        positive_number = col.find({}).count()
         return positive_number
 
     @staticmethod
     def get_negative():
-        col = db["reviews"]
-        negative_number = col.find({'rating': {"$lt": 30}}).count()
+        col = db["negative"]
+        negative_number = col.find({}).count()
         return negative_number
 
     @staticmethod
     def get_neutral():
-        col = db["reviews"]
-        neutral_number = col.find({'rating': {"$eq": 30}}).count()
+        col = db["neutral"]
+        neutral_number = col.find({}).count()
         return neutral_number
 
     @staticmethod
@@ -47,3 +47,16 @@ class DataProvider:
 
         result.sort(key=lambda item: item['_id'], reverse=False)
         return result
+
+    @staticmethod
+    def get_count_by_date_positive():
+        col = db["positive"]
+        pipeline = [
+            {"$unwind": "$date"},
+            {"$group": {"_id": "$date", "count": {"$sum": 1}}}]
+        result = list(col.aggregate(pipeline))
+        result.sort(key=lambda item: item['_id'], reverse=False)
+        return result
+
+
+

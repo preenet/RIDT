@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import ReactApexChart from 'react-apexcharts';
-import { getNumber, getTotalCount } from '../../services/DataServices';
+import { getNumber, getTotalCount, getPositiveCount } from '../../services/DataServices';
 
 window.Apex = {
     stroke: {
@@ -71,7 +71,7 @@ class Sparkline extends React.Component {
         })
     }
 
-    getTotalAccount = () => {
+    getTotalCount = () => {
         getTotalCount().then(data => {
 
             const info = []
@@ -102,9 +102,41 @@ class Sparkline extends React.Component {
         })
     }
 
+    getPositiveCount = () => {
+        getPositiveCount().then(data => {
+
+            const info = []
+            for (let i = 0; i < data.results.length; i++) {
+                info.push({ x: data.results[i].date, y: data.results[i].count });
+            }
+
+            const info1 = []
+            for (let i = data.results.length - 1; i > data.results.length - 10; i--) {
+                info1.push(data.results[i].count);
+            }
+
+            this.setState(
+                {
+                    seriesTopSpark2: [{
+                        data: [...info],
+                        name: 'Comment'
+                    }],
+                    seriesSpark2: [
+                        {
+                            data: [...info1],
+                        }
+                    ],
+                },
+            )
+        }).catch(err => {
+            alert('Cannot connect to database, please try again!');
+        })
+    }
+
     componentDidMount() {
         this.getAll();
-        this.getTotalAccount();
+        this.getTotalCount();
+        this.getPositiveCount();
     }
 
     constructor(props) {
