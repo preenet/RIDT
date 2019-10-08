@@ -7,23 +7,30 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { editPassword, editUsername } from '../services/UserServices';
+import { withRouter} from 'react-router-dom';
 
 class Edit extends React.Component {
   constructor(props) {
     super(props);
-    const token = localStorage.usertoken;
-    const decoded = jwt_decode(token);
-    this.state = {
-      username: decoded.identity.username,
-      status: decoded.identity.status,
-      trial_time: decoded.identity.trial_time,
-      passwordChangeOpen: false,
-      usernameChangeOpen: false,
-      password: '',
-      newPassword: '',
-      newUsername: '',
-      errors: [],
-    };
+    if (localStorage.usertoken) {
+      const token = localStorage.usertoken;
+      const decoded = jwt_decode(token);
+      this.state = {
+        username: decoded.identity.username,
+        status: decoded.identity.status,
+        trial_time: decoded.identity.trial_time,
+        passwordChangeOpen: false,
+        usernameChangeOpen: false,
+        password: '',
+        newPassword: '',
+        newUsername: '',
+        errors: [],
+      };
+    } else {
+      alert('Please login!');
+      this.props.history.push('/');
+      window.location.reload();
+    }
   }
 
   onBack(e) {
@@ -43,8 +50,12 @@ class Edit extends React.Component {
     this.setState({ passwordChangeOpen: true });
   }
 
+  passwordHandleCancel() {
+    this.setState({ passwordChangeOpen: false });
+  }
+
   usernameHandleConfirm() {
-    editUsername({ username: this.state.username, info: this.state.newUsername }).then(data => {
+    editUsername({ username: this.state.username, info: this.state.newUsername }).then(res => {
       console.log('on Edit ' + this.state.username);
       this.logout();
 
@@ -54,9 +65,7 @@ class Edit extends React.Component {
     this.setState({ usernameChangeOpen: false });
   }
 
-  passwordHandleCancel() {
-    this.setState({ passwordChangeOpen: false });
-  }
+
 
   passwordHandleConfirm() {
     editPassword({ username: this.state.username, password: this.state.password, new_password: this.state.newPassword }).then(res => {
@@ -143,9 +152,6 @@ class Edit extends React.Component {
 
     return (
       <div >
-
-        <button type="button" className="left-controller" onClick={this.onBack.bind(this)}>Back</button>
-      
         <div>
           <button className="mid-controller" onClick={this.usernameHandleClickOpen.bind(this)}>
             Change Username
@@ -255,4 +261,4 @@ class Edit extends React.Component {
   }
 }
 
-export default Edit;
+export default withRouter(Edit);

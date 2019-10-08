@@ -35,9 +35,8 @@ def register():
     })
 
     new_user = users.find_one({'username': username})
-
     result = {'message': new_user['username'] + ' registered'}
-
+    dp.record_log(new_user['username'], 'Register', new_user['username'] + ' registered')
     return jsonify({'result': result})
 
 
@@ -57,13 +56,16 @@ def login():
                 'trial_time': response['trial_time'],
             })
 
+            dp.record_log(username, 'Login', username + ' logged in')
             result = jsonify({'message': 'Login successfully', 'user': response['username'], 'token': access_token})
 
         else:
+            dp.record_log(username, 'Login', username + ' logged failed')
             result = jsonify({"error": "Invalid username and password"})
 
     else:
         result = jsonify({"result": "No results found"})
+
     return result
 
 
@@ -79,10 +81,11 @@ def admin_login():
             access_token = create_access_token(identity={
                 'username': response['username'],
             })
+            dp.record_log(username, 'Login', username + ' logged')
             result = jsonify({'message': 'Super admin login successfully', 'token': access_token})
         else:
+            dp.record_log(username, 'login', username + ' logged failed')
             result = jsonify({"error": "Invalid username and password"})
-
     else:
         result = jsonify({"result": "No results found"})
     return result
@@ -93,6 +96,7 @@ def delete_account(username):
     users = mongo.db.users
     response = users.delete_one({'username': username})
     if response.deleted_count == 1:
+        dp.record_log('super admin', 'Delete', username + ' deleted')
         result = {'message': 'User deleted'}
     else:
         result = {'message': 'No user found'}
@@ -103,6 +107,7 @@ def delete_account(username):
 def get_account_by_username(username):
     users = mongo.db.users
     response = users.find_one({'username': username})
+    access_token = []
     if response:
         result = {'message': 'User found',
                   'username': response['username'],
@@ -144,7 +149,7 @@ def edit_user():
         new_status = {"$set": {"status": status}}
         users.update_one({'username': username}, new_status)
         result = {'message': username + ' is changed to ' + info}
-
+        dp.record_log('super admin', 'Edit', username + ' edit information')
     else:
         result = {'message': 'No user found'}
     return jsonify({'result': result})
@@ -163,6 +168,7 @@ def edit_password():
             new_values = {"$set": {"password": new_password}}
             users.update_one({'username': username}, new_values)
             result = {'message': 'Password changed'}
+            dp.record_log(username, 'Edit', username + ' edit password')
         else:
             result = jsonify({"error": "Invalid username and password"})
     else:
@@ -181,9 +187,8 @@ def edit_username():
         new_values = {"$set": {"username": info}}
         users.update_one({'username': username}, new_values)
         result = {'message': 'Username changed'}
+        dp.record_log(username, 'Edit', username + ' edit username')
     else:
-        result = jsonify({"error": "Invalid username and password"})
-
         result = jsonify({"result": "No user found"})
     return result
 
@@ -200,6 +205,7 @@ def approve_user():
         users.update_one({'username': username}, new_status)
         users.update_one({'username': username}, new_trial_time)
         result = {'message': username + '\'s request is approved'}
+        dp.record_log('super admin', 'Approve', username + ' approved')
     else:
         result = {'message': 'No user found'}
     return jsonify({'result': result})
@@ -214,6 +220,7 @@ def reject_user():
         new_status = {"$set": {"status": 'rejected'}}
         users.update_one({'username': username}, new_status)
         result = {'message': username + '\'s request is rejected'}
+        dp.record_log('super admin', 'Reject', username + ' rejected')
     else:
         result = {'message': 'No user found'}
     return jsonify({'result': result})
@@ -254,7 +261,7 @@ def add_user():
     new_user = users.find_one({'username': username})
 
     result = {'message': new_user['username'] + ' added'}
-
+    dp.record_log('super admin', 'Add', username + ' added')
     return jsonify({'result': result})
 
 
@@ -269,6 +276,7 @@ def trial_renew():
         new_values = {"$set": {"trial_time": trial_time}}
         users.update_one({'username': username}, new_values)
         result = {'message': username + '\'s trial time is renewed to ' + str(trial_time)}
+        dp.record_log('super admin', 'Renew', username + ' trial time renewed ' + renew + ' days')
     else:
         result = {'message': 'No user found'}
     return jsonify({'result': result})
@@ -286,6 +294,7 @@ def approve_all():
         x = users.update_many({'status': 'pending'}, new_status)
         users.update_many({'status': 'pending'}, new_trial_time)
         result = {'message': str(x.modified_count) + ' users \' request are approved'}
+        dp.record_log('super admin', 'Approve', ' all user approved')
     else:
         result = {'message': 'No user found'}
 
@@ -304,6 +313,7 @@ def reject_all():
         x = users.update_many({'status': 'pending'}, new_status)
         users.update_many({'status': 'pending'}, new_trial_time)
         result = {'message': str(x.modified_count) + ' users \' request are rejected'}
+        dp.record_log('super admin', 'Reject', ' all user rejected')
     else:
         result = {'message': 'No user found'}
 
@@ -333,6 +343,64 @@ def get_total_count():
         result.append({'date': each['_id'], 'count': each['count']})
 
     return jsonify(results=result)
+
+
+@app.route('/data/get-positive-count', methods=['GET'])
+def get_count_positive():
+    result = []
+    for each in dp.get_count_by_date_positive():
+        result.append({'date': each['_id'], 'count': each['count']})
+
+    return jsonify(results=result)
+
+
+@app.route('/data/get-negative-count', methods=['GET'])
+def get_count_negative():
+    result = []
+    for each in dp.get_count_by_date_negative():
+        result.append({'date': each['_id'], 'count': each['count']})
+
+    return jsonify(results=result)
+
+
+@app.route('/data/get-neutral-count', methods=['GET'])
+def get_count_neutral():
+    result = []
+    for each in dp.get_count_by_date_neutral():
+        result.append({'date': each['_id'], 'count': each['count']})
+
+    return jsonify(results=result)
+
+
+@app.route('/data/get-hotel', methods=['GET'])
+def get_hotel():
+    result = []
+    for each in dp.get_hotel():
+        result.append({'hotel': each['_id'], 'count': each['count']})
+
+    return jsonify(results=result)
+
+
+@app.route('/data/get-hotel/<hotel>', methods=['GET'])
+def get_hotel_by_name(hotel):
+    result = dp.get_hotel_by_name(hotel)
+    return jsonify(result)
+
+
+@app.route('/data/add-comment', methods=["POST"])
+def add_comment():
+    content = request.get_json()['content']
+    hotel = request.get_json()['hotel']
+    user = request.get_json()['user']
+    result = dp.add_comment(content, hotel)
+    dp.record_log(user, 'Comment', user + ' wrote a comment')
+    return result
+
+
+@app.route('/data/get-log', methods=["GET"])
+def get_log():
+    result = dp.get_log()
+    return jsonify(result)
 
 
 if __name__ == '__main__':

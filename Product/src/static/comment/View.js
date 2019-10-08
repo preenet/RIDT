@@ -1,70 +1,66 @@
 import React from 'react';
 import '../../static/App.css';
 import WelcomeBox from '../home/Welcome';
-
+import { Link } from 'react-router-dom';
+import { getHotelList } from '../services/DataServices'
 
 class ViewBox extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = { hotels: [] };
+    }
 
+    componentDidMount() {
+        this.getAllHotel();
+    }
 
+    getAllHotel = () => {
+        getHotelList().then(data => {
+
+            this.setState(
+                {
+                    hotels: [...data.results]
+                },
+            )
+        }).catch(err => {
+            console.log(err);
+            alert('Cannot connect to database, please try again!');
+        })
     }
 
     render() {
 
-        const hotelInfo = {
-            Hotel_A: ["Description of hotel A", "/image/hotelA.jpg"],
-            Hotel_B: ["Description of hotel B", "/image/hotelB.jpg"],
-            Hotel_C: ["Description of hotel C", "/image/hotelC.jpg"],
-            Hotel_D: ["Description of hotel D", "/image/hotelD.jpg"],
-            Hotel_E: ["Description of hotel E", "/image/hotelE.jpg"],
-            Hotel_F: ["Description of hotel F", "/image/hotelF.jpg"],
-            Hotel_G: ["Description of hotel G", "/image/hotelG.jpg"],
-            Hotel_H: ["Description of hotel H", "/image/hotelH.jpg"],
-        }
+        const listItems = this.state.hotels.map((d) =>
 
-        const Image = () =>
-            <div>
-                {
-                    Object.entries(hotelInfo)
-                        .map(([hotel, description]) =>
+            <div className="grid-item" key={d.hotel}>
+                <div className="hotel-card">
+                    <div className="text-des">
+                        <strong> {d.hotel} ({d.count})</strong>
+                    </div>
 
-                            <div className="container" key={hotel}>
-
-                                <div className="text-des">
-                                    <strong> {description[0]}</strong>
-                                </div>
-                                <div>
-                                    <a href="/">
-                                        <img className="hotel-img" src={description[1]} alt={hotel} />
-                                    </a>
-
-                                </div>
-
-                                <div className="middle" >
-                                    <div className="text" > {hotel} </div>
-                                </div >
-                            </div>)
-                }
-            </div>
-
-
-
-
-        return (
-
-            <div className="view">
-                <WelcomeBox />
-                <Image />
-
+                    <div>
+                        <Link to={'/hotel/' + d.hotel} >
+                            <img className="hotel-img" src='../image/hotelA.jpg' alt={d.hotel} /></Link>
+                        <div className="middle" >
+                            <div className="text" > Go to <strong>{d.hotel}</strong></div>
+                        </div >
+                    </div></div>
 
             </div>
-
-
 
         );
+
+        return (
+            <div>
+                <WelcomeBox />
+
+                <div className="grid-container">
+                    {listItems}
+                </div>
+            </div>
+        );
+
     }
 
 }

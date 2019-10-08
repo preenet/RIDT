@@ -62,6 +62,7 @@
     transition: background-color 0.3s ease-out;
     cursor: pointer;
     color: white;
+    margin: 1%;
 }
 
 .root-container {
@@ -115,17 +116,6 @@
     background: rgba(15, 15, 15, 0.01);
 }
 
-.comment-input {
-    height: 0.1em;
-    border-radius: 3px;
-    border: 1px solid white;
-    transition: border 0.4s ease-out;
-    padding: 13px;
-    font-family: Oxygen, sans-serif;
-    font-size: 20px;
-    color: white;
-    background: rgba(15, 15, 15, 0.01);
-}
 
 .login-input:hover {
     border: 2px solid white;
@@ -136,14 +126,6 @@
     box-shadow: 0px 0px 20px rgba(15, 15, 15, 0.2);
 }
 
-.comment-input:hover {
-    border: 2px solid white;
-}
-
-.comment-input:focus {
-    border: 2px solid white;
-    box-shadow: 0px 0px 20px rgba(15, 15, 15, 0.2);
-}
 
 .selected-controller {
     transition: border ;
@@ -165,7 +147,7 @@
     cursor: pointer;
     max-width: 24em;
     min-width: 21em;
-    
+   
 }
 
 .cancel-btn {
@@ -209,31 +191,6 @@
     color: white;
 }
 
-.comment-btn {
-    padding: 2px 30px;
-    /* background-color: #417cef; */
-    border: 0;
-    font-size: 18px;
-    border-radius: 3px;
-    font-family: Oxygen, sans-serif;
-    background-color: rgba(15, 15, 15, 0.03);
-    margin-top: 20px;
-    border: 1px solid white;
-    transition: border 0.4s ease-out;
-    transition: background-color 0.4s ease-out;
-    cursor: pointer;
-}
-
-.comment-btn:hover {
-    border: 2px solid white;
-}
-
-.comment-btn:focus {
-    border: 2px solid white;
-    box-shadow: 0px 0px 20px rgba(15, 15, 15, 0.2);
-    background-color: white;
-    color: white;
-}
 
 .welcome {
     width: 100%;
@@ -243,6 +200,17 @@
     font-size: 30px;
     margin-top: 2%;
     color: white;
+    border-bottom: 1px solid white;
+}
+
+.input-text{
+    width: 50%;
+    margin: auto;
+    background-color: white;
+}
+
+.small-login{
+    color: white;
 }
 
 .danger-error {
@@ -250,21 +218,18 @@
     font-size: 16px;
 }
 
-
-
 .hotel-img {
     opacity: 1;
     display: block;
-    width: 40%;
+    width: 100%;
     height: auto;
     transition: .5s ease;
     backface-visibility: hidden;
-    border:1px solid white;
-    
+    margin: auto;
 }
 
 .hotel-img:hover {
-    opacity: 0.3;
+    opacity: 0.2;
   }
 
 .middle:hover{
@@ -276,6 +241,7 @@
     color: white;
     font-size: 16px;
     padding: 16px 32px;
+    margin: auto
 }
 
 .container {
@@ -284,19 +250,45 @@
     margin:5%;
     border:1px solid white;
     padding:5px;
-    border-radius: 6px;
+    border-radius: 1px;
+}
 
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 20px;
+    position: relative;
+}
+
+.grid-item {
+    padding: 20px;
+    font-size: 20px;
+    position: relative;
+  }
+
+.hotel-card{
+    position: relative;
+    margin-bottom:1%;
+    /* border: 1px solid white; */
+    margin: auto;
+}
+
+.text-comment{
+    border:1px solid white;
+    max-height: 50%;
+    position: relative;
+    border-radius: 1px;
+    color: white;
+    margin: 1% auto;
+    width: 50%;
 }
 
 .text-des{
-    border:1px solid white;
-    margin-right: auto;
-    height: 60%;
-    width: 55%;
     max-height: 50%;
-    float: right;
-    border-radius: 6px;
+    position: relative;
+    border-radius: 1px;
     color: white;
+    margin: auto;
 }
 
 .middle {
@@ -304,19 +296,15 @@
     opacity: 0;
     position: absolute;
     top: 45%;
-    left: 20%;
+    left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     text-align: center;
 }
 
-.container:hover .image {
-    opacity: 0.3;
-}
 
-.container:hover .middle {
+.hotel-card:hover .middle {
     opacity: 1;
-    
 }
 
 .view{
@@ -344,7 +332,7 @@
     position: relative;
     /* border: white 1px solid; */
     margin: auto;
-    width: 40%;
+    
 }
 
 .logout-btn {
@@ -366,28 +354,27 @@
 
 .sparkline-top{
     position: relative;
-    width: 30%;
-    
+    width: 50%;
+    margin: auto;
 }
 
 .sparkline-center{
     position: relative;
-    width: 30%; 
+    width: 50%; 
+    margin: auto;
 }
 
 .sparkline-bottom{
     position: relative;
-    width: 30%;
-    
+    width: 50%;
+    margin: auto;
 }
 
 .sparkline-foot{
     position: relative;
     width: 50%;
+    margin: auto;
 }
-
-
-
 
 .profile{
     color: white;
@@ -402,7 +389,7 @@
 
 
 .left-controller {
-    width: 12em;
+    width: 50%;
     padding: 4px 35px;
     font-size: 18px;
     border-radius: 3px;
@@ -412,13 +399,14 @@
     transition: background-color 0.3s ease-out;
     cursor: pointer;
     color: white;
-    position: absolute;
-    left:1%;
+    position: relative;
     text-decoration: underline;
+    margin: auto;
+    
 }
 
 .right-controller {
-    width: 12em;
+    width: 50%;
     padding: 4px 35px;
     font-size: 18px;
     border-radius: 3px;
@@ -428,9 +416,9 @@
     transition: background-color 0.3s ease-out;
     cursor: pointer;
     color: white;
-    position: absolute;
-    right:1%;
+    position: relative;
     text-decoration: underline;
+    margin: auto;
 }
 
 .table{
@@ -469,15 +457,17 @@
 .mini-controller {
     width: 12em;
     padding: 4px 35px;
-    margin: 2px;
-    font-size: 9px;
+    /* background-color: #417cef; */
+    font-size: 18px;
     border-radius: 3px;
     font-family: Oxygen, sans-serif;
-    background-color: white;
+    background-color: rgba(15, 15, 15, 0.03);
     border: 1px solid white;
     transition: background-color 0.3s ease-out;
     cursor: pointer;
-    color: black;
+    color: white;
+    margin-bottom: 1%;
+    margin-right: 1%;
 }
 
 .mid-controller{
@@ -492,4 +482,16 @@
     cursor: pointer;
     color: white;
     margin: 1%;
+}
+
+.underline-left{
+    text-decoration: underline;
+    font-size: 10px;
+    
+}
+
+.underline-right{
+    text-decoration: underline;
+    font-size: 10px;
+   
 }

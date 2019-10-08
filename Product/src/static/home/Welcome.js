@@ -11,7 +11,7 @@ class WelcomeBox extends React.Component {
   render() {
     return (
       <div >
-        <div className="welcome"><h2>Real-Tme Interactive Dashboard</h2></div>
+        <div className="welcome"></div>
 
       </div>
     );
