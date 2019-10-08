@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-
+import { getWords } from '../../services/DataServices'
 
 class BarChart extends React.Component {
 
@@ -8,6 +8,7 @@ class BarChart extends React.Component {
     super(props);
 
     this.state = {
+      words: [],
       options: {
         plotOptions: {
           bar: {
@@ -20,21 +21,21 @@ class BarChart extends React.Component {
 
         },
         xaxis: {
-          categories: ['Good place', 'Great', 'Not bad', 'It\'s just not bad', 'Normal', 'Worth it', 'Bad',
-            'Clean', 'Quiet', 'Beautiful'
-          ],
+          categories: [],
+          tickPlacement: 'between',
           labels: {
             style: {
-              colors: ['white']
+              colors: ['white'],
 
             },
           }
         },
+
         yaxis: {
           labels: {
             style: {
-              color: 'white'
-
+              color: 'white',
+              fontSize: '14px',
             },
           }
         },
@@ -42,32 +43,52 @@ class BarChart extends React.Component {
           text: 'Fequence of Word',
           align: 'center',
           style: {
-            color: 'white'
+            color: 'white',
           }
         }
       },
       series: [{
-        name: 'Fequence',
-        data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
+        data: []
       }],
     }
+  }
+
+  componentDidMount() {
+    this.getAll();
+  }
+
+  getAll() {
+    getWords().then(data => {
+      let info = []
+      let info1 = []
+      for (let i = 0; i < 10; i++) {
+        info.push(data[i].word)
+        info1.push(data[i].count)
+      }
+
+      this.setState({
+        options: {
+          ...this.state.options, xaxis: { ...this.state.options.xaxis, categories: info }
+        },
+        series: [{
+          data: info1,
+          name: 'Fequence'
+        }]
+      });
+
+    }).catch(err => {
+      alert('Cannot connect to database, please try again!');
+    })
   }
 
   render() {
     return (
 
-
       <div>
-       
-       
         <div id="chart">
-          <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" width="520" />
+          <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="500" width="700" />
         </div>
-
       </div>
-
-
-
 
     );
   }

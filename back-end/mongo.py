@@ -403,5 +403,11 @@ def get_log():
     return jsonify(result)
 
 
+@app.route('/data/get-words', methods=["GET"])
+def get_words():
+    result = dp.get_words()
+    return jsonify(result)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

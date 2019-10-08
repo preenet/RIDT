@@ -129,10 +129,10 @@ class LineChart extends React.Component {
        
         <div id="charts">
           <div id="chart1">
-            <ReactApexChart options={this.state.chartOptionsArea} series={this.state.series} type="line" height="230" width="520" />
+            <ReactApexChart options={this.state.chartOptionsArea} series={this.state.series} type="line" height="250" width="700" />
           </div>
           <div id="chart2">
-            <ReactApexChart options={this.state.chartOptionsBrush} series={this.state.series} type="area" height="130" width="520" />
+            <ReactApexChart options={this.state.chartOptionsBrush} series={this.state.series} type="area" height="250" width="700" />
           </div>
         </div>
       </div>

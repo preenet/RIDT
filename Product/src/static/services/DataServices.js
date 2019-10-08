@@ -143,3 +143,13 @@ export const getLog = () => {
             return res.data
         })
 }
+
+export const getWords = () => {
+    return axios
+        .get('/data/get-words', {
+            headers: { 'Content-type': 'application/json' }
+        })
+        .then(res => {
+            return res.data
+        })
+}
