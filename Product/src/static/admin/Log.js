@@ -7,7 +7,7 @@ class Log extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            accounts: [],
+            logs: [],
             columns: [
                 { title: 'ID', field: 'log_id', },
                 { title: 'User', field: 'creator', },

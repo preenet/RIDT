@@ -98,7 +98,6 @@ class DataProvider:
             for each in response:
                 result.append({'c_id': each['c_id'], 'date': each['date'], 'rating': each['rating'],
                                'content': each['content']})
-
         else:
             result = {'message': 'No hotel found'}
         return result
@@ -197,3 +196,13 @@ class DataProvider:
         col = db['logs']
         col.delete_many({'log_id': 22})
 
+    @staticmethod
+    def get_words():
+        col = db['words']
+        result = []
+        for each in col.find({}):
+            result.append({
+                'word': each['word'],
+                'count': each['count']
+            })
+        return result

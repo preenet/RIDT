@@ -12,12 +12,12 @@ class ViewBox extends React.Component {
     }
 
     componentDidMount() {
+        console.log('View component render!');
         this.getAllHotel();
     }
 
     getAllHotel = () => {
         getHotelList().then(data => {
-
             this.setState(
                 {
                     hotels: [...data.results]

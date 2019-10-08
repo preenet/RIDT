@@ -260,6 +260,13 @@
     position: relative;
 }
 
+.grid-chart {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 20px;
+    position: relative;
+}
+
 .grid-item {
     padding: 20px;
     font-size: 20px;
@@ -314,10 +321,7 @@
 
 .chart{
     position: relative;
-    /* border: white solid 1px; */
-    margin: 10px;
-    width: 30%;
-    margin: auto
+    margin: auto;
 }
 
 .chart-des{
@@ -389,7 +393,7 @@
 
 
 .left-controller {
-    width: 50%;
+    width: 40%;
     padding: 4px 35px;
     font-size: 18px;
     border-radius: 3px;
@@ -406,7 +410,7 @@
 }
 
 .right-controller {
-    width: 50%;
+    width: 40%;
     padding: 4px 35px;
     font-size: 18px;
     border-radius: 3px;
@@ -493,5 +497,4 @@
 .underline-right{
     text-decoration: underline;
     font-size: 10px;
-   
 }

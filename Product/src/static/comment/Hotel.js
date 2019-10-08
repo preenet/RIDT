@@ -46,7 +46,6 @@ class HotelBox extends React.Component {
         this.setState({ 
             comment: e.target.value,
          });
-
     }
 
     clear() {
@@ -89,12 +88,14 @@ class HotelBox extends React.Component {
     }
 
     viewMore(e) {
+        e.preventDefault();
         this.setState({
             length : 2000,
         });
     }
 
     viewLess(e) {
+        e.preventDefault();
         this.setState({
             length : 200,
         });

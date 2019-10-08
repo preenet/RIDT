@@ -20,21 +20,21 @@ class Summary extends React.Component {
         </div>
 
 
-        <div >
+        <div className="grid-chart">
 
-          <div className="chart" >
+          <div className="chart grid-item" >
             < BarChart />
           </div>
 
-          <div className="chart">
+          <div className="chart grid-item">
             < BarChart2 />
           </div>
 
-          <div className="chart">
+          <div className="chart grid-item">
             < StackedChart />
           </div>
 
-          <div className="chart">
+          <div className="chart grid-item">
             < LineChart />
           </div>
 
