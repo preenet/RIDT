@@ -62,12 +62,12 @@ class Dashboard extends React.Component {
   logout(e) {
     e.preventDefault();
     this.props.history.push('/');
-    if(localStorage.usertoken){
+    if (localStorage.usertoken) {
       localStorage.removeItem('usertoken');
     }
-    if(localStorage.admintoken){
+    if (localStorage.admintoken) {
       localStorage.removeItem('admintoken');
-    }  
+    }
     console.log('Log out successfully');
   }
 
@@ -75,16 +75,15 @@ class Dashboard extends React.Component {
     return (
       <div>
 
-        <div className="profile">
-          <h2>Username: {this.state.username}</h2>
-          <h2>Status: {this.state.status ? this.state.status : 'Super Admin'}</h2>
-          <h2>Trial Time: {this.state.trial_time ? this.state.trial_time : 'Super Admin'}</h2>
-        </div>
         <div>
-          <div>
-            <button type="button" className="left-controller" onClick={this.onBack.bind(this)}>Back</button>
-            <button type="button" className="right-controller" onClick={this.logout.bind(this)}>Logout</button>
-          </div>
+          <button type="button" className="left-controller" onClick={this.onBack.bind(this)}>Back to System</button>
+          <button type="button" className="right-controller" onClick={this.logout.bind(this)}>Logout</button>
+        </div>
+
+        <h2 className="welcome">Current User: {this.state.username}</h2>
+
+        <div>
+
 
           <div>
 

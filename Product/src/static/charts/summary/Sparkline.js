@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import ReactApexChart from 'react-apexcharts';
-import { getNumber, getTotalCount, getPositiveCount } from '../../services/DataServices';
+import { getNumber, getTotalCount, getPositiveCount, getNegativeCount, getNeutralCount } from '../../services/DataServices';
 
 window.Apex = {
     stroke: {
@@ -17,26 +17,8 @@ window.Apex = {
     }
 };
 
-const sparklineData = [47, 45, 54, 38, 56, 24, 65, 31, 37, 39, 62, 51, 35, 41, 35, 27, 93, 53, 61, 27, 54, 43, 19, 46];
 
 class Sparkline extends React.Component {
-    randomizeArray(arg) {
-        var array = arg.slice();
-        var currentIndex = array.length,
-            temporaryValue, randomIndex;
-
-        while (0 !== currentIndex) {
-
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
-
-        return array;
-    }
 
     getAll = () => {
         getNumber().then(data => {
@@ -93,6 +75,7 @@ class Sparkline extends React.Component {
                     seriesSpark1: [
                         {
                             data: [...info1],
+                            name: 'Comment'
                         }
                     ],
                 },
@@ -124,6 +107,71 @@ class Sparkline extends React.Component {
                     seriesSpark2: [
                         {
                             data: [...info1],
+                            name: 'Comment'
+                        }
+                    ],
+                },
+            )
+        }).catch(err => {
+            alert('Cannot connect to database, please try again!');
+        })
+    }
+
+    getNegativeCount = () => {
+        getNegativeCount().then(data => {
+
+            const info = []
+            for (let i = 0; i < data.results.length; i++) {
+                info.push({ x: data.results[i].date, y: data.results[i].count });
+            }
+
+            const info1 = []
+            for (let i = data.results.length - 1; i > data.results.length - 10; i--) {
+                info1.push(data.results[i].count);
+            }
+
+            this.setState(
+                {
+                    seriesTopSpark3: [{
+                        data: [...info],
+                        name: 'Comment'
+                    }],
+                    seriesSpark3: [
+                        {
+                            data: [...info1],
+                            name: 'Comment'
+                        }
+                    ],
+                },
+            )
+        }).catch(err => {
+            alert('Cannot connect to database, please try again!');
+        })
+    }
+
+    getNeutralCount = () => {
+        getNeutralCount().then(data => {
+
+            const info = []
+            for (let i = 0; i < data.results.length; i++) {
+                info.push({ x: data.results[i].date, y: data.results[i].count });
+            }
+
+            const info1 = []
+            for (let i = data.results.length - 1; i > data.results.length - 10; i--) {
+                info1.push(data.results[i].count);
+            }
+
+            this.setState(
+                {
+                    seriesTopSpark4: [{
+                        data: [...info],
+                        name: 'Comment'
+                    }],
+                    seriesSpark4: [
+                        {
+                            data: [...info1],
+                            name: 'Comment'
                         }
                     ],
                 },
@@ -137,6 +185,8 @@ class Sparkline extends React.Component {
         this.getAll();
         this.getTotalCount();
         this.getPositiveCount();
+        this.getNegativeCount();
+        this.getNeutralCount();
     }
 
     constructor(props) {
@@ -154,23 +204,19 @@ class Sparkline extends React.Component {
             percent_neutral: "",
 
             seriesTopSpark1: [],
-            seriesTopSpark2: [{
-                data: this.randomizeArray(sparklineData)
-            }],
-            seriesTopSpark3: [{
-                data: this.randomizeArray(sparklineData)
-            }],
+            seriesTopSpark2: [],
+            seriesTopSpark3: [],
             seriesSpark1: [{
-                data:[]
+                data: []
             }],
             seriesSpark2: [{
-                data: [47, 45, 74, 14, 56, 74, 14, 11, 7, 39, 82]
+                data: []
             }],
             seriesSpark3: [{
-                data: [12, 14, 2, 47, 42, 15, 47, 75, 65, 19, 14]
+                data: []
             }],
             seriesSpark4: [{
-                data: [15, 75, 47, 65, 14, 2, 41, 54, 4, 27, 15]
+                data: []
             }],
 
             chartOptionsTopSpark1: {
@@ -195,7 +241,7 @@ class Sparkline extends React.Component {
                     min: 0
                 },
                 title: {
-                    text: '135,965',
+                    text: '',
                     offsetX: 0,
                     style: {
                         fontSize: '24px',
@@ -236,7 +282,7 @@ class Sparkline extends React.Component {
                     min: 0
                 },
                 title: {
-                    text: '99,821',
+                    text: '',
                     offsetX: 0,
                     style: {
                         fontSize: '24px',
@@ -282,7 +328,7 @@ class Sparkline extends React.Component {
                     min: 0
                 },
                 title: {
-                    text: '10212',
+                    text: '',
                     offsetX: 0,
                     style: {
                         fontSize: '24px',
@@ -326,9 +372,7 @@ class Sparkline extends React.Component {
                     },
                     y: {
                         title: {
-                            formatter: function (seriesName) {
-                                return ''
-                            }
+
                         }
                     },
                     marker: {
@@ -352,18 +396,17 @@ class Sparkline extends React.Component {
                     {/* <div> <button type="button" >View By Year</button></div>
                     <div> <button type="button" >View By Month</button></div>
                     <div> <button type="button" >View By Day</button></div> */}
-                    <div >
-
+                    <div>
                         <div className="sparkline-top" id="spark1">
                             <ReactApexChart options={this.state.chartOptionsTopSpark1} series={this.state.seriesTopSpark1} type="area" height="160" />
                         </div>
                     </div>
-                    <div >
+                    <div>
                         <div className="sparkline-center" id="spark2">
                             <ReactApexChart options={this.state.chartOptionsTopSpark2} series={this.state.seriesTopSpark2} type="area" height="160" />
                         </div>
                     </div>
-                    <div >
+                    <div>
                         <div className="sparkline-bottom" id="spark3">
                             <ReactApexChart options={this.state.chartOptionsTopSpark3} series={this.state.seriesTopSpark3} type="area" height="160" />
                         </div>
@@ -432,7 +475,7 @@ class Sparkline extends React.Component {
                                 </td>
                                 <td>
                                     <div id="chart8">
-                                        <ReactApexChart options={this.state.chartOptionsSparkLine} series={this.state.seriesSpark3} type="bar" height="35" />
+                                        <ReactApexChart options={this.state.chartOptionsSparkLine} series={this.state.seriesSpark4} type="bar" height="35" />
                                     </div>
                                 </td>
                             </tr>

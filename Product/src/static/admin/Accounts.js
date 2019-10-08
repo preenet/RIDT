@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../static/App.css';
-import jwt_decode from 'jwt-decode'
 import { getAccounts } from '../services/DataServices';
 import { addUser } from '../services/UserServices';
 import { deleteUser } from '../services/UserServices';
@@ -14,7 +13,7 @@ class Accounts extends React.Component {
             accounts: [],
             columns: [
                 { title: 'Username', field: 'username', editable: 'always' },
-                { title: 'Trial Time', field: 'trial_time', editable: 'onAdd', type: 'numeric' },
+                { title: 'Expire Time', field: 'trial_time', editable: 'onAdd', type: 'numeric' },
                 {
                     title: 'Status', field: 'status',
                     editable: 'always',
@@ -27,9 +26,6 @@ class Accounts extends React.Component {
 
     componentDidMount() {
         this.getAll();
-        const token = localStorage.admintoken;
-        const decoded = jwt_decode(token);
-        console.log(decoded.identity);
     }
 
     getAll = () => {

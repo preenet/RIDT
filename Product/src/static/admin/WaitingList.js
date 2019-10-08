@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../static/App.css';
-import jwt_decode from 'jwt-decode'
 import { getPending } from '../services/DataServices';
 import MaterialTable from 'material-table';
 import Dialog from "@material-ui/core/Dialog";
@@ -54,17 +53,17 @@ class WaitingList extends React.Component {
         this.setState({ open: false })
     }
 
-    onEdit(oldData,newData) {
+    onEdit(oldData, newData) {
         console.log(newData.status);
-        if(newData.status === 'approved'){
-            approve({ username: oldData.username}).then(res => {
+        if (newData.status === 'approved') {
+            approve({ username: oldData.username }).then(res => {
                 console.log('on Approve ' + oldData.username);
                 this.getPending();
             }).catch(err => {
                 console.log(err);
             });
-        }else if(newData.status === 'rejected'){
-            reject({ username: oldData.username}).then(res => {
+        } else if (newData.status === 'rejected') {
+            reject({ username: oldData.username }).then(res => {
                 console.log('on Reject ' + oldData.username);
                 this.getPending();
             }).catch(err => {
@@ -84,23 +83,20 @@ class WaitingList extends React.Component {
 
     componentDidMount() {
         this.getPending();
-        const token = localStorage.admintoken;
-        const decoded = jwt_decode(token);
-        console.log(decoded.identity);
     }
 
     getPending = () => {
         getPending().then(data => {
-            if(data){
+            if (data) {
                 this.setState(
                     {
                         accounts: data.results
                     },
                 )
-            }else{
+            } else {
                 alert('Cannot connect to database, please try again!');
             }
-            
+
         });
     }
 

@@ -16,11 +16,19 @@ class HomeBox extends React.Component {
 
     componentWillMount() {
         if (this.props.location.value) {
-            this.setState({
-                isLoginOpen: this.props.location.value.isLoginOpen,
-                isViewOpen: false
-            });
+            if (this.props.location.value.isLoginOpen) {
+                this.setState({
+                    isLoginOpen: this.props.location.value.isLoginOpen,
+                    isViewOpen: false
+                });
+            } else if (this.props.location.value.isRegisterOpen) {
+                this.setState({
+                    isRegisterOpen: this.props.location.value.isRegisterOpen,
+                    isViewOpen: false
+                });
+            }
         }
+
     }
 
     showLoginBox() {
