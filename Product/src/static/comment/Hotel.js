@@ -9,14 +9,21 @@ class HotelBox extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { comments: [], isLoggedin: false, comment: '', length: 200, username:''};
+        this.state = { comments: [], isLoggedin: false, comment: '', length: 200, username: '' };
     }
 
     componentDidMount() {
         this.getHotel();
-        if (localStorage.getItem('admintoken') || localStorage.getItem('usertoken')) {
-           
+        if (localStorage.getItem('usertoken')) {
+
             const token = localStorage.usertoken;
+            const decoded = jwt_decode(token);
+            this.setState({
+                isLoggedin: true,
+                username: decoded.identity.username,
+            });
+        } else if (localStorage.getItem('admintoken')) {
+            const token = localStorage.admintoken;
             const decoded = jwt_decode(token);
             this.setState({
                 isLoggedin: true,
@@ -43,9 +50,9 @@ class HotelBox extends React.Component {
 
     onCommentChanged(e) {
         e.preventDefault();
-        this.setState({ 
+        this.setState({
             comment: e.target.value,
-         });
+        });
     }
 
     clear() {
@@ -90,19 +97,19 @@ class HotelBox extends React.Component {
     viewMore(e) {
         e.preventDefault();
         this.setState({
-            length : 2000,
+            length: 2000,
         });
     }
 
     viewLess(e) {
         e.preventDefault();
         this.setState({
-            length : 200,
+            length: 200,
         });
     }
 
     render() {
-        
+
         const listItems = this.state.comments.map((c, i) =>
 
             <div className="text-comment" key={i}>
@@ -121,7 +128,7 @@ class HotelBox extends React.Component {
                 <button type="button" className="left-controller" onClick={this.onBack.bind(this)}>Back to Home</button>
                 <button type="button" className="right-controller" onClick={this.logout.bind(this)}>Logout</button>
                 <h1 className='welcome'>{this.props.hotelname}</h1>
-                <h2 style={{color:'white'}}>{this.state.username?'Hello, '+ this.state.username:''}</h2>
+                <h2 style={{ color: 'white' }}>{this.state.username ? 'Hello, ' + this.state.username : ''}</h2>
                 <TextField
                     className='input-text'
                     label="Write Comment"
