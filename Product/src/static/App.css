@@ -218,12 +218,10 @@
     font-size: 16px;
 }
 
-
-
 .hotel-img {
     opacity: 1;
     display: block;
-    width: 50%;
+    width: 100%;
     height: auto;
     transition: .5s ease;
     backface-visibility: hidden;
@@ -255,21 +253,43 @@
     border-radius: 1px;
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 20px;
+    position: relative;
+}
+
+.grid-item {
+    padding: 20px;
+    font-size: 20px;
+    position: relative;
+  }
+
 .hotel-card{
     position: relative;
     margin-bottom:1%;
-    border-bottom:1px solid white;
+    /* border: 1px solid white; */
+    margin: auto;
+   
+}
+
+.text-comment{
+    border:1px solid white;
+    max-height: 50%;
+    position: relative;
+    border-radius: 1px;
+    color: white;
+    margin: 1% auto;
+    width: 50%;
 }
 
 .text-des{
-    border:1px solid white;
-    width: 50%;
     max-height: 50%;
     position: relative;
     border-radius: 1px;
     color: white;
     margin: auto;
-    
 }
 
 .middle {

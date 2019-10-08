@@ -32,8 +32,9 @@ class ViewBox extends React.Component {
     render() {
 
         const listItems = this.state.hotels.map((d) =>
-           
-                <div className="hotel-card" key={d.hotel}>
+
+            <div className="grid-item" key={d.hotel}>
+                <div className="hotel-card">
                     <div className="text-des">
                         <strong> {d.hotel} ({d.count})</strong>
                     </div>
@@ -44,16 +45,19 @@ class ViewBox extends React.Component {
                         <div className="middle" >
                             <div className="text" > Go to <strong>{d.hotel}</strong></div>
                         </div >
-                    </div>
+                    </div></div>
 
-                </div>
-            
+            </div>
+
         );
 
         return (
             <div>
                 <WelcomeBox />
-                {listItems}
+
+                <div className="grid-container">
+                    {listItems}
+                </div>
             </div>
         );
 

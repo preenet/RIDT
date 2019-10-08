@@ -104,7 +104,7 @@ class HotelBox extends React.Component {
         
         const listItems = this.state.comments.map((c, i) =>
 
-            <div className="text-des" key={i}>
+            <div className="text-comment" key={i}>
                 <div>
                     <strong> ID: {i + 1}  Date:  {c.date}   </strong>
                     <strong> Rating: {c.rating}</strong>
