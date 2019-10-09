@@ -30,9 +30,7 @@ class ViewBox extends React.Component {
     }
 
     render() {
-
         const listItems = this.state.hotels.map((d) =>
-
             <div className="grid-item" key={d.hotel}>
                 <div className="hotel-card">
                     <div className="text-des">
