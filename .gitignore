@@ -49,7 +49,7 @@ testem.log
 .DS_Store
 Thumbs.db
 /ProgressII/.DS_Store
-/ProgressI/.DS_Store
+ProgressI/.DS_Store
 **/.DS_Store
 .DS_Store
 .firebase
