@@ -10,11 +10,13 @@ import ViewBox from '../comment/View';
 class Admin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { username: "", isLogShow: false, isAccountShow: true, isWaitingListShow: false, isCommentShow: false};
+        this.state = { username: "", isLogShow: false, isAccountShow: false, isWaitingListShow: false, isCommentShow: true };
 
     }
 
     componentDidMount() {
+
+
         if (localStorage.admintoken) {
             const token = localStorage.admintoken;
             const decoded = jwt_decode(token);
@@ -34,7 +36,7 @@ class Admin extends React.Component {
     showLog(e) {
         e.preventDefault();
         console.log('Log is showing!');
-        this.setState({ isLogShow: true, isAccountShow: false, isWaitingListShow: false, isCommentShow: false});
+        this.setState({ isLogShow: true, isAccountShow: false, isWaitingListShow: false, isCommentShow: false });
     }
 
     showDashboard(e) {
@@ -46,7 +48,7 @@ class Admin extends React.Component {
     showAccount(e) {
         e.preventDefault();
         console.log('Account is showing!');
-        this.setState({ isLogShow: false, isAccountShow: true, isWaitingListShow: false, isCommentShow: false});
+        this.setState({ isLogShow: false, isAccountShow: true, isWaitingListShow: false, isCommentShow: false });
     }
 
     showWaitingList(e) {
@@ -71,7 +73,7 @@ class Admin extends React.Component {
     render() {
         return (
             <div >
-                 <button  type="button" className="right-controller" onClick={this.logout.bind(this)}>Logout</button>
+                <button type="button" className="right-controller" onClick={this.logout.bind(this)}>Logout</button>
                 <h1 className="welcome">Hello {this.state.username}</h1>
 
 
@@ -110,7 +112,7 @@ class Admin extends React.Component {
                     View Comment</button>
 
 
-                
+
                 {this.state.isLogShow && <Log />}
                 {this.state.isAccountShow && < Accounts />}
                 {this.state.isWaitingListShow && < WaitingList />}

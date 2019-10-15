@@ -4,6 +4,7 @@ import { getHotelByName, addComment } from '../services/DataServices'
 import TextField from '@material-ui/core/TextField';
 import { Link, withRouter } from 'react-router-dom';
 import jwt_decode from 'jwt-decode'
+import Card from './Card';
 
 class HotelBox extends React.Component {
 
@@ -109,29 +110,25 @@ class HotelBox extends React.Component {
     }
 
     render() {
+       
 
         const listItems = this.state.comments.map((c, i) =>
 
             <div className="text-comment" key={i}>
                 <div>
-                    <strong> ID: {i + 1}  Date:  {c.date}   </strong>
-                    <strong> Rating: {c.rating}</strong>
-                    <p>{c.content.length > this.state.length ? c.content.slice(0, this.state.length) + '...' : c.content}</p>
-                    <p className="underline-left" onClick={this.viewMore.bind(this)}>Show More</p>
-                    <p className="underline-right" onClick={this.viewLess.bind(this)}>Show Less</p>
+                    <Card comment={c} index={i} />
                 </div>
-
 
             </div>);
         return (
             <div>
-                <button type="button" className="left-controller" onClick={this.onBack.bind(this)}>Back to Home</button>
+                <button type="button" className="left-controller" onClick={this.onBack.bind(this)}>Back</button>
                 <button type="button" className="right-controller" onClick={this.logout.bind(this)}>Logout</button>
                 <h1 className='welcome'>{this.props.hotelname}</h1>
                 <h2 style={{ color: 'white' }}>{this.state.username ? 'Hello, ' + this.state.username : ''}</h2>
                 <TextField
                     className='input-text'
-                    label="Write Comment"
+                    label="Write a comment"
                     value={this.state.comment}
                     disabled={!this.state.isLoggedin}
                     onChange={this.onCommentChanged.bind(this)}
@@ -183,9 +180,9 @@ class HotelBox extends React.Component {
                     onClick={this.submit.bind(this)} disabled={!this.state.isLoggedin || this.state.comment.length === 0}>
                     Submit </button>
 
+                <div className="grid-text">  {listItems}</div>
 
 
-                {listItems}
 
             </div>
         );
