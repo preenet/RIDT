@@ -3,6 +3,7 @@ import '../../App.css';
 import ReactApexChart from 'react-apexcharts';
 import { getNumber, getTotalCount, getPositiveCount, getNegativeCount, getNeutralCount } from '../../services/DataServices';
 
+
 window.Apex = {
     stroke: {
         width: 3
@@ -187,6 +188,7 @@ class Sparkline extends React.Component {
         this.getPositiveCount();
         this.getNegativeCount();
         this.getNeutralCount();
+
     }
 
     constructor(props) {
@@ -202,7 +204,7 @@ class Sparkline extends React.Component {
             percent_positive: "",
             percent_negative: "",
             percent_neutral: "",
-
+            test: 0,
             seriesTopSpark1: [],
             seriesTopSpark2: [],
             seriesTopSpark3: [],
@@ -396,6 +398,7 @@ class Sparkline extends React.Component {
                     {/* <div> <button type="button" >View By Year</button></div>
                     <div> <button type="button" >View By Month</button></div>
                     <div> <button type="button" >View By Day</button></div> */}
+
                     <div>
                         <div className="sparkline-top" id="spark1">
                             <ReactApexChart options={this.state.chartOptionsTopSpark1} series={this.state.seriesTopSpark1} type="area" height="160" />

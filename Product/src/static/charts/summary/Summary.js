@@ -20,7 +20,7 @@ class Summary extends React.Component {
       this.setState({
         isSummaryShow: true
       });
-    }, 2000);
+    }, 1);
   }
 
   render() {

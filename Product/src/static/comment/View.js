@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../static/App.css';
-import WelcomeBox from '../home/Welcome';
 import { Link } from 'react-router-dom';
 import { getHotelList } from '../services/DataServices'
 
@@ -70,7 +69,7 @@ class ViewBox extends React.Component {
 
         return (
             <div>
-                <WelcomeBox />
+               
 
                 <div className="grid-container">
                     {listItems}

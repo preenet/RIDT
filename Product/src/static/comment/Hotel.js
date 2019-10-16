@@ -6,14 +6,18 @@ import { Link, withRouter } from 'react-router-dom';
 import jwt_decode from 'jwt-decode'
 import Card from './Card';
 
+
 class HotelBox extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { comments: [], isLoggedin: false, comment: '', length: 200, username: '' };
+        this.state = {
+            comments: [], isLoggedin: false, comment: '', length: 200, username: '', test: [],
+        };
     }
 
     componentDidMount() {
+
         this.getHotel();
         if (localStorage.getItem('usertoken')) {
 
@@ -63,11 +67,12 @@ class HotelBox extends React.Component {
     }
 
     submit(e) {
+
         e.preventDefault();
         const comment = {
             username: this.state.username,
             content: this.state.comment,
-            hotel: this.props.hotelname
+            hotel: this.props.hotelname,
         }
 
         addComment(comment).then(res => {
@@ -110,7 +115,7 @@ class HotelBox extends React.Component {
     }
 
     render() {
-       
+
 
         const listItems = this.state.comments.map((c, i) =>
 
