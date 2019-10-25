@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../static/App.css';
-import WelcomeBox from '../home/Welcome';
 import { Link } from 'react-router-dom';
 import { getHotelList } from '../services/DataServices'
+
 
 class ViewBox extends React.Component {
 
@@ -30,6 +30,24 @@ class ViewBox extends React.Component {
     }
 
     render() {
+        const getImage = () => {
+            let images = ['../image/hotelA.jpg',
+                          '../image/hotelB.jpg',
+                          '../image/hotelC.jpg',
+                          '../image/hotelD.jpg',
+                          '../image/hotelE.jpg',
+                          '../image/hotelF.jpg',
+                          '../image/hotelG.jpg',
+                          '../image/hotelH.jpg',
+                          '../image/hotelI.jpg',
+                          '../image/hotelJ.jpg',
+                          '../image/hotelK.jpg',
+                          '../image/hotelL.jpg',
+                          '../image/hotelM.jpg',
+            ];
+            let index = Math.floor(Math.random() * images.length); 
+            return images[index];
+        }
         const listItems = this.state.hotels.map((d) =>
             <div className="grid-item" key={d.hotel}>
                 <div className="hotel-card">
@@ -39,7 +57,7 @@ class ViewBox extends React.Component {
 
                     <div>
                         <Link to={'/hotel/' + d.hotel} >
-                            <img className="hotel-img" src='../image/hotelA.jpg' alt={d.hotel} /></Link>
+                            <img className="hotel-img" src={getImage()} alt={d.hotel} /></Link>
                         <div className="middle" >
                             <div className="text" > Go to <strong>{d.hotel}</strong></div>
                         </div >
@@ -51,11 +69,13 @@ class ViewBox extends React.Component {
 
         return (
             <div>
-                <WelcomeBox />
+               
 
                 <div className="grid-container">
                     {listItems}
                 </div>
+
+
             </div>
         );
 

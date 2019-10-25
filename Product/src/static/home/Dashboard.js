@@ -6,6 +6,7 @@ import WordCloud from '../charts/word_cloud/WordCloud';
 import Heatmap from '../charts/heatmap/Heatmap';
 import jwt_decode from 'jwt-decode'
 
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -76,7 +77,7 @@ class Dashboard extends React.Component {
       <div>
 
         <div>
-          <button type="button" className="left-controller" onClick={this.onBack.bind(this)}>Back to System</button>
+          <button type="button" className="left-controller" onClick={this.onBack.bind(this)}>Back</button>
           <button type="button" className="right-controller" onClick={this.logout.bind(this)}>Logout</button>
         </div>
 
@@ -84,30 +85,23 @@ class Dashboard extends React.Component {
 
         <div>
 
+          <button type="button" className={
+            "controller " + (this.state.isSummaryOpen ?
+              "selected-controller" :
+              "")
+          } onClick={this.showSummary.bind(this)}>Summary</button>
 
-          <div>
+          <button type="button" className={
+            "controller " + (this.state.isWord_CloudOpen ?
+              "selected-controller" :
+              "")
+          } onClick={this.showWordCloud.bind(this)}>Word-Cloud</button>
 
-            <button type="button" className={
-              "controller " + (this.state.isSummaryOpen ?
-                "selected-controller" :
-                "")
-            } onClick={this.showSummary.bind(this)}>Summary</button>
-
-            <button type="button" className={
-              "controller " + (this.state.isWord_CloudOpen ?
-                "selected-controller" :
-                "")
-            } onClick={this.showWordCloud.bind(this)}>Word-Cloud</button>
-
-            <button type="button" className={
-              "controller " + (this.state.isHeatmapOpen ?
-                "selected-controller" :
-                "")
-            } onClick={this.showHeatMap.bind(this)}>Heatmap</button>
-
-
-          </div>
-
+          <button type="button" className={
+            "controller " + (this.state.isHeatmapOpen ?
+              "selected-controller" :
+              "")
+          } onClick={this.showHeatMap.bind(this)}>Heatmap</button>
 
 
         </div>

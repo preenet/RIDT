@@ -8,6 +8,7 @@ from flask_jwt_extended import create_access_token
 from flask_pymongo import PyMongo
 from data_provider import DataProvider
 
+
 dp = DataProvider
 app = Flask(__name__)
 
@@ -392,6 +393,7 @@ def add_comment():
     content = request.get_json()['content']
     hotel = request.get_json()['hotel']
     user = request.get_json()['user']
+
     result = dp.add_comment(content, hotel)
     dp.record_log(user, 'Comment', user + ' wrote a comment')
     return result

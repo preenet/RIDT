@@ -127,7 +127,8 @@ export const addComment = comment => {
     .post("/data/add-comment",{
         content: comment.content,
         hotel: comment.hotel,
-        user: comment.username
+        user: comment.username,
+        socket_id: comment.socket_id
     })
     .then(response => {
         console.log('new comment added')
