@@ -11,11 +11,12 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 class Summary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isLoaderShow: true, isSummaryShow: false };
+    this.state = {isLoaderShow: true, isSummaryShow: false };
 
   }
 
   componentDidMount() {
+    
     setTimeout(() => {
       this.setState({
         isSummaryShow: true
@@ -32,7 +33,7 @@ class Summary extends React.Component {
           color="white"
           height={100}
           width={100}
-          timeout={3000} />}
+          timeout={1500} />}
 
         {this.state.isSummaryShow && <div>
 

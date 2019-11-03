@@ -10,11 +10,12 @@ import jwt_decode from 'jwt-decode'
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", status: "", trial_time: "", isSummaryOpen: true, isWord_CloudOpen: false, isHeatmapOpen: false, niubi: '' };
+    this.state = {username: "", status: "", trial_time: "", isSummaryOpen: true, isWord_CloudOpen: false, isHeatmapOpen: false, niubi: '' };
     console.log('Summary is showing!');
   }
 
   componentDidMount() {
+
     if (localStorage.usertoken) {
       const token = localStorage.usertoken;
       const decoded = jwt_decode(token);
@@ -106,7 +107,7 @@ class Dashboard extends React.Component {
 
         </div>
 
-        {this.state.isSummaryOpen && < Summary />}
+        {this.state.isSummaryOpen && < Summary/>}
 
         {this.state.isWord_CloudOpen && < WordCloud />}
 
