@@ -11,61 +11,64 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 class Summary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {isLoaderShow: true, isSummaryShow: false };
+    this.state = { isSummaryShow: false };
 
   }
 
   componentDidMount() {
-    
+
     setTimeout(() => {
       this.setState({
-        isSummaryShow: true
+        isSummaryShow: true,
       });
-    }, 1);
+    }, 1500);
   }
 
   render() {
     return (
 
       <div>
-        {this.state.isLoaderShow && <Loader
+        <Loader
           type="Oval"
           color="white"
           height={100}
           width={100}
-          timeout={1500} />}
+          timeout={1000} />
 
         {this.state.isSummaryShow && <div>
 
-          <div className="sparkline">
-            < Sparkline />
+          <div className="summary">
+            <div className="summray-item">
+              <div className="grid-chart">
+
+                <div className="chart grid-item" >
+                  < BarChart />
+                </div>
+
+                <div className="chart grid-item">
+                  < BarChart2 />
+                </div></div>
+            </div>
+            <div className="summray-item"> <div className="sparkline">
+              < Sparkline />
+            </div></div>
+            <div className="summray-item">
+
+              <div className="grid-chart">
+
+                <div className="chart grid-item">
+                  < StackedChart />
+                </div>
+
+                <div className="chart grid-item">
+                  < LineChart />
+                </div>
+
+              </div>
+            </div>
           </div>
-
-
-          <div className="grid-chart">
-
-            <div className="chart grid-item" >
-              < BarChart />
-            </div>
-
-            <div className="chart grid-item">
-              < BarChart2 />
-            </div>
-
-            <div className="chart grid-item">
-              < StackedChart />
-            </div>
-
-            <div className="chart grid-item">
-              < LineChart />
-            </div>
-
-          </div>
-
 
         </div>}
-
-
 
       </div>
     );

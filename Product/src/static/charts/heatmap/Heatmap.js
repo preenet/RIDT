@@ -11,7 +11,7 @@ class Heatmap extends React.Component {
 
   render() {
     return (
-      <h1 style={{ color: 'white' }}>Heatmap</h1>
+      <h1 style={{ color: 'white' }}>TODO: Heatmap</h1>
 
     );
   }

@@ -64,6 +64,21 @@
     margin: 1%;
 }
 
+.controller-disabled{
+    width: 12em;
+    padding: 4px 35px;
+    /* background-color: #417cef; */
+    font-size: 18px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    background-color: rgba(15, 15, 15, 0.03);
+    border: 1px solid white;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    color: grey;
+    margin: 1%;
+}
+
 .root-container {
     width: 100%;
     height: 100%;
@@ -254,28 +269,37 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto;
-    padding: 20px;
+    grid-template-columns: auto auto auto;
+    position: relative;
+}
+
+.summary{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    position: relative;
+}
+
+.summary-item{
+    padding: 10px;
     position: relative;
 }
 
 .grid-chart {
     display: grid;
-    grid-template-columns: auto auto;
-    padding: 20px;
+    grid-template-rows: auto;
     position: relative;
 }
 
+
 .grid-item {
-    padding: 20px;
+    padding: 1%;
     font-size: 20px;
-    position: relative;
-    padding: 10%;
+    position: relative; 
   }
+
 
 .hotel-card{
     position: relative;
-    margin-bottom:1%;
     /* border: 1px solid white; */
     margin: auto;
 }
@@ -341,13 +365,6 @@
     
 }
 
-.sparkline{
-    position: relative;
-    /* border: white 1px solid; */
-    margin: auto;
-    
-}
-
 .logout-btn {
     padding: 2px 30px;
     border: 0;
@@ -365,28 +382,34 @@
     color: white;
 }
 
+.sparkline{
+    position: relative;
+    margin: auto;
+    
+}
+
 .sparkline-top{
     position: relative;
-    width: 50%;
     margin: auto;
+  
 }
 
 .sparkline-center{
     position: relative;
-    width: 50%; 
     margin: auto;
+   
 }
 
 .sparkline-bottom{
     position: relative;
-    width: 50%;
     margin: auto;
+    
 }
 
 .sparkline-foot{
     position: relative;
-    width: 50%;
     margin: auto;
+    width: 600px;
 }
 
 .profile{
@@ -483,6 +506,21 @@
     margin-right: 1%;
 }
 
+.dia-controller {
+    width: 12em;
+    padding: 4px 35px;
+    /* background-color: #417cef; */
+    font-size: 18px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    background-color: rgba(15, 15, 15, 0.03);
+    border: 1px solid white;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    margin-bottom: 1%;
+    margin-right: 1%;
+}
+
 .mid-controller{
     width: 13em;
     padding: 4px 35px;
@@ -506,3 +544,4 @@
 .checked {
     color: orange;
   }
+

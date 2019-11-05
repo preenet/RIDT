@@ -32,20 +32,20 @@ class ViewBox extends React.Component {
     render() {
         const getImage = () => {
             let images = ['../image/hotelA.jpg',
-                          '../image/hotelB.jpg',
-                          '../image/hotelC.jpg',
-                          '../image/hotelD.jpg',
-                          '../image/hotelE.jpg',
-                          '../image/hotelF.jpg',
-                          '../image/hotelG.jpg',
-                          '../image/hotelH.jpg',
-                          '../image/hotelI.jpg',
-                          '../image/hotelJ.jpg',
-                          '../image/hotelK.jpg',
-                          '../image/hotelL.jpg',
-                          '../image/hotelM.jpg',
+                '../image/hotelB.jpg',
+                '../image/hotelC.jpg',
+                '../image/hotelD.jpg',
+                '../image/hotelE.jpg',
+                '../image/hotelF.jpg',
+                '../image/hotelG.jpg',
+                '../image/hotelH.jpg',
+                '../image/hotelI.jpg',
+                '../image/hotelJ.jpg',
+                '../image/hotelK.jpg',
+                '../image/hotelL.jpg',
+                '../image/hotelM.jpg',
             ];
-            let index = Math.floor(Math.random() * images.length); 
+            let index = Math.floor(Math.random() * images.length);
             return images[index];
         }
         const listItems = this.state.hotels.map((d) =>
@@ -61,7 +61,8 @@ class ViewBox extends React.Component {
                         <div className="middle" >
                             <div className="text" > Go to <strong>{d.hotel}</strong></div>
                         </div >
-                    </div></div>
+                    </div>
+                </div>
 
             </div>
 
@@ -69,7 +70,7 @@ class ViewBox extends React.Component {
 
         return (
             <div>
-               
+
 
                 <div className="grid-container">
                     {listItems}

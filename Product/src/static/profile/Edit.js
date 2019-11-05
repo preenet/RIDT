@@ -7,25 +7,34 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { editPassword, editUsername } from '../services/UserServices';
-import { withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class Edit extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      username: '',
+      status: '',
+      trial_time: '',
+      passwordChangeOpen: false,
+      usernameChangeOpen: false,
+      password: '',
+      newPassword: '',
+      newUsername: '',
+      errors: [],
+    };
+
+  }
+
+  componentDidMount() {
     if (localStorage.usertoken) {
       const token = localStorage.usertoken;
       const decoded = jwt_decode(token);
-      this.state = {
+      this.setState({
         username: decoded.identity.username,
         status: decoded.identity.status,
         trial_time: decoded.identity.trial_time,
-        passwordChangeOpen: false,
-        usernameChangeOpen: false,
-        password: '',
-        newPassword: '',
-        newUsername: '',
-        errors: [],
-      };
+      });
     } else {
       alert('Please login!');
       this.props.history.push('/');
@@ -138,7 +147,6 @@ class Edit extends React.Component {
     let pFormatErr = null;
 
 
-
     for (let err of this.state.errors) {
 
       if (err.elm === "sformat") {
@@ -182,6 +190,7 @@ class Edit extends React.Component {
               />
               <TextField
                 autoFocus
+                required
                 margin="dense"
                 id="password"
                 label="Old Password"
@@ -191,7 +200,7 @@ class Edit extends React.Component {
               />
 
               <TextField
-
+                required
                 margin="dense"
                 id="new-password"
                 label="New Password"
@@ -205,10 +214,10 @@ class Edit extends React.Component {
 
 
             <DialogActions>
-              <button autoFocus className="mini-controller" onClick={this.passwordHandleCancel.bind(this)} >
+              <button autoFocus className="dia-controller" onClick={this.passwordHandleCancel.bind(this)} >
                 Cancel
           </button>
-              <button className="mini-controller" onClick={this.passwordHandleConfirm.bind(this)} color="primary">
+              <button disabled={!this.state.password.length < 6 && this.state.newPassword.length < 6} className="dia-controller" onClick={this.passwordHandleConfirm.bind(this)} color="primary">
                 Confirm
           </button>
             </DialogActions>
@@ -233,6 +242,7 @@ class Edit extends React.Component {
 
             <TextField
               autoFocus
+              required
               margin="dense"
               id="new username"
               label="New Username"
@@ -248,10 +258,10 @@ class Edit extends React.Component {
 
           </DialogContent>
           <DialogActions>
-            <button autoFocus className="mini-controller" onClick={this.usernameHandleCancel.bind(this)} color="primary">
+            <button autoFocus className="dia-controller" onClick={this.usernameHandleCancel.bind(this)} color="primary">
               Cancel
           </button>
-            <button className="mini-controller" onClick={this.usernameHandleConfirm.bind(this)} color="primary">
+            <button disabled={sFormatErr || !this.state.newUsername} className="dia-controller" onClick={this.usernameHandleConfirm.bind(this)} color="primary">
               Confirm
           </button>
           </DialogActions>

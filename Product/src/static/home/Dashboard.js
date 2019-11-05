@@ -24,7 +24,7 @@ class Dashboard extends React.Component {
         status: decoded.identity.status,
         trial_time: decoded.identity.trial_time
       });
-      console.log(decoded.identity);
+     
     } else if (localStorage.admintoken) {
       const token = localStorage.admintoken;
       const decoded = jwt_decode(token);

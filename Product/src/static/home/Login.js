@@ -122,8 +122,6 @@ class LoginBox extends React.Component {
                                 onChange={this.onUsernameChanged.bind(this)}
                                 placeholder="Username" />
                         </div>
-
-
                         <small className="danger-error" > {sFormatErr ? sFormatErr : ""} </small>
                         <div className="input-group" >
                             <label htmlFor="password" > Password: </label><br />
@@ -134,7 +132,7 @@ class LoginBox extends React.Component {
                                 onChange={this.onPasswordChanged.bind(this)}
                                 placeholder="Password" />
                         </div>
-
+                       
                         <small className="danger-error" > {pFormatErr ? pFormatErr : ""} </small>
 
                         

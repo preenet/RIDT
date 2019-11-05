@@ -1,47 +1,37 @@
 import React from 'react';
 import '../../static/App.css';
 import jwt_decode from 'jwt-decode'
-import { getUser } from '../services/DataServices';
 import ViewBox from '../comment/View';
 import Edit from './Edit';
 
 class Profile extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            username:'',
+            status:'',
+            trial_time:'',
+            isCommentShow: true,
+            isEditShow: false
+        }
+    }
+
+    componentDidMount() {
+        
         if (localStorage.usertoken) {
+            
             const token = localStorage.usertoken;
             const decoded = jwt_decode(token);
-            this.state = {
+            this.setState({
                 username: decoded.identity.username,
                 status: decoded.identity.status,
                 trial_time: decoded.identity.trial_time,
-                isCommentShow: true,
-                isEditShow: false
-            }
+            });
         } else {
             alert('Please login!');
             this.props.history.push('/');
             window.location.reload();
         }
-
-        if (performance.navigation.type === 1) {
-            this.getProfile();
-        }
-    }
-
-    getProfile = () => {
-        const user = {
-            username: this.state.username
-        }
-        getUser(user).then(data => {
-            if (data) {
-                this.setState({
-                    username: data.result.username,
-                    status: data.result.status,
-                    trial_time: data.result.trial_time
-                })
-            }
-        });
     }
 
     dashboard(e) {
@@ -73,7 +63,7 @@ class Profile extends React.Component {
 
         return (
             <div >
-                <h1 style={{ 'color': 'white' }} >Hello, {this.state.username}</h1>
+                <h1 style={{ 'color': 'white' }} >Hesllo, {this.state.username}</h1>
                 <p style={{ 'color': 'white' }}>Your Account Status:  {this.state.status}</p>
                 <p style={{ 'color': 'white' }}>Your Account Expire Time:  {this.state.status !== "approved" ? "Disabled" : this.state.trial_time}</p>
                 <small className="danger-error" > {this.state.status !== "approved" ? "You cannot access dashboard until the admin approves your account." : ""} </small>
@@ -81,7 +71,7 @@ class Profile extends React.Component {
                     {/* <button type="button" className="controller" onClick={this.getProfile.bind(this)}> Refresh </button> */}
                     <button type="button" className="controller" onClick={this.showComment.bind(this)}> View Comment </button>
                     <button type="button" className="controller" onClick={this.showEdit.bind(this)}> Edit Profile </button>
-                    <button type="button" className="controller" disabled={this.state.status !== 'approved'} onClick={this.dashboard.bind(this)}> Dashboard </button>
+                    <button type="button" className={this.state.status === 'approved' ? "controller" : "controller-disabled"} disabled={this.state.status !== 'approved'} onClick={this.dashboard.bind(this)}> Dashboard </button>
                     <button type="button" className="controller" onClick={this.logout.bind(this)}> Logout </button>
                 </div>
                 {this.state.isEditShow && < Edit />}

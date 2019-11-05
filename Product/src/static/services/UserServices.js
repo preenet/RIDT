@@ -18,6 +18,7 @@ export const login = user => {
         password: user.password
     })
     .then(response => {
+       
         localStorage.setItem('usertoken',response.data.token)
         return response.data.token
     })
@@ -33,6 +34,7 @@ export const adminLogin = user => {
         password: user.password
     })
     .then(response => {
+        
         localStorage.setItem('admintoken',response.data.token)
         return response.data.token
     })

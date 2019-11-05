@@ -22,7 +22,8 @@
         "react-router": "5.0.1",
         "react-router-dom": "^5.0.1",
         "react-scripts": "3.0.1",
-        "react-test-renderer": "^16.8.6"
+        "react-test-renderer": "^16.8.6",
+        "react-wordcloud": "^1.1.1"
     },
     "scripts": {
         "start": "react-scripts start",

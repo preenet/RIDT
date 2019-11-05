@@ -5,9 +5,9 @@ import TextField from '@material-ui/core/TextField';
 import { Link, withRouter } from 'react-router-dom';
 import jwt_decode from 'jwt-decode'
 import Card from './Card';
-import Typing from '../test/Typing';
-import GetUsername from '../test/GetUsername';
-import Chatkit from '@pusher/chatkit-client';
+// import Typing from '../test/Typing';
+// import GetUsername from '../test/GetUsername';
+// import Chatkit from '@pusher/chatkit-client';
 
 class HotelBox extends React.Component {
 

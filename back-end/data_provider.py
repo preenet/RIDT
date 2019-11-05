@@ -202,7 +202,7 @@ class DataProvider:
         result = []
         for each in col.find({}):
             result.append({
-                'word': each['word'],
-                'count': each['count']
+                'text': each['word'],
+                'value': each['count']
             })
         return result

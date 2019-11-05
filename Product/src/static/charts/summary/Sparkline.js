@@ -56,7 +56,6 @@ class Sparkline extends React.Component {
 
     getTotalCount = () => {
         getTotalCount().then(data => {
-
             const info = []
             for (let i = 0; i < data.results.length; i++) {
                 info.push({ x: data.results[i].date, y: data.results[i].count });
@@ -401,17 +400,17 @@ class Sparkline extends React.Component {
 
                     <div>
                         <div className="sparkline-top" id="spark1">
-                            <ReactApexChart options={this.state.chartOptionsTopSpark1} series={this.state.seriesTopSpark1} type="area" height="160" />
+                            <ReactApexChart options={this.state.chartOptionsTopSpark1} series={this.state.seriesTopSpark1} type="area" width="550" height="160" />
                         </div>
                     </div>
                     <div>
                         <div className="sparkline-center" id="spark2">
-                            <ReactApexChart options={this.state.chartOptionsTopSpark2} series={this.state.seriesTopSpark2} type="area" height="160" />
+                            <ReactApexChart options={this.state.chartOptionsTopSpark2} series={this.state.seriesTopSpark2} type="area"  width="550" height="160" />
                         </div>
                     </div>
                     <div>
                         <div className="sparkline-bottom" id="spark3">
-                            <ReactApexChart options={this.state.chartOptionsTopSpark3} series={this.state.seriesTopSpark3} type="area" height="160" />
+                            <ReactApexChart options={this.state.chartOptionsTopSpark3} series={this.state.seriesTopSpark3} type="area" width="550" height="160" />
                         </div>
                     </div>
                 </div>

@@ -62,8 +62,8 @@ class BarChart extends React.Component {
       let info = []
       let info1 = []
       for (let i = 0; i < 10; i++) {
-        info.push(data[i].word)
-        info1.push(data[i].count)
+        info.push(data[i].text)
+        info1.push(data[i].value)
       }
 
       this.setState({
@@ -86,7 +86,7 @@ class BarChart extends React.Component {
 
       <div>
         <div id="chart">
-          <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="500" width="700" />
+          <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="340" width="500" />
         </div>
       </div>
 

@@ -16,7 +16,6 @@ class Admin extends React.Component {
 
     componentDidMount() {
 
-
         if (localStorage.admintoken) {
             const token = localStorage.admintoken;
             const decoded = jwt_decode(token);
@@ -47,13 +46,13 @@ class Admin extends React.Component {
 
     showAccount(e) {
         e.preventDefault();
-        console.log('Account is showing!');
+        console.log('Account list is showing!');
         this.setState({ isLogShow: false, isAccountShow: true, isWaitingListShow: false, isCommentShow: false });
     }
 
     showWaitingList(e) {
         e.preventDefault()
-        console.log('Waiting List is showing!');
+        console.log('Waiting list is showing!');
         this.setState({ isLogShow: false, isAccountShow: false, isWaitingListShow: true, isCommentShow: false });
     }
 

@@ -61,7 +61,7 @@ def login():
             result = jsonify({'message': 'Login successfully', 'user': response['username'], 'token': access_token})
 
         else:
-            dp.record_log(username, 'Login', username + ' logged failed')
+            dp.record_log(username, 'Login', username + ' logged in failed')
             result = jsonify({"error": "Invalid username and password"})
 
     else:
@@ -82,10 +82,10 @@ def admin_login():
             access_token = create_access_token(identity={
                 'username': response['username'],
             })
-            dp.record_log(username, 'Login', username + ' logged')
+            dp.record_log(username, 'Login', username + ' logged in')
             result = jsonify({'message': 'Super admin login successfully', 'token': access_token})
         else:
-            dp.record_log(username, 'login', username + ' logged failed')
+            dp.record_log(username, 'login', username + ' logged in failed')
             result = jsonify({"error": "Invalid username and password"})
     else:
         result = jsonify({"result": "No results found"})
@@ -163,7 +163,8 @@ def edit_password():
     password = request.get_json()['password']
     new_password = bcrypt.generate_password_hash(request.get_json()['new_password']).decode('utf-8')
     response = users.find_one({'username': username})
-
+    if new_password == '':
+        new_password = password
     if response:
         if bcrypt.check_password_hash(response['password'], password):
             new_values = {"$set": {"password": new_password}}
@@ -183,6 +184,8 @@ def edit_username():
     username = request.get_json()['username']
     info = request.get_json()['info']
     response = users.find_one({'username': username})
+    if info == '':
+        info = username
 
     if response:
         new_values = {"$set": {"username": info}}
