@@ -159,6 +159,17 @@ class DataProvider:
             'rating': rating,
         })
 
+        col = db['words']
+        r = TextBlob(content)
+        top10 = list(col.find({}, {'_id': 0, 'word': 1, 'count': 1}))[:10]
+        for i in range(10):
+            for each in r.word_counts.keys():
+                if each == top10[i]['word']:
+                    old = top10[i]['count']
+                    query = {"word": each}
+                    new_values = {"$set": {"count": old + r.word_counts.get(each)}}
+                    col.update_one(query, new_values)
+
         result = {'message': 'comment added'}
 
         return result
@@ -166,7 +177,6 @@ class DataProvider:
     @staticmethod
     def record_log(user, event, content):
         col = db["logs"]
-
         last_id = list(col.find({}, {'log_id': 1}))[-1]['log_id']
         time = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
         col.insert_one({
@@ -192,11 +202,6 @@ class DataProvider:
         return result
 
     @staticmethod
-    def delete():
-        col = db['logs']
-        col.delete_many({'log_id': 22})
-
-    @staticmethod
     def get_words():
         col = db['words']
         result = []
@@ -205,4 +210,64 @@ class DataProvider:
                 'text': each['word'],
                 'value': each['count']
             })
+
         return result
+
+    @staticmethod
+    def get_top10():
+        result = []
+        col = db["reviews"]
+        pipeline = [
+            {"$unwind": "$hotel"},
+            {"$group": {"_id": "$hotel", "count": {"$sum": 1}}}]
+        review = list(col.aggregate(pipeline))
+        review.sort(key=lambda item: item['count'], reverse=False)
+
+        for each in review[-10:]:
+            positive = 0
+            negative = 0
+            neutral = 0
+            total = col.find({"hotel": each["_id"]}).count()
+
+            for e in col.find({"hotel": each["_id"]}):
+                text = TextBlob(e['content'])
+                sentiment = text.polarity
+                if sentiment <= -0.7:
+                    negative += 1
+                elif -0.7 < sentiment <= 0:
+                    negative += 1
+                elif 0 < sentiment <= 0.4:
+                    neutral += 1
+                elif 0.4 < sentiment <= 0.7:
+                    positive += 1
+                elif sentiment > 0.7:
+                    positive += 1
+
+            result.append({"hotel": each["_id"], "positive": positive, "negative": negative, "neutral": neutral,
+                           "p_positive": "{0:.1f}%".format(positive / total * 100),
+                           "p_negative": "{0:.1f}%".format(negative / total * 100),
+                           "p_neutral": "{0:.1f}%".format(neutral / total * 100),
+                           })
+
+        return result
+
+    @staticmethod
+    def get_rate():
+        result = []
+
+        col = db['positive']
+        pipeline = [
+            {"$unwind": "$date"},
+            {"$group": {"_id": "$date", "count": {"$sum": 1},}}]
+        positive = list(col.aggregate(pipeline))
+        positive.sort(key=lambda item: item["_id"], reverse=False)
+        print(positive)
+        col = db['reviews']
+        i = 0
+        for each in positive:
+            total_count = col.find({'date': each["_id"]}).count()
+            positive_count = positive[i]["count"]
+            print(each["_id"], total_count, positive_count)
+            i += 1
+        return result
+

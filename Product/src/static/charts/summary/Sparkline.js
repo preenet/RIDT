@@ -60,7 +60,7 @@ class Sparkline extends React.Component {
             for (let i = 0; i < data.results.length; i++) {
                 info.push({ x: data.results[i].date, y: data.results[i].count });
             }
-
+           
             const info1 = []
             for (let i = data.results.length - 1; i > data.results.length - 10; i--) {
                 info1.push(data.results[i].count);

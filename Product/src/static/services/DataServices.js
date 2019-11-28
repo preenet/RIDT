@@ -154,3 +154,13 @@ export const getWords = () => {
             return res.data
         })
 }
+
+export const getTop10 = () => {
+    return axios
+        .get('/data/get-top10', {
+            headers: { 'Content-type': 'application/json' }
+        })
+        .then(res => {
+            return res.data
+        })
+}
