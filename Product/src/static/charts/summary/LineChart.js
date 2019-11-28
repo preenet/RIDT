@@ -66,7 +66,7 @@ class LineChart extends React.Component {
         info.push(data[i][1]);
         info1.push(data[i][0]);
       }
-      console.log(info1);
+     
       this.setState({
         options: {
           chart: {

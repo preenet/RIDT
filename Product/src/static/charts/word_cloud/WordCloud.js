@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../../static/App.css';
-
 import ReactWordcloud from 'react-wordcloud';
 import { getWords } from '../../services/DataServices'
 
