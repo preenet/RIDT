@@ -52,7 +52,7 @@ class Heatmap extends React.Component {
               ranges: [{
                 from: -30,
                 to: 5,
-                name: 'Nagetive',
+                name: 'Positive',
                 color: '#00A100'
               },
               {
@@ -64,7 +64,7 @@ class Heatmap extends React.Component {
               {
                 from: 21,
                 to: 45,
-                name: 'Positive',
+                name: 'Nagetive',
                 color: '#FFB200'
               },
              
