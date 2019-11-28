@@ -164,3 +164,13 @@ export const getTop10 = () => {
             return res.data
         })
 }
+
+export const getRate = () => {
+    return axios
+        .get('/data/get-rate', {
+            headers: { 'Content-type': 'application/json' }
+        })
+        .then(res => {
+            return res.data
+        })
+}

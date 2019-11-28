@@ -78,7 +78,7 @@ class BarChart extends React.Component {
 
     }).catch(err => {
       alert('Cannot connect to database, please try again!');
-    })
+    });
   }
 
   render() {

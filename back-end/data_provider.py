@@ -153,7 +153,7 @@ class DataProvider:
         col = db["reviews"]
         col.insert_one({
             'date': date,
-            'c_id': last_id+1,
+            'c_id': last_id + 1,
             'content': content,
             'hotel': hotel,
             'rating': rating,
@@ -254,20 +254,29 @@ class DataProvider:
     @staticmethod
     def get_rate():
         result = []
-
         col = db['positive']
         pipeline = [
             {"$unwind": "$date"},
-            {"$group": {"_id": "$date", "count": {"$sum": 1},}}]
+            {"$group": {"_id": "$date", "count": {"$sum": 1}}}]
         positive = list(col.aggregate(pipeline))
-        positive.sort(key=lambda item: item["_id"], reverse=False)
-        print(positive)
         col = db['reviews']
+        total = list(col.aggregate(pipeline))
+        c = 0
+        positive.sort(key=lambda item: item['_id'], reverse=False)
+        total.sort(key=lambda item: item['_id'], reverse=False)
+        years = ["2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015",
+                 "2016", "2017", "2018", "2019", ]
         i = 0
-        for each in positive:
-            total_count = col.find({'date': each["_id"]}).count()
-            positive_count = positive[i]["count"]
-            print(each["_id"], total_count, positive_count)
-            i += 1
-        return result
+        for each in total[:]:
 
+            if each["_id"][0:4] == years[i]:
+                c += each["count"]
+
+            else:
+
+                result.append([years[i], c])
+                c = 0
+                i = i + 1
+
+        result.append([years[i], c])
+        return result

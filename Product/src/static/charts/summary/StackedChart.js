@@ -20,9 +20,7 @@ class StackedChart extends React.Component {
           }
         }],
         xaxis: {
-          categories: ['Hotel A', 'Hotel B', 'Hotel C', 'Hotel D', 'Hotel E', 'Hotel F',
-            'Hotel G', 'Hotel H', 'Hotel I'
-          ],
+          categories: [],
           labels: {
             style: {
               colors: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white']

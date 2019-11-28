@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-
+import { getRate } from '../../services/DataServices';
 
 
 class LineChart extends React.Component {
@@ -9,132 +9,91 @@ class LineChart extends React.Component {
     super(props);
 
     this.state = {
-      chartOptionsArea: {
+      options: {
         chart: {
-          id: 'chartArea',
-          toolbar: {
-            autoSelected: 'pan',
-            show: false
-          },
-        },
-        colors: ['#546E7A'],
-        stroke: {
-          width: 3
+          zoom: {
+            enabled: false
+          }
         },
         dataLabels: {
           enabled: false
         },
-        fill: {
-          opacity: 1,
+        stroke: {
+          curve: 'straight'
         },
-        markers: {
-          size: 0
+        title: {
+          text: 'Positive Comments',
+          align: 'center',
+          style: {
+            color: 'white',
+          }
         },
+
         xaxis: {
-          type: 'datetime',
+          categories: [],
           labels: {
             style: {
-              colors: ['white', 'white', 'white', 'white', 'white', 'white', 'white']
+              colors: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white',
+                'white', 'white', 'white', 'white', 'white', 'white', 'white']
             },
           }
         },
         yaxis: {
           labels: {
             style: {
-              color: 'white'
+              color: 'white',
             },
-          }
-        },
-        title: {
-          text: 'Positive Comments Rate',
-          align: 'center',
-          style: {
-            color: 'white'
           }
         }
       },
-      chartOptionsBrush: {
-        chart: {
-          id: 'chartBrush',
-          brush: {
-            target: 'chartArea',
-            enabled: true
-          },
-          selection: {
-            enabled: true,
-            xaxis: {
-              min: new Date('19 Jun 2003').getTime(),
-              max: new Date('14 Aug 2019').getTime()
-            }
-          },
-        },
-        colors: ['#008FFB'],
-        fill: {
-          type: 'gradient',
-          gradient: {
-            opacityFrom: 0.91,
-            opacityTo: 0.1,
-          }
-        },
-        xaxis: {
-          type: 'datetime',
-          tooltip: {
-            enabled: false
-          },
-          labels: {
-            style: {
-              colors: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white'],
-            },
-          }
-        },
-        yaxis: {
-          tickAmount: 2,
-          labels: {
-            style: {
-              color: 'white'
-
-            },
-          }
-        },
-
-      },
       series: [{
-        name: 'Positive Rate',
-        data: this.generateDayWiseTimeSeries(new Date('1 Jan 2017').getTime(), 480, {
-          min: 0,
-          max: 100
-        })
+        name: "Positive comments",
+        data: []
       }],
     }
   }
 
-  generateDayWiseTimeSeries(baseval, count, yrange) {
-    var i = 0;
-    var series = [];
-    while (i < count) {
-      var x = baseval;
-      var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
-      series.push([x, y]);
-      baseval += 86400000 * 7;
-      i++;
-    }
-    console.log(series);
-    return series;
+  componentDidMount() {
+    this.getData();
   }
+
+  getData() {
+    getRate().then(data => {
+
+      const info = []
+      const info1 = []
+      for (let i = 0; i < data.length; i++) {
+        info.push(data[i][1]);
+        info1.push(data[i][0]);
+      }
+      console.log(info1);
+      this.setState({
+        options: {
+          chart: {
+            xaxis: {
+              categories: info1
+            }
+          }
+        },
+        series: [{
+          data: info
+        }]
+      });
+
+    }).catch(err => {
+      alert('Cannot connect to database, please try again!');
+    });
+  }
+
 
   render() {
     return (
 
       <div>
-       
-        <div id="charts">
-          <div id="chart1">
-            <ReactApexChart options={this.state.chartOptionsArea} series={this.state.series} type="line" height="170" width="500" />
-          </div>
-          <div id="chart2">
-            <ReactApexChart options={this.state.chartOptionsBrush} series={this.state.series} type="area" height="170" width="500" />
-          </div>
+        <div id="chart">
+          <ReactApexChart options={this.state.options} series={this.state.series} type="line" width="500" />
         </div>
+
       </div>
 
     );

@@ -422,7 +422,7 @@ def get_top10():
 
 @app.route('/data/get-rate', methods=['GET'])
 def get_rate():
-    result = dp.get_top10()
+    result = dp.get_rate()
     return jsonify(result)
 
 
