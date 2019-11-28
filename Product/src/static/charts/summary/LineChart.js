@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-import { getRate } from '../../services/DataServices';
+import { getPositiveLine } from '../../services/DataServices';
 
 
 class LineChart extends React.Component {
@@ -58,7 +58,7 @@ class LineChart extends React.Component {
   }
 
   getData() {
-    getRate().then(data => {
+    getPositiveLine().then(data => {
 
       const info = []
       const info1 = []

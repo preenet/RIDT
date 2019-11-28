@@ -420,9 +420,9 @@ def get_top10():
     return jsonify(result)
 
 
-@app.route('/data/get-rate', methods=['GET'])
-def get_rate():
-    result = dp.get_rate()
+@app.route('/data/get-line', methods=['GET'])
+def get_positive_line():
+    result = dp.get_positive_line()
     return jsonify(result)
 
 

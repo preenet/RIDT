@@ -252,7 +252,7 @@ class DataProvider:
         return result
 
     @staticmethod
-    def get_rate():
+    def get_positive_line():
         result = []
         col = db['positive']
         pipeline = [

@@ -165,9 +165,9 @@ export const getTop10 = () => {
         })
 }
 
-export const getRate = () => {
+export const getPositiveLine = () => {
     return axios
-        .get('/data/get-rate', {
+        .get('/data/get-line', {
             headers: { 'Content-type': 'application/json' }
         })
         .then(res => {
