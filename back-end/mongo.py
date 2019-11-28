@@ -414,5 +414,17 @@ def get_words():
     return jsonify(result)
 
 
+@app.route('/data/get-top10', methods=['GET'])
+def get_top10():
+    result = dp.get_top10()
+    return jsonify(result)
+
+
+@app.route('/data/get-rate', methods=['GET'])
+def get_rate():
+    result = dp.get_top10()
+    return jsonify(result)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

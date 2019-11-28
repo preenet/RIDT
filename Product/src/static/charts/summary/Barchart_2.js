@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-
+import { getTop10 } from '../../services/DataServices';
 
 
 class BarChart2 extends React.Component {
@@ -26,10 +26,10 @@ class BarChart2 extends React.Component {
           colors: ['transparent']
         },
         xaxis: {
-          categories: ['Hotel A', 'Hotel B', 'Hotel C', 'Hotel D', 'Hotel E', 'Hotel F', 'Hotel G', 'Hotel H', 'Hotel I'],
+          categories: [],
           labels: {
             style: {
-              colors: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white']
+              colors: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white']
 
             },
           }
@@ -72,21 +72,49 @@ class BarChart2 extends React.Component {
       },
       series: [{
         name: 'Neutral',
-        data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+        data: []
       }, {
         name: 'Positive',
-        data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+        data: []
       }, {
         name: 'Negative',
-        data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+        data: []
       }],
     }
+  }
+
+  componentDidMount() {
+    this.getData();
+  }
+
+  getData() {
+    getTop10().then(data => {
+      const hotel = [];
+      const positive = [];
+      const negative = [];
+      const neutral = [];
+      for (let i = 0; i < data.length; i++) {
+        hotel.push(data[i].hotel);
+        positive.push(data[i].positive);
+        negative.push(data[i].negative);
+        neutral.push(data[i].neutral);
+      }
+      
+      this.setState({
+        options: {
+          ...this.state.options, xaxis: { ...this.state.options.xaxis, categories: hotel }
+        },
+        series: [{ data: neutral }, {data: positive}, {data: negative}]
+      })
+    }).catch(err => {
+      alert('Cannot connect to database, please try again!');
+    })
   }
 
   render() {
     return (
       <div>
-       
+
         <div id="chart">
           <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="340" width="500" />
         </div>

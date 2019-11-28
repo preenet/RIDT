@@ -63,8 +63,8 @@ class LineChart extends React.Component {
           selection: {
             enabled: true,
             xaxis: {
-              min: new Date('19 Jun 2017').getTime(),
-              max: new Date('14 Aug 2017').getTime()
+              min: new Date('19 Jun 2003').getTime(),
+              max: new Date('14 Aug 2019').getTime()
             }
           },
         },
@@ -100,7 +100,7 @@ class LineChart extends React.Component {
       },
       series: [{
         name: 'Positive Rate',
-        data: this.generateDayWiseTimeSeries(new Date('1 Jan 2017').getTime(), 48, {
+        data: this.generateDayWiseTimeSeries(new Date('1 Jan 2017').getTime(), 480, {
           min: 0,
           max: 100
         })
@@ -118,7 +118,7 @@ class LineChart extends React.Component {
       baseval += 86400000 * 7;
       i++;
     }
-
+    console.log(series);
     return series;
   }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-
+import { getTop10 } from '../../services/DataServices';
 
 class StackedChart extends React.Component {
 
@@ -25,7 +25,7 @@ class StackedChart extends React.Component {
           ],
           labels: {
             style: {
-              colors: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white']
+              colors: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white']
             },
           }
         },
@@ -57,21 +57,49 @@ class StackedChart extends React.Component {
       },
       series: [{
         name: 'Neutral',
-        data: [44, 55, 41, 67, 22, 43, 21, 49, 39]
+        data: []
       }, {
         name: 'Positive',
-        data: [13, 23, 20, 8, 13, 27, 33, 12, 14]
+        data: []
       }, {
         name: 'Negative',
-        data: [11, 17, 15, 15, 21, 14, 15, 13, 9]
+        data: []
       }],
     }
+  }
+
+  componentDidMount() {
+    this.getData();
+  }
+
+  getData() {
+    getTop10().then(data => {
+      const hotel = [];
+      const positive = [];
+      const negative = [];
+      const neutral = [];
+      for (let i = 0; i < data.length; i++) {
+        hotel.push(data[i].hotel);
+        positive.push(data[i].p_positive);
+        negative.push(data[i].p_negative);
+        neutral.push(data[i].p_neutral);
+      }
+      
+      this.setState({
+        options: {
+          ...this.state.options, xaxis: { ...this.state.options.xaxis, categories: hotel }
+        },
+        series: [{ data: neutral }, { data: positive }, { data: negative }]
+      })
+    }).catch(err => {
+      alert('Cannot connect to database, please try again!');
+    })
   }
 
   render() {
     return (
       <div>
-      
+
         <div id="chart">
           <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="340" width="500" />
         </div>
