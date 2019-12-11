@@ -50,20 +50,20 @@ class Heatmap extends React.Component {
             shadeIntensity: 0.5,
             colorScale: {
               ranges: [{
-                from: -30,
-                to: 5,
+                from: 31,
+                to: 50,
                 name: 'Positive',
                 color: '#00A100'
               },
               {
-                from: 6,
-                to: 20,
+                from: 30,
+                to: 30,
                 name: 'Neutral',
                 color: '#128FD9'
               },
               {
-                from: 21,
-                to: 45,
+                from: 0,
+                to: 29,
                 name: 'Negative',
                 color: '#FFB200'
               },
@@ -86,68 +86,56 @@ class Heatmap extends React.Component {
       },
       series: [
         {
-          name: 'Jan',
+          name: 'Hotel Flora',
           data: generateData(17, {
-            min: -30,
+            min: 0,
             max: 45
           })
         },
         {
-          name: 'Feb',
+          name: 'Villa Tuscolana Park Hotel',
           data: generateData(17, {
-            min: -30,
+            min: 0,
             max: 45
           })
         },
         {
-          name: 'Mar',
+          name: 'Hotel Castel Gandolfo',
           data: generateData(17, {
-            min: -30,
+            min: 0,
             max: 45
           })
         },
         {
-          name: 'Apr',
+          name: 'Villa Mercede',
           data: generateData(17, {
-            min: -30,
+            min: 0,
             max: 45
           })
         },
         {
-          name: 'May',
+          name: 'Excel Hotel Roma Ciampino',
           data: generateData(17, {
-            min: -30,
+            min: 0,
             max: 45
           })
         },
         {
-          name: 'Jun',
+          name: 'Tenuta Cusmano',
           data: generateData(17, {
-            min: -30,
+            min: 0,
             max: 45
           })
         },
         {
-          name: 'Jul',
+          name: 'Park Hotel Villa Grazioli',
           data: generateData(17, {
-            min: -30,
+            min: 0,
             max: 45
           })
         },
-        {
-          name: 'Aug',
-          data: generateData(17, {
-            min: -30,
-            max: 45
-          })
-        },
-        {
-          name: 'Sep',
-          data: generateData(17, {
-            min: -30,
-            max: 45
-          })
-        }
+       
+      
       ],
     }
 
