@@ -63,7 +63,7 @@ class Profile extends React.Component {
 
         return (
             <div >
-                <h1 style={{ 'color': 'white' }} >Hesllo, {this.state.username}</h1>
+                <h1 style={{ 'color': 'white' }} >Hello, {this.state.username}</h1>
                 <p style={{ 'color': 'white' }}>Your Account Status:  {this.state.status}</p>
                 <p style={{ 'color': 'white' }}>Your Account Expire Time:  {this.state.status !== "approved" ? "Disabled" : this.state.trial_time}</p>
                 <small className="danger-error" > {this.state.status !== "approved" ? "You cannot access dashboard until the admin approves your account." : ""} </small>
